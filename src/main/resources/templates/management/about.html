@@ -1,0 +1,54 @@
+<link rel="stylesheet" type="text/css" href="/static/plugins/wangeditor/wangEditor.min.css">
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>关于内容</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>网站关于内容</legend>
+                </fieldset>
+                <div class="layui-tab layui-tab-brief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">关于网站</li>
+                        <li>关于博客</li>
+                        <li>关于我</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <div id="website-editor">
+                                <p th:utext="${website==null?'关于我的网站的一些信息...':website.content}"></p>
+                            </div>
+                            <div class="layui-row layui-admin-mt10">
+                                <button class="layui-btn" id="website-submit">提交修改</button>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div id="blog-editor">
+                                <p th:utext="${blog==null?'关于我的博客的一些信息...':blog.content}"></p>
+                            </div>
+                            <div class="layui-row layui-admin-mt10">
+                                <button class="layui-btn" id="blog-submit">提交修改</button>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div id="me-editor">
+                                <p th:utext="${me==null?'关于我自己的一些信息...':me.content}"></p>
+                            </div>
+                            <div class="layui-row layui-admin-mt10">
+                                <button class="layui-btn" id="me-submit">提交修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/plugins/wangeditor/wangEditor.min.js"></script>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${article.title}"></title>
+</head>
+<body class="animated fadeIn">
+<div id="article-app">
+    <common-header :params="params" :st="st" :title="title"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <common-article-page :article="article" :author="author" :comments="comments.count"
+                      :name="params.website_title" :tags="tags" :similars="similars"
+                      :alipay="params.alipay" :wechat="params.wechat_pay" :login="login">
+
+        <common-info slot="info" :info="showInfoLabel" :qq="params.qq_login" :login="login"></common-info>
+
+        <common-comment v-show="params.all_comment_open == 1 && article.commented" slot="post" :id="article.id"
+                     :login="login"></common-comment>
+
+        <common-search slot="search"></common-search>
+
+        <common-cate :cates="cates" slot="cate"></common-cate>
+
+        <common-similar :articles="articles" slot="similar"></common-similar>
+
+        <common-comment-list slot="comment" :comments="comments" :tips="params.comment_notice"
+                          :re="params.all_comment_open == 1 && article.commented"></common-comment-list>
+
+    </common-article-page>
+
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    layui.use(['layedit', 'laypage', 'code'], function () {
+        common.layedit = layui.layedit;
+        common.laypage = layui.laypage;
+        layui.code({
+            about: false
+        });
+        common.editor = common.layedit.build('comment-input', {
+            tool: ['face', '|', 'left', 'center', 'right', 'link', 'unlink']
+            , height: 150
+        });
+        common.laypage.render({
+            elem: $(".comment-page")
+  			, count: [[${comments.count}]]
+            , layout: ['prev', 'next']
+            , jump: function (obj, first) {
+                if (!first) {
+                    layer.msg('第 ' + obj.curr + ' 页');
+                    $.post("/article/comments", {
+                        articleId: common.articleVM.article.id
+                        , page: obj.curr
+                    }, function (cs) {
+                        common.articleVM.comments = cs;
+                    })
+                }
+            }
+        });
+    });
+
+    common.articleVM = new Vue({
+        el: "#article-app",
+        data: {
+            params: [[${settings}]]
+            , article: [[${article}]]
+            , st: true
+            , title: [[${article.title}]]
+            , tags: [[${tags}]]
+            , author: [[${author}]]
+            , cates: [[${cateList}]]
+            , articles: [[${articles}]]
+            , similars: [[${similars}]]
+            , login: [[${login}]]
+            , showInfoLabel: false
+            , comments: [[${comments}]]
+            , quote: {
+                showText: true
+                , text:
+                '<span class="layui-breadcrumb">' +
+                '   <a href="/">网站首页</a>' +
+                '   <a href="/index">博客文章</a>' +
+                '   <a href="">' + [[${article.title}]] + '</a>' +
+                '   <a><cite>正文</cite></a>' +
+                '</span>'
+            }
+        },
+        mounted: function () {
+            common.stickyIt()
+            common.affix = new hcSticky("#affix-side", {
+                stickTo: '#blog-body'
+                , queries: {980: {disable: true}}
+                , top: 75
+                , onStart: function () {
+                    if (!common.sticky()) {
+                        common.affix.destroy();
+                    }
+                }
+            })
+        }
+    })
+</script>
+<script>
+    layui.use(['element'], function () {
+        var element = layui.element;
+    });
+
+</script>
+</body>
+</html>

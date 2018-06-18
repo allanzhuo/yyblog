@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>在线涂鸦工具</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <link rel="stylesheet" type="text/css" href="css/scrawl.css">
+</head>
+<body>
+<div class="scrawl-main" id="scrawl-main">
+    <div class="hot">
+        <div class="drawBoard border_style">
+            <canvas id="canvas-borad" class="brushBorad">你的浏览器不支持 canvas 绘图</canvas>
+            <div class="picBoard" id="picBoard" style=""></div>
+        </div>
+        <div class="operateBar">
+            <button id="J_prevStep" class="prevStep" title="上一步">
+                <em class="icon"></em>
+            </button>
+            <button id="J_nextStep" class="nextStep" title="下一步">
+                <em class="icon"></em>
+            </button>
+            <button id="J_clearBoard" class="clearBoard" title="清空">
+                <em class="icon"></em>
+            </button>
+            <!--<span id="J_sacleBoard" class="scaleBoard">-->
+                <!--<em class="icon"></em>-->
+                <!--<em class="text">缩放背景</em>-->
+            <!--</span>-->
+        </div>
+    </div>
+    <div class="drawToolbar border_style">
+        <div class="colorBar">
+            <span data-color="#0099CC" style="background:#0099CC;" class="active"></span>
+            <span data-color="#003366" style="background:#003366;"></span>
+            <span data-color="#993333" style="background:#993333;"></span>
+            <span data-color="#FF9900" style="background:#FF9900;"></span>
+            <span data-color="#0000CC" style="background:#0000CC;"></span>
+            <span data-color="#CC3333" style="background:#CC3333;"></span>
+
+            <span data-color="#F4D03F" style="background:#641E16;"></span>
+            <span data-color="#4A235A" style="background:#4A235A;"></span>
+            <span data-color="#009966" style="background:#009966;"></span>
+            <span data-color="#ffff00" style="background:#ffff00;"></span>
+            <span data-color="#7D6608" style="background:#7D6608;"></span>
+            <span data-color="#FF33CC" style="background:#FF33CC;"></span>
+
+            <span data-color="#c00000" style="background:#641E16;"></span>
+            <span data-color="#ffffff" style="background:#ffffff;"></span>
+            <span data-color="#9bbb59" style="background:#9bbb59;"></span>
+            <span data-color="#CCFFFF" style="background:#CCFFFF;"></span>
+            <span data-color="#FFCCCC" style="background:#FFCCCC;"></span>
+            <span data-color="#CC99CC" style="background:#CC99CC;"></span>
+        </div>
+
+        <div class="sectionBar">
+            <em class="brushIcon"></em>
+            <a href="javascript:void(0)" class="brush-size size1">1</a>
+            <a href="javascript:void(0)" class="brush-size size2">3</a>
+            <a href="javascript:void(0)" class="brush-size size3">5</a>
+            <a href="javascript:void(0)" class="brush-size size4">7</a>
+        </div>
+        <div class="sectionBar">
+            <em class="eraserIcon"></em>
+            <a href="javascript:void(0)" class="eraser-size size1">5</a>
+            <a href="javascript:void(0)" class="eraser-size size2">10</a>
+            <a href="javascript:void(0)" class="eraser-size size3">15</a>
+            <a href="javascript:void(0)" class="eraser-size size4">20</a>
+        </div>
+
+        <div class="sectionBar">
+            <em class="blurIcon"></em>
+            <a href="javascript:void(0)" class="blur-size size1">2</a>
+            <a href="javascript:void(0)" class="blur-size size2">4</a>
+            <a href="javascript:void(0)" class="blur-size size3">6</a>
+            <a href="javascript:void(0)" class="blur-size size4">8</a>
+        </div>
+
+        <div class="sectionBar">
+            <span id="clearSetting" class="clearSetting">
+                <em class="icon"></em>
+                <em class="text">初始化设置</em>
+            </span>
+        </div>
+
+        <div class="sectionBar">
+            <div id="J_addImg" class="addImgH">
+                <em class="icon"></em>
+                <em class="text">添加背景</em>
+                <input type="file" class="upload" id="J_canvas_bg"
+                       accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>
+
+            </div>
+        </div>
+
+        <div class="sectionBar">
+            <span id="J_removeImg" class="removeImg">
+                <em class="icon"></em>
+                <em class="text">删除背景</em>
+            </span>
+        </div>
+
+        <div class="sectionBar">
+            <span id="J_saveImg" class="saveImg">
+                <em class="icon"></em>
+                <em class="text">保存图片</em>
+            </span>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="scrawl/libs/jquery.min.js"></script>
+<script type="text/javascript" src="scrawl.js"></script>
+<script>
+    new Canvas({
+        canvasId : "canvas-borad",
+        width : 700,
+        height : 400,
+        save : function(data) {
+            $.post("upload.php", {imgBase64: data}, function(res) {
+                if (res.code == "000") {
+                	alert("图片保存成功！");
+                	location.href = res.url;
+                } else {
+                	alert(res.url);
+                }
+            }, "json");
+        }
+    });
+</script>
+
+</body>
+</html>

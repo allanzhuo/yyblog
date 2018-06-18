@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${indexVo.settings.website_title}"></title>
+</head>
+<body class="animated fadeIn">
+<div id="index-app">
+    <common-header :params="params" :home="current"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <common-articles>
+        <common-list slot="list"></common-list>
+        <common-info :utext="params.info_label" :qq="params.qq_login" slot="infoLabel" :login="login"
+                  :order="params.info_panel_order"></common-info>
+        <common-search :search="search" slot="search"></common-search>
+        <common-cate :cates="cates" slot="cate"></common-cate>
+        <common-random :articles="articles" slot="random"></common-random>
+        <common-tab :tabs="tabs" slot="tab"></common-tab>
+    </common-articles>
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script th:inline="javascript">
+    common.indexVM = new Vue({
+        el: "#index-app",
+        data: {
+            params: [[${indexVo.settings}]]
+            , cates: [[${indexVo.cateList}]]
+            , articles: [[${indexVo.latestArticles}]]
+            , tabs: [[${indexVo.tagList}]]
+            , current: true
+            , login: [[${login}]]
+            , quote: {
+                showBlog: true
+                , showSearch: false
+                , showText: true
+                , articleCount: [[${indexVo.articleCount}]]
+                , searchCount: 0
+                , showClock: true
+                , text: [[${indexVo.settings.index_top_words}]]
+            }
+            , search: common.getParam("search") !== undefined ? decodeURIComponent(common.getParam("search")) : common.getParam("search")
+        },
+        mounted: function () {
+            common.stickyIt()
+            common.affix = new hcSticky("#affix-side", {
+                stickTo: '#main-body'
+                , innerSticker: '#search-panel'
+                , queries: {980: {disable: true}}
+                , top: 75
+                , onStart: function () {
+                    if (!common.sticky()) {
+                        common.affix.destroy();
+                    }
+                }
+            })
+        }
+    })
+
+</script>
+<script>
+    layui.config({base: '/static/assets/js/frontend/'}).extend({
+        article: 'article'
+    });
+    layui.use(['laytpl', 'element', 'flow', 'article'], function () {
+        var flow = layui.flow;
+        var element = layui.element;
+        var laytpl = layui.laytpl;
+        var article = layui.article;
+
+        flow.load({
+            elem: '#article-list' //流加载容器
+            , done: function (page, next) { //执行下一页的回调
+                return article(page, next, laytpl);
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>

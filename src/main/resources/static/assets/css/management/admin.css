@@ -1,0 +1,130 @@
+.layui-admin-mt5 {
+    margin-top: 5px;
+}
+
+.layui-admin-mt10 {
+    margin-top: 10px;
+}
+
+.layui-admin-mt15 {
+    margin-top: 15px;
+}
+
+.layui-admin-mt20 {
+    margin-top: 20px;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.font-size14 {
+    font-size: 14px;
+}
+
+.layui-green {
+    color: #009688
+}
+
+.layui-blue {
+    color: #1E9FFF;
+}
+
+.layui-text a {
+    color: #1E9FFF !important;
+    text-decoration: none !important;
+}
+
+.layui-layout-admin .layui-logo {
+    color: #ffffff;
+}
+
+.layui-logo > span {
+    color: #5FB878;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.layui-body {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.layui-tab-content.start .layui-tab-item {
+    padding: 20px 10px;
+}
+
+.layui-tab-content .layui-tab-item {
+    padding: 5px;
+}
+
+.layui-nav-tree .layui-nav-item a i {
+    margin-right: 5px;
+}
+
+@media screen  and (max-width: 768px) {
+    .layui-side {
+        left: -200px;
+    }
+
+    .layui-body, .layui-footer {
+        left: 0 !important;
+    }
+
+    .layui-layout.layui-layout-admin > .layui-header {
+        -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+        -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.label-info {
+    background-color: #5FB878;
+}
+
+.label {
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 2px;
+}
+
+.ke-dialog, .ke-dialog .ke-dialog-header, .uedbody, .uedbody .btn {
+    -webkit-border-radius: 1px !important;
+    -moz-border-radius: 1px !important;
+    border-radius: 1px !important;
+}
+
+.layui-body {
+    overflow-y: scroll !important;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.layui-dialog {
+    padding-top: 25px;
+    padding-right: 20px;
+}
+
+div.tagsinput span.tag {
+    background: #009688 !important;
+    color: #ffffff !important;
+    border-color: #009688 !important;
+}
+
+div.tagsinput span.tag a {
+    color: #5FB878 !important;
+}
+
+.layui-header *, #left-menu {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.layui-upload-drag {
+    padding: 5px;
+}

@@ -1,0 +1,42 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>打赏码管理</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start" style="min-height: 650px;">
+
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>打赏码设置</legend>
+                </fieldset>
+                <div class="layui-row layui-col-space30">
+
+                    <div class="layui-col-md6">
+                        <button type="button" class="layui-btn" id="alipay">
+                            <i class="layui-icon">&#xe67c;</i>上传支付宝二维码
+                        </button>
+                        <p id="a" class="layui-admin-mt15">
+                            <img th:src="${alipay}" style="width: 350px;height: 350px;"/>
+                        </p>
+                    </div>
+
+                    <div class="layui-col-md6">
+                        <button type="button" class="layui-btn" id="wechat">
+                            <i class="layui-icon">&#xe67c;</i>上传微信二维码
+                        </button>
+                        <p id="w" class="layui-admin-mt15">
+                            <img th:src="${wechat}" style="width: 350px;height: 350px;"/>
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

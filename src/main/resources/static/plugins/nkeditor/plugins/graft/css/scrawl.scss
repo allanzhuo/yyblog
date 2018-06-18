@@ -1,0 +1,284 @@
+/*common
+*/
+body {
+
+    margin: 0;
+    a{text-decoration: none;}
+    em{font-style: normal;}
+
+    .border_style{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow:2px 2px 5px #d3d6da;
+    }
+    em {font-style: normal;}
+
+    .ke-dialog-body {
+        padding-top: 8px;
+    }
+    .scrawl-main {
+        padding: 0px 8px;
+        zoom: 1;
+        overflow: hidden;
+        max-width: 1000px;
+
+
+        // 绘图区域
+        .hot {
+            float:left;
+
+            .drawBoard{
+                position: relative;
+                cursor: crosshair;
+
+                .brushBorad{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    z-index: 998;
+                }
+
+                .picBoard{
+                    border: none;
+                    text-align: center;
+                    cursor: default;
+                }
+            }
+
+            .operateBar{
+                margin-top:10px;
+                font-size:12px;
+                text-align: center;
+
+                span {margin-left: 10px;}
+
+                button {
+                    background:#e1e1e1;
+                    border: 1px solid #cccccc;
+                    margin: 0px 5px;
+                    cursor:default;
+                }
+
+                .prevStep {
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/undo.png');
+                    }
+                }
+
+                .prevStep.active {
+                    cursor: pointer;
+                    background: #FFFFFF;
+                    border-color: #56CCCC;
+
+                    .icon {
+                        background-image: url('images/undoH.png');
+                    }
+
+                }
+
+                .nextStep {
+                    .icon {
+                        display: inline-block;
+                        width:16px;
+                        height:16px;
+                        background-image: url('images/redo.png');
+                    }
+                }
+
+                .nextStep.active {
+                    cursor: pointer;
+                    background: #FFFFFF;
+                    border-color: #56CCCC;
+
+                    .icon {
+                        background-image: url('images/redoH.png');
+                    }
+                }
+
+                .clearBoard {
+                    cursor: default;
+
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/empty.png');
+                    }
+
+                }
+
+                .clearBoard.active {
+                    cursor: pointer;
+                    background: #FFFFFF;
+                    border-color: #56CCCC;
+
+                    .icon {
+                        background-image: url('images/emptyH.png');
+                    }
+                }
+
+                .scaleBoard {
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/scale.png');
+                        cursor:default;}
+
+                    .iconH {
+                        background-image: url('images/scaleH.png');
+                    }
+
+                    .text{
+                        color:#ccc;
+                        cursor:default;}
+                }
+
+
+            }
+        }
+
+        // 绘图工具
+        .drawToolbar {
+            float:right;
+            width:110px;
+            height:320px;
+            overflow: hidden;
+
+            .brushIcon {
+                display: inline-block;
+                width:16px;height:16px;
+                background-image: url('images/brush.png')}
+
+            .eraserIcon {
+                display: inline-block;
+                width:16px;height:16px;
+                background-image: url('images/eraser.png')}
+
+            .blurIcon {
+                display: inline-block;
+                width:16px;height:16px;
+                background: url(images/blur.png) -2px -2px;
+                background-size: 22px 20px;
+            }
+
+            .colorBar {
+                margin-top:10px;
+                font-size: 12px;
+                text-align: center;
+                zoom: 1;
+                overflow: hidden;
+
+                span {
+                    float: left;
+                    margin: 2px 3px;
+                    width: 10px;
+                    height: 10px;
+                    border:1px solid #c1c1c1;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+
+                .active {
+                    border-color: #FF0000;
+                    box-shadow:2px 2px 5px #d3d6da;
+                }
+            }
+
+            .sectionBar {
+                margin-top:15px;
+                font-size: 12px;
+                text-align: center;
+
+                a {
+                    display:inline-block;
+                    width:10px;
+                    height:12px;
+                    color: #888;
+                    text-indent: -999px;
+                    opacity: 0.3
+                }
+
+                .size1 {background: url('images/size.png') 1px center no-repeat ;}
+                .size2 {background: url('images/size.png') -10px center no-repeat;}
+                .size3 {background: url('images/size.png') -22px center no-repeat;}
+                .size4 {background: url('images/size.png') -35px center no-repeat;}
+
+                .icon {
+                    position: relative;
+                    top:3px;
+                }
+                .clearSetting {
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/init.png');
+                        background-size: 16px 16px;
+                    }
+                }
+
+                .addImgH {
+                    position: relative;
+
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/addimg.png');
+                        cursor:default;
+                    }
+
+                    .upload {
+                        position: absolute;
+                        left: 18px;top: -1px;
+                        width: 75px;
+                        height: 21px;
+                        opacity: 0;
+                        cursor: pointer;
+                        opacity: 0;
+                    }
+                }
+
+                .removeImg {
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/delimg.png');
+                        cursor:default;
+                    }
+
+                    .text{color:#ccc;cursor:default;}
+                } //end removeImg
+
+                .removeImg.active {
+                    cursor: pointer;
+
+                    .icon {
+                        background-image: url('images/delimgH.png');
+                    }
+
+                    .text{color:#000;cursor:default;}
+                } //end removeImg
+
+                //保存图片
+                .saveImg {
+                    cursor: pointer;
+
+                    .icon {
+                        display: inline-block;
+                        width:16px;height:16px;
+                        background-image: url('images/save.png');
+                        background-size: 18px 18px;
+                        cursor:default;
+                    }
+                }
+
+            }
+
+            #clearSetting {cursor: pointer;}
+        }
+    }
+
+
+}
+
+

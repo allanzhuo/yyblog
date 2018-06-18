@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${settings.website_title} + '- 笔记'"></title>
+</head>
+<body class="animated fadeIn">
+<div id="note-app">
+    <common-header :params="params" :note="current"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <common-notes :sw="sw" :su="su"></common-notes>
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    common.noteVm = new Vue({
+        el: "#note-app",
+        data: {
+            params: [[${settings}]]
+            , su: [[${su}]]
+            , current: true
+            , quote: {
+                showText: true
+                , showNote: true
+                , showSearch: false
+                , searchCount: 0
+                , noteCount: [[${noteCount}]]
+                , text: [[${settings.index_top_words}]]
+            }
+            , sw: common.getParam("t") !== undefined ? decodeURIComponent(common.getParam("t")) : common.getParam("t")
+        },
+        mounted: function () {
+            common.stickyIt();
+            new hcSticky("#note-operate", {
+                stickTo: '#note-body'
+                , top: 75
+            })
+        }
+
+    })
+</script>
+<script>
+    layui.config({base: '/static/assets/js/frontend/'}).extend({
+        note: 'note'
+    });
+    layui.use(['laytpl', 'element', 'flow', 'note'], function () {
+        var flow = layui.flow;
+        var element = layui.element;
+        var laytpl = layui.laytpl;
+        var note = layui.note;
+
+        flow.load({
+            elem: '#timeline'
+            , done: function (page, next) {
+                return note($(".layui-note-cover"), page, next, laytpl);
+            }
+        });
+    });
+</script>
+</body>
+</html>

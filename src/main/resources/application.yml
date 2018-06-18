@@ -1,0 +1,39 @@
+
+spring:
+  thymeleaf:
+    cache: false
+    #非严格模式的HTML语法检查
+    mode: LEGACYHTML5
+  datasource:
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://xxxx:3306/blog_pro?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: root
+      password: xxxx
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      web-stat-filter:
+        enabled: false
+      stat-view-servlet:
+        enabled: false
+    type: com.alibaba.druid.pool.DruidDataSource
+  resources:
+    static-locations:  file:f://upload/
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 100MB
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+    max-connections: 2000
+    max-threads:  2000
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+  mapper-locations: classpath:mapper/*.xml  

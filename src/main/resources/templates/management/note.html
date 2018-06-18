@@ -1,0 +1,50 @@
+<link rel="stylesheet" type="text/css" href="/static/plugins/tagsinput/jquery.tagsinput.min.css">
+<link rel="stylesheet" type="text/css" href="/static/plugins/wangeditor/wangEditor.min.css">
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>发布内容</cite></a>
+                <a><cite>撰写笔记</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div id="article-post" class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>撰写笔记</legend>
+                </fieldset>
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">笔记内容</label>
+                        <div class="layui-input-block" id="note-editor">
+                            <p>你正在想什么呢...</p>
+                        </div>
+                    </div>
+                    <div class="layui-form-item tags">
+                        <label class="layui-form-label">标签</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="tagNames" id="tagName" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="noteSubmit">立即发布</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/plugins/wangeditor/wangEditor.min.js"></script>
+<script src="/static/plugins/tagsinput/jquery.tagsinput.min.js"></script>

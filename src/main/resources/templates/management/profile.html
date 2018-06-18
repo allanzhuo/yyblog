@@ -1,0 +1,72 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>我的资料</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <div class="layui-tab-item layui-show">
+                    <fieldset class="layui-elem-field">
+                        <legend>修改个人基本资料</legend>
+                        <div class="layui-field-box">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">用户名</label>
+                                    <div class="layui-input-inline" style="width: 400px;">
+                                        <label id="username" class="layui-form-label layui-blue"
+                                               style="text-align: left;" th:text="${loginUser.username}"></label>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">用户昵称</label>
+                                    <div class="layui-input-inline" style="width: 400px;">
+                                        <input type="text" name="nickname" required lay-verify="required"
+                                               placeholder="请输入昵称" th:value="${loginUser.nickname}"
+                                               autocomplete="off" class="layui-input">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux">修改结果需重新登录生效</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">用户图标</label>
+                                    <div class="layui-input-inline">
+                                        <p id="avatar" style="cursor: pointer;">
+                                            <img th:src="${loginUser.avatar}" style="width: 70px;height: 70px;"
+                                                 class="layui-circle"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">账号密码</label>
+                                    <div class="layui-input-inline" style="width: 400px;">
+                                        <input type="password" name="password1" placeholder="请输入密码，留空则不做修改"
+                                               autocomplete="off" class="layui-input">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux">6~16位密码长度</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">确认密码</label>
+                                    <div class="layui-input-inline" style="width: 400px;">
+                                        <input type="password" name="password2" placeholder="请重复输入密码" autocomplete="off"
+                                               class="layui-input">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux">请重复上面输入的</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="profileForm">提交更改</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/plugins/md5/md5.min.js"></script>

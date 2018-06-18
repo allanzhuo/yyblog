@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.laoyeye.yyblog.mapper.ArticleMapper">
+	<sql id="Base_Column_List" >
+    	ID, 
+    	TITLE,
+    	CATE_ID, 
+	    COVER, 
+	    SUMMARY, 
+	    VIEWS, 
+	    APPROVE_CNT,
+	    COMMENTED, 
+	    APPRECIABLE, 
+	    DRAFT, 
+	    TOP, 
+	    CONTENT, 
+	    TEXT_CONTENT,
+	    AUTHOR_ID, 
+	    CREATE_TIME,
+	    UPDATE_TIME
+ 	</sql>
+	<!-- 查询文章总数量 -->
+	<select id="countAllArticle" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			T_ARTICLE
+	</select>
+	<!-- 查询最新博文 -->
+	<select id="getLatestArticle" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+		SELECT
+			TITLE,
+			SUMMARY,
+			CREATE_TIME
+		FROM
+			T_ARTICLE
+		WHERE
+			DRAFT = 0
+		ORDER BY
+			CREATE_TIME DESC
+		LIMIT 1
+	</select>
+	<!-- 根据分类ID查询文章数量 -->
+	<select id="countByCateId" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			T_ARTICLE
+		WHERE CATE_ID = #{cateId}
+	</select>
+	
+ 	<insert id="saveArticle" parameterType="net.laoyeye.yyblog.model.Article" >
+	    INSERT INTO T_ARTICLE (ID, TITLE, CATE_ID, 
+	      COVER, SUMMARY, VIEWS, 
+	      APPROVE_CNT, COMMENTED, APPRECIABLE, 
+	      DRAFT, TOP, CONTENT, TEXT_CONTENT,
+	      AUTHOR_ID, CREATE_TIME,UPDATE_TIME)
+	    VALUES (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{cateId,jdbcType=BIGINT}, 
+	      #{cover,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
+	      #{approveCnt,jdbcType=INTEGER}, #{commented,jdbcType=BIT}, #{appreciable,jdbcType=BIT}, 
+	      #{draft,jdbcType=BIT}, #{top,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, 
+	      #{textContent,jdbcType=LONGVARCHAR},#{authorId,jdbcType=BIGINT}, 
+	      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+   </insert>
+  
+  	<!-- 根据标题查询文章 -->
+	<select id="listArticleByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+		SELECT
+		  AT.ID,
+		  AT.TITLE, 
+		  CT.NAME CATE_NAME, 
+	      AT.CREATE_TIME, 
+	      AT.DRAFT,
+	      AT.APPROVE_CNT,
+	      AT.VIEWS, 
+	      AT.COMMENTED, 
+	      AT.APPRECIABLE, 
+	      AT.TOP
+		FROM
+			T_ARTICLE AT
+		LEFT JOIN T_CATE CT ON CT.ID = AT.CATE_ID
+		<where>
+			<if test="title != null" >
+			AT.TITLE LIKE CONCAT('%',#{title},'%')
+			</if>
+		</where>
+		ORDER BY AT.CREATE_TIME DESC
+	</select>
+ 	<update id="update" parameterType="net.laoyeye.yyblog.model.Article" >
+	    UPDATE T_ARTICLE
+	    <set >
+	      <if test="title != null" >
+	        TITLE = #{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="cateId != null" >
+	        CATE_ID = #{cateId,jdbcType=BIGINT},
+	      </if>
+	      <if test="cover != null" >
+	        COVER = #{cover,jdbcType=VARCHAR},
+	      </if>
+	      <if test="summary != null" >
+	        SUMMARY = #{summary,jdbcType=VARCHAR},
+	      </if>
+	      <if test="views != null" >
+	        VIEWS = #{views,jdbcType=INTEGER},
+	      </if>
+	      <if test="approveCnt != null" >
+	        APPROVE_CNT = #{approveCnt,jdbcType=INTEGER},
+	      </if>
+	      <if test="commented != null" >
+	        COMMENTED = #{commented,jdbcType=BIT},
+	      </if>
+	      <if test="appreciable != null" >
+	        APPRECIABLE = #{appreciable,jdbcType=BIT},
+	      </if>
+	      <if test="draft != null" >
+	        DRAFT = #{draft,jdbcType=BIT},
+	      </if>
+	      <if test="top != null" >
+	        TOP = #{top,jdbcType=INTEGER},
+	      </if>
+	      <if test="content != null" >
+	        CONTENT = #{content,jdbcType=LONGVARCHAR},
+	      </if>
+	      <if test="textContent != null" >
+	        TEXT_CONTENT = #{textContent,jdbcType=LONGVARCHAR},
+	      </if>
+	      <if test="authorId != null" >
+	        AUTHOR_ID = #{authorId,jdbcType=BIGINT},
+	      </if>
+	      <if test="createTime != null" >
+	        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateTime != null" >
+	        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </set>
+	    WHERE ID = #{id,jdbcType=BIGINT}
+   </update>
+   <!--  根据id获取文章 -->
+   <select id="getArticleById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.Article">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_ARTICLE
+		WHERE
+			ID = #{id,jdbcType=BIGINT}
+	</select>
+	<!-- 删除文章 -->
+	<delete id="delete" parameterType="java.lang.Long" >
+    	DELETE FROM T_ARTICLE
+    	WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+	
+	<!-- 根据文章分类/标签/标题/内容查询文章 -->
+	<select id="listIndexArticle" parameterType="net.laoyeye.yyblog.model.query.IndexQuery" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+		SELECT DISTINCT
+			AT .ID,
+			AT .TITLE,
+			TC. NAME CATE_NAME,
+			AT .CREATE_TIME,
+			AT.SUMMARY,
+			AT .DRAFT,
+			AT .APPROVE_CNT,
+			AT .VIEWS,
+			AT .COMMENTED,
+			AT .APPRECIABLE,
+			AT .TOP
+		FROM
+			T_ARTICLE AT
+		LEFT JOIN T_CATE TC ON TC.ID = AT .CATE_ID
+		LEFT JOIN T_TAG_REFER TTR ON TTR.REFER_ID = `AT`.ID
+		LEFT JOIN T_TAG TT ON TT.ID = TTR.TAG_ID
+		<where>
+			<if test="title != null" >
+				AT.TITLE LIKE CONCAT('%',#{title},'%')
+			</if>
+			<if test="textContent != null" >
+				OR AT.TEXT_CONTENT LIKE CONCAT('%',#{textContent},'%')
+			</if>
+			<if test="cateId != null" >
+				AND TC.ID = #{cateId}
+			</if>
+			<if test="tag != null" >
+				AND TT.NAME = #{tag}
+			</if>
+		</where>
+		ORDER BY AT.TOP DESC,AT.CREATE_TIME DESC
+	</select>
+	
+	<update id="updateViewsById" parameterType="java.lang.Long" >
+	    UPDATE T_ARTICLE
+			SET VIEWS = VIEWS + 1
+	    WHERE ID = #{id,jdbcType=BIGINT}
+    </update>
+   
+   <update id="updateApproveCntById" parameterType="java.lang.Long" >
+	    UPDATE T_ARTICLE
+			SET APPROVE_CNT = APPROVE_CNT + 1
+		WHERE
+		ID = #{id,jdbcType=BIGINT}
+   </update>
+</mapper>

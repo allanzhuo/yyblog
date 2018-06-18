@@ -1,0 +1,95 @@
+<div class="uedbody">
+	<div class="ued_title">
+		<div class="uedbar">
+			<span>多图上传</span>
+		</div>
+		<div class="close_but icon" title="关闭对话框"></div>
+	</div>
+
+	<div class="wrapper">
+		<div id="wra_head" class="wra_head">
+			<span class="tab tab-upload focus" tab="upload-panel">本地上传</span>
+			<span class="tab tab-online" tab="online">文件服务器</span>
+			<span class="tab tab-search" tab="searchbox">图片搜索</span>
+		</div>
+
+		<div class="wra_body">
+			<div class="tab-panel upload-panel">
+				<div class="wra_pla">
+					<div class="upload-image-placeholder">
+						<div class="btn btn-primary image-select">点击选择图片</div>
+						<input type="file" name="src" class="webuploader-element-invisible" multiple="multiple">
+					</div>
+				</div>
+
+				<div class="image-list-box" style="display: none;">
+					<div class="wra_bar">
+						<div class="info fl">选中 {img.num} 张图片，共 {img.size} K</div>
+						<div class="fr">
+							<span class="btn btn-default btn-continue-add">继续添加</span>
+							<span class="btn btn-primary btn-start-upload">开始上传</span>
+						</div>
+					</div>
+
+					<ul class="filelist">
+						<?php for ( $i = 0; $i < 20; $i++ ) {?>
+						<li>
+							<div class="imgWrap">
+								<img src="http://ueditor.baidu.com/server/ueditor/upload/image/3.jpg?noCache=iokrzz5b" width="113" height="113" border="0" />
+							</div>
+							<div class="file-opt-box clearfix">
+								<span class="remove">删除</span>
+								<span class="rotateRight">向右旋转</span>
+								<span class="rotateLeft">向左旋转</span>
+							</div>
+							<div class="success"></div>
+							<div class="error">这是错误信息</div>
+							<div class="progress"><span style="display: none; width: 0px;"></span></div>
+						</li>
+						<?php }?>
+
+					</ul>
+
+				</div>
+			</div>
+
+			<div class="tab-panel online">
+				<div class="imagelist">
+					<ul class="list">
+						<li>
+							<img style="margin-left: -33px;" src="http://ueditor.baidu.com/server/ueditor/upload/image/10.jpg?noCache=iokuzbsf" height="113" width="179">
+							<span class="ic <?php if ($i%2==0) {echo "selected";}?>"></span>
+						</li>
+					</ul>
+					<div class="no-data">(⊙o⊙)亲，没有多数据了。</div>
+				</div>
+			</div>
+
+			<div class="tab-panel searchbox">
+				<div class="search-bar">
+					<input class="searTxt" type="text" placeholder="请输入搜索关键词" />
+					<input value="百度一下" class="btn btn-primary btn-search" type="button" />
+					<input value="清空搜索" class="btn btn-default btn-cancel" type="button" />
+				</div>
+
+				<div class="search-imagelist-box">
+					<ul class="search-list">
+						<li>
+							<img style="margin-left: -33px;" src="http://ueditor.baidu.com/server/ueditor/upload/image/10.jpg?noCache=iokuzbsf" height="113" width="179">
+							<span class="ic <?php if ($i%2==0) {echo "selected";}?>"></span>
+						</li>
+					</ul>
+					<div class="no-data">(⊙o⊙)亲，没有多数据了。</div>
+				</div>
+			</div>
+
+			<div class="loading-icon"></div>
+		</div><!-- end of wrapper -->
+
+	</div>
+
+	<div class="wra-btn-group">
+		<span class="btn btn-primary btn-confirm">确认</span>
+		<span class="btn btn-default btn-cancel">取消</span>
+	</div>
+</div>

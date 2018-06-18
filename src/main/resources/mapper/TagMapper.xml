@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.laoyeye.yyblog.mapper.TagMapper">
+	<sql id="Base_Column_List">
+		ID,
+		NAME
+	</sql>
+	<!-- 查询出所有的分類信息 -->
+	<select id="listAllTag" resultType="net.laoyeye.yyblog.model.Tag">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			t_tag
+		ORDER BY ID
+	</select>
+	<!-- 根据名称查询出分類信息 -->
+	<select id="listTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Tag">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			t_tag
+		WHERE NAME LIKE CONCAT('%',#{name},'%')
+	</select>
+	
+	<update id="updateById" parameterType="net.laoyeye.yyblog.model.Tag" >
+	    UPDATE t_tag
+	    <set >
+	      <if test="name != null" >
+	        NAME = #{name,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where ID = #{id,jdbcType=INTEGER}
+    </update>
+	<delete id="delete" parameterType="java.lang.Long" >
+	    DELETE FROM T_TAG
+	    WHERE ID = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="saveTag" parameterType="net.laoyeye.yyblog.model.Tag" >
+	    INSERT INTO T_TAG (ID, NAME)
+	    VALUES (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
+   </insert>
+   
+   <!-- 根据名称查询标签是否存在 -->
+   <select id="countByName" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			T_TAG
+		WHERE NAME = #{name}
+	</select>
+	
+	<!-- 根据名称查询出标签信息 -->
+	<select id="getTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Tag">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			t_tag
+		WHERE NAME = #{name}
+	</select>
+	
+	<!-- 根据文章ID查询出文章的标签 -->
+	<select id="listTagByReferId" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.Tag">
+		SELECT
+			TT.ID,
+			TT.`NAME`
+		FROM
+			T_TAG TT
+		INNER JOIN T_TAG_REFER TTR ON TT.ID = TTR.TAG_ID
+		WHERE
+			TTR.REFER_ID = #{referId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="/static/plugins/tagsinput/jquery.tagsinput.min.css">
+<link rel="stylesheet" type="text/css" href="/static/plugins/wangeditor/wangEditor.min.css">
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>发布内容</cite></a>
+                <a><cite>修改笔记</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div id="article-post" class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>修改笔记 <a class="layui-btn layui-btn-sm layui-btn-primary"
+                                    href="javascript:window.history.go(-1);">返回列表</a></legend>
+                </fieldset>
+                <div class="layui-form">
+                    <input type="hidden" name="id" th:value="${editNote.id}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                   th:value="${editNote.title}"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">笔记内容</label>
+                        <div class="layui-input-block" id="note-editor">
+                            <p th:utext="${editNote.content}"></p>
+                        </div>
+                    </div>
+                    <div class="layui-form-item tags">
+                        <label class="layui-form-label">标签</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="tagNames" id="tagName" class="layui-input" th:value="${noteTags}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="noteSubmit">保存修改</button>
+                            <a class="layui-btn layui-btn-primary" href="javascript:window.history.go(-1);">返回列表</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/plugins/wangeditor/wangEditor.min.js"></script>
+<script src="/static/plugins/tagsinput/jquery.tagsinput.min.js"></script>

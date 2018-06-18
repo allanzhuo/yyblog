@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.laoyeye.yyblog.mapper.CateMapper">
+	<sql id="Base_Column_List">
+		ID,
+		CODE,
+		NAME
+	</sql>
+	<!-- 查询出所有的分類信息 -->
+	<select id="listAllCate" resultType="net.laoyeye.yyblog.model.Cate">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_CATE
+		ORDER BY ID
+	</select>
+	<!-- 查询出所有的分類信息 -->
+	<select id="countByCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+			COUNT(ID)
+		FROM
+			T_CATE
+		WHERE CODE = #{code}
+	</select>
+  	<insert id="save" parameterType="net.laoyeye.yyblog.model.Cate" >
+	    INSERT INTO T_CATE (ID, CODE, NAME)
+	    VALUES (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+ 	</insert>
+ 	<delete id="delete" parameterType="java.lang.Long" >
+	    DELETE FROM T_CATE
+	    WHERE ID = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<update id="updateById" parameterType="net.laoyeye.yyblog.model.Cate" >
+	    UPDATE T_CATE
+	    <set >
+	      <if test="code != null" >
+	        CODE = #{code,jdbcType=VARCHAR},
+	      </if>
+	      <if test="name != null" >
+	        NAME = #{name,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    WHERE ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${settings.website_title} + '- 留言'"></title>
+</head>
+<body class="animated fadeIn">
+<div id="message-app">
+    <common-header :params="params"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <common-message-page>
+        <common-message-comment v-show="params.is_open_message == 1" slot="post" :su="su"></common-message-comment>
+        <common-comment-list slot="comment" :comments="messages" :tips="params.message_panel_words"
+                          :re="params.is_open_message == 1 && su != null"></common-comment-list>
+        <common-info slot="info" :utext="params.info_label" :info="showInfoLabel" :qq="params.qq_login"
+                  :su="su"></common-info>
+        <common-search slot="search"></common-search>
+        <common-cate :cates="cates" slot="cate"></common-cate>
+        <common-tab :tabs="tabs" slot="tags"></common-tab>
+    </common-message-page>
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    layui.use(['layedit', 'laypage', 'code'], function () {
+        common.layedit = layui.layedit;
+        common.laypage = layui.laypage;
+        layui.code({
+            about: false
+        });
+        common.editor = common.layedit.build('comment-input', {
+            tool: ['face', '|', 'left', 'center', 'right', 'link', 'unlink']
+            , height: 150
+        });
+        common.laypage.render({
+            elem: $(".comment-page")
+            , count: [[${messages.totalCount}]]
+            , layout: ['prev', 'next']
+            , jump: function (obj, first) {
+                if (!first) {
+                    layer.msg('第 ' + obj.curr + ' 页');
+                    $.post("/message/lists", {
+                        pageNo: obj.curr
+                    }, function (cs) {
+                        common.messageVm.messages = cs;
+                    })
+                }
+            }
+        });
+    });
+
+    common.messageVm = new Vue({
+        el: "#message-app",
+        data: {
+            params: [[${settings}]]
+            , cates: [[${cates}]]
+            , tabs: [[${tags}]]
+            , su: [[${su}]]
+            , showInfoLabel: true
+            , messages: [[${messages}]]
+            , quote: {
+                showText: true
+                , text:
+                '<span class="layui-breadcrumb">' +
+                '   <a href="/">网站首页</a>' +
+                '   <a href="/message">网友留言</a>' +
+                '   <a><cite>发表留言</cite></a>' +
+                '</span>'
+            }
+        },
+        mounted: function () {
+            common.stickyIt();
+            common.affix = new hcSticky("#affix-side", {
+                stickTo: '#message-body'
+                , queries: {980: {disable: true}}
+                , top: 75
+                , onStart: function () {
+                    if (!common.sticky()) {
+                        common.affix.destroy();
+                    }
+                }
+            })
+        }
+    })
+</script>
+<script>
+    layui.use(['element'], function () {
+        var element = layui.element;
+    });
+
+</script>
+</body>
+</html>

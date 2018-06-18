@@ -1,0 +1,50 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>分类管理</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>分类管理</legend>
+                </fieldset>
+                <div class="layui-btn-group cateTable">
+                    <button class="layui-btn layui-btn-sm" data-type="addCate"><i class="layui-icon">&#xe654;</i> 新增分类
+                    </button>
+                </div>
+                <table class="layui-hide" id="cate-table" lay-filter="cate"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="addCatePage">
+    <div class="layui-container layui-dialog" style="width: 420px;">
+        <div class="layui-row">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cateCode" required lay-verify="required" placeholder="请输入分类名称"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类中文名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cateName" required lay-verify="required" placeholder="请输入分类中文名"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="cateTableBar">
+    <a class="layui-btn layui-btn-sm" lay-event="del">删除</a>
+</script>

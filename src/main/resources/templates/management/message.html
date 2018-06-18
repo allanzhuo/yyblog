@@ -1,0 +1,36 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>评论管理</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>留言管理</legend>
+                </fieldset>
+                <div id="message-table-search">
+                    用户昵称：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="nickname" id="nickname-search" autocomplete="off">
+                    </div>
+                    &nbsp;&nbsp;评论内容：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="comment" id="comment-search" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                </div>
+                <table class="layui-hide" id="message-table" lay-filter="message"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="enableTpl">
+    <input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="正常|隐藏" lay-filter="enable" {{
+           d.enable== true ? 'checked' : '' }}>
+</script>

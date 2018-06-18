@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${settings.website_title} + '- 关于'"></title>
+</head>
+<body class="animated fadeIn">
+<div id="about-app">
+    <common-header :params="params" :mine="current"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <div id="mine-body" class="layui-container animated fadeInUp">
+        <div class="layui-tab layui-tab-brief" lay-filter="mine-tab">
+            <ul class="layui-tab-title">
+                <template v-for="(about,index) in abouts">
+                    <li :class="liStyle(index)"><i :class="iStyle(about.tab)"></i> {{about.name}}</li>
+                </template>
+            </ul>
+            <div class="layui-tab-content">
+                <template v-for="(about,index) in abouts">
+                    <div class="layui-tab-item" :class="{'layui-show': index == 0,'layui-text': index!=0}"
+                         v-html="about.content"></div>
+                </template>
+            </div>
+        </div>
+    </div>
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    common.aboutVm = new Vue({
+        el: "#about-app",
+        data: {
+            params: [[${settings}]]
+            , su: [[${su}]]
+            , current: true
+            , quote: {
+                showText: true
+                , text:
+                '<span class="layui-breadcrumb">\n' +
+                '        <a href="/">网站首页</a>\n' +
+                '        <a href="/">博客文章</a>\n' +
+                '        <a><cite>关于网站・博客・关于我</cite></a>\n' +
+                '     </span>'
+            }
+            , abouts: [[${abouts}]]
+        }
+        , methods: {
+            liStyle: function (index) {
+                if (index === 0) {
+                    return "layui-this";
+                }
+            }
+            , iStyle: function (tab) {
+                if (tab === "about_me") {
+                    return "fa fa-user";
+                }
+                if (tab === "about_blog") {
+                    return "fa fa-book";
+                }
+                if (tab === "about_website") {
+                    return "fa fa-chrome";
+                }
+            }
+        }
+    })
+</script>
+<script>
+    layui.use(['element'], function () {
+        var element = layui.element;
+    });
+</script>
+</body>
+</html>

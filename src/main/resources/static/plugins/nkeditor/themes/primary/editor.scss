@@ -1,0 +1,383 @@
+@import "../common/common";
+
+.ke-container-primary {
+    .ke-toolbar {
+
+        border-top: 5px solid #337ab7;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 1px 1px rgba(0, 0, 0, 0.16);
+        background-clip: padding-box;
+        text-rendering: optimizelegibility;
+
+        .ke-toolbar-icon {
+            *background-image: url(images/nkeditor.png);
+            background: url(images/nkeditor.svg) no-repeat;
+        }
+
+        .ke-icon-source {
+            background-position: 0 0px;
+        }
+        .ke-icon-preview {
+            background-position: 0 -63px;
+        }
+        .ke-icon-print {
+            background-position: 0 -84px;
+        }
+        .ke-icon-undo {
+            background-position: 0 -21px;
+        }
+
+        .ke-icon-redo {
+            background-position: 0 -42px;
+        }
+
+        .ke-icon-template {
+            background-position: 0 -105px;
+        }
+
+        .ke-icon-cut {
+            background-position: 0 -147px;
+        }
+
+        .ke-icon-copy {
+            background-position: 0 -168px;
+        }
+
+        .ke-icon-paste {
+            background-position: 0 -189px;
+        }
+
+        .ke-icon-selectall {
+            background-position: 0 -483px;
+        }
+
+        .ke-icon-justifyleft {
+            background-position: 0 -252px;
+        }
+
+        .ke-icon-justifycenter {
+            background-position: 0 -273px;
+        }
+
+        .ke-icon-justifyright {
+            background-position: 0 -294px;
+        }
+
+        .ke-icon-justifyfull {
+            background-position: 0 -315px;
+        }
+
+        .ke-icon-insertorderedlist {
+            background-position: 0 -336px;
+        }
+
+        .ke-icon-insertunorderedlist {
+            background-position: 0 -357px;
+        }
+
+        .ke-icon-indent {
+            background-position: 0 -378px;
+        }
+
+        .ke-icon-outdent {
+            background-position: 0 -399px;
+        }
+
+        .ke-icon-subscript {
+            background-position: 0 -420px;
+        }
+
+        .ke-icon-superscript {
+            background-position: 0 -441px;
+        }
+
+        .ke-icon-date {
+            background-position: 0px -304px;
+            width: 25px;
+            height: 16px;
+        }
+
+        .ke-icon-time {
+            background-position: 0px -320px;
+            width: 25px;
+            height: 16px;
+        }
+
+        .ke-icon-formatblock {
+            background-position: 0 -546px;
+        }
+
+        .ke-icon-fontname {
+            background-position: 0 -567px;
+        }
+
+        .ke-icon-fontsize {
+            background-position: 0 -588px;
+        }
+
+        .ke-icon-forecolor {
+            background-position: 0 -609px;
+        }
+
+        .ke-icon-hilitecolor {
+            background-position: 0 -630px;
+        }
+
+        .ke-icon-bold {
+            background-position: 0 -651px;
+        }
+
+        .ke-icon-italic {
+            background-position: 0 -672px;
+        }
+
+        .ke-icon-underline {
+            background-position: 0 -693px;
+        }
+
+        .ke-icon-strikethrough {
+            background-position: 0 -714px;
+        }
+
+        .ke-icon-removeformat {
+            background-position: 0 -756px;
+        }
+
+        .ke-icon-image {
+            background-position: 0 -777px;
+        }
+
+        .ke-icon-flash {
+            background-position: 0 -840px;
+        }
+
+        .ke-icon-media {
+            background-position: 0 -861px;
+        }
+
+        .ke-icon-div {
+            background-position: 0px -544px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-formula {
+            background-position: 0px -576px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-hr {
+            background-position: 0 -924px;
+        }
+
+        .ke-icon-emoticons {
+            background-position: 0 -945px;
+        }
+
+        .ke-icon-link {
+            background-position: 0 -1008px;
+        }
+
+        .ke-icon-unlink {
+            background-position: 0 -1029px;
+        }
+
+        .ke-icon-fullscreen {
+            background-position: 0 -525px;
+        }
+
+        .ke-icon-about {
+            background-position: 0 -1092px;
+        }
+
+        .ke-icon-plainpaste {
+            background-position: 0 -210px;
+        }
+
+        .ke-icon-wordpaste {
+            background-position: 0 -231px;
+        }
+
+        .ke-icon-table {
+            background-position: 0px -903px;
+            width: 18px !important;
+        }
+
+        .ke-icon-tablemenu {
+            background-position: 0px -768px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-code {
+            background-position: 0 -126px;
+        }
+
+        .ke-icon-map {
+            background-position: 0px -976px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-baidumap {
+            background-position: 0 -1050px;
+        }
+
+        .ke-icon-lineheight {
+            background-position: 0 -735px;
+        }
+
+        .ke-icon-clearhtml {
+            background-position: 0 -462px;
+        }
+
+        .ke-icon-pagebreak {
+            background-position: 0 -966px;
+        }
+
+        .ke-icon-insertfile {
+            background-position: 0 -882px;
+        }
+
+        .ke-icon-quickformat {
+            background-position: 0 -504px;
+        }
+
+        .ke-icon-anchor {
+            background-position: 0 -987px;
+        }
+
+        .ke-icon-search {
+            background-position: 0px -1184px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-new {
+            background-position: 0px -1200px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-specialchar {
+            background-position: 0px -1216px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .ke-icon-multiimage {
+            background-position: 0 -798px;
+        }
+
+        .ke-icon-graft {
+            background-position: 0 -819px;
+        }
+    }
+}
+
+/**
+ menu 右键菜单
+ */
+.ke-menu-primary {
+
+    .ke-menu-item {
+
+        .ke-menu-item-left {
+            width: 27px;
+            text-align: center;
+            overflow: hidden;
+
+            .ke-toolbar-icon {
+                @include ke-toolbar-icon;
+                *background-image: url(images/nkeditor.png);
+                background: url(images/nkeditor.svg) no-repeat;
+            }
+
+            .ke-icon-tableinsert {
+                background-position: 0 -903px;
+                width: 18px !important;
+            }
+
+            .ke-icon-tabledelete {
+                background-position: 0 -1428px;
+            }
+
+            .ke-icon-tablecolinsertleft {
+                background-position: 0 -1176px;
+                width: 18px !important;
+            }
+
+            .ke-icon-tablecolinsertright {
+                background-position: 0 -1323px;
+                width: 18px !important;
+            }
+
+            .ke-icon-tablerowinsertabove {
+                background-position: 0 -1302px;
+                width: 22px !important;
+            }
+
+            .ke-icon-tablerowinsertbelow {
+                background-position: 0 -1155px;
+                width: 22px !important;
+            }
+
+            .ke-icon-tablecoldelete {
+                background-position: 0 -1239px;
+            }
+
+            .ke-icon-tablerowdelete {
+                background-position: 0 -1260px;
+            }
+
+            .ke-icon-tablecellprop {
+                background-position: 0 -1218px;
+            }
+
+            .ke-icon-tableprop {
+                background-position: 0 -1134px;
+            }
+            .ke-icon-tablecellsplit {
+                background-position: 0px -1088px;
+                width: 16px;
+                height: 16px;
+            }
+
+            .ke-icon-tablerowmerge {
+                background-position: -1px -1197px;
+            }
+
+            .ke-icon-tablerowsplit {
+                background-position: 0 -1344px;
+            }
+
+            .ke-icon-tablecolmerge {
+                background-position: -4px -1365px;
+            }
+
+            .ke-icon-tablecolsplit {
+                background-position: 0 -1344px;
+            }
+
+            //图片，视频右键菜单
+            .ke-icon-image {
+                background-position: 0 -777px;
+            }
+            .ke-icon-flash {
+                background-position: 0 -840px;
+            }
+            .ke-icon-media {
+                background-position: 0 -861px;
+            }
+            .ke-icon-link {
+                background-position: 0 -1008px;
+            }
+
+            .ke-icon-checked {
+                background-position: 0 -1407px;
+            }
+
+        }
+    }
+}
+//menu end

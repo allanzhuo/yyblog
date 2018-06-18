@@ -1,0 +1,830 @@
+$inputBorderColor : #cccccc;
+$inputFocusBorderColor : #66afe9;
+$inputHeight : 30px;
+$editorBorderStyle : 1px solid #e1e1e1;
+$dialogBorderStyle : 1px solid #cccccc;
+$menuBgColor : #f5f5f5;
+
+@mixin ke-inline-block {
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+}
+//工具栏图标样式
+@mixin ke-toolbar-icon {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0px 2px;
+}
+//阴影
+@mixin ke-shadow {
+    box-shadow: 1px 1px 3px #A0A0A0;
+    -moz-box-shadow: 1px 1px 3px #A0A0A0;
+    -webkit-box-shadow: 1px 1px 3px #A0A0A0;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#A0A0A0', Direction=135, Strength=3);
+}
+
+/**
+公共样式
+*/
+//清除浮动
+.ke-clearfix {
+    zoom: 1;
+    clear: both;
+}
+.ke-clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+// 过渡动画
+.ke-animated {
+    animation: zoomIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+//遮罩层
+.ke-dialog-mask {
+    background-color: #FFF;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.ke-dialog-lock {
+    background-color: #FFF;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    z-index: 811213;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+/**
+编辑器样式开始
+ */
+.ke-container {
+
+    display: block;
+    //border: $editorBorderStyle;
+    background-color: #FFF;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px 1px rgba(0,0,0,0.16);
+
+    /**
+    通用样式
+     */
+    .ke-shadow {
+        @include ke-shadow;
+        background-color: #F0F0EE;
+    }
+
+    .ke-menu a,
+    .ke-menu a:hover,
+    .ke-dialog a,
+    .ke-dialog a:hover {
+        color: #337FE5;
+        text-decoration: none;
+    }
+
+    /**
+     toolbar 样式
+     */
+    .ke-toolbar {
+        //border-bottom: $editorBorderStyle;
+        text-align: left;
+        overflow: hidden;
+        zoom: 1;
+        padding: 0px 5px;
+
+        .ke-outline {
+            //border: 1px solid #f5f5f5;
+            padding: 10px 5px;
+            font-size: 0;
+            line-height: 0;
+            cursor: pointer;
+            display: block;
+            float: left;
+
+            /**
+             * 按钮通用样式
+             */
+            .ke-toolbar-icon {
+                @include ke-toolbar-icon;
+            }
+
+        }
+
+        .ke-on {
+            background: #ebebeb;
+        }
+        .ke-selected {
+            background-color: #ebebeb;
+        }
+        .ke-disabled {
+            cursor: default;
+        }
+        .ke-separator {
+            height: 16px;
+            margin: 2px 3px;
+            border-left: 1px solid #A0A0A0;
+            border-right: 1px solid #FFFFFF;
+            border-top: 0;
+            border-bottom: 0;
+            width: 0;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+            display: block;
+            float: left;
+        }
+        .ke-hr {
+            clear: both;
+            height: 1px;
+            width: calc(100% - (2 * 2px));
+            background: #ebebeb;
+        }
+    }
+    //end ke-toolbar
+
+    /**
+     ke-edit
+     */
+    .ke-edit {
+        padding: 0;
+
+        .ke-edit-iframe,
+        .ke-edit-textarea {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        .ke-edit-textarea {
+            font: 12px/1.5 "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+            color: #000;
+            overflow: auto;
+            resize: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    //end ke-edit
+
+    /**
+     statusbar start
+     */
+    .ke-statusbar {
+        position: relative;
+        background-color: #f5f5f5;
+        border-top: $editorBorderStyle;
+        font-size: 0;
+        line-height: 0;
+        *height: 12px;
+        overflow: hidden;
+        text-align: center;
+        cursor: s-resize;
+        display: none;
+
+        .ke-statusbar-center-icon {
+            background-position: -0px -754px;
+            width: 15px;
+            height: 11px;
+        }
+
+        .ke-statusbar-right-icon {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: se-resize;
+            width: 11px;
+            height: 11px;
+        }
+    }
+    //end ke-statusbar
+}
+
+/**
+     menu 右键菜单
+     */
+.ke-menu {
+    border: $dialogBorderStyle;
+    background-color: $menuBgColor;
+    color: #222222;
+    padding: 2px;
+    font-family: "sans serif", tahoma, verdana, helvetica;
+    font-size: 12px;
+    text-align: left;
+    overflow: hidden;
+
+    .ke-menu-item {
+        border: 1px solid #F1F1F1;
+        background-color: #F1F1F1;
+        color: #222222;
+        height: 24px;
+        overflow: hidden;
+        cursor: pointer;
+
+        .ke-inline-block {
+            @include ke-inline-block;
+
+            .ke-inline-block {
+                @include ke-inline-block;
+            }
+        }
+
+        .ke-menu-item-left {
+            width: 27px;
+            text-align: center;
+            overflow: hidden;
+
+
+        }
+
+        .ke-menu-item-center {
+            width: 0;
+            height: 24px;
+            border-left: 1px solid #E3E3E3;
+            border-right: 1px solid #FFFFFF;
+            border-top: 0;
+            border-bottom: 0;
+        }
+
+        .ke-menu-item-center-on {
+            border-left: 1px solid #E9EFF6;
+            border-right: 1px solid #E9EFF6;
+        }
+
+        .ke-menu-item-right {
+            border: 0;
+            padding: 0 0 0 5px;
+            line-height: 24px;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .ke-menu-separator {
+            margin: 2px 0;
+            height: 0;
+            overflow: hidden;
+            border-top: $editorBorderStyle;
+            border-bottom: 1px solid #FFFFFF;
+            border-left: 0;
+            border-right: 0;
+        }
+    }
+
+    .ke-menu-item-on {
+        border: 1px solid #5690D2;
+        background-color: #E9EFF6;
+    }
+
+    /**
+    表情插件
+     */
+    .ke-plugin-emoticons {
+        position: relative;
+
+        .ke-preview {
+            position: absolute;
+            text-align: center;
+            margin: 2px;
+            padding: 10px;
+            top: 0;
+            border: 1px solid #A0A0A0;
+            background-color: #FFFFFF;
+            display: none;
+
+            .ke-preview-img {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+        } //end ke-preview
+
+        .ke-table {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            border-collapse: separate;
+
+            .ke-cell {
+                margin: 0;
+                padding: 1px;
+                border: 1px solid #f5f5f5;
+                cursor: pointer;
+
+                .ke-img {
+                    display: block;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    margin: 2px;
+                    width: 24px;
+                    height: 24px;
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                }
+            }
+            .ke-on {
+                border: 1px solid #5690D2;
+                background-color: #E9EFF6;
+            }
+        } //end ke-table
+
+        .ke-page {
+            text-align: right;
+            margin: 5px;
+            padding: 0;
+            border: 0;
+            font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+            color: #333;
+            text-decoration: none;
+        }
+    }
+
+}
+//menu end
+
+/**
+ colorpicker
+ */
+.ke-colorpicker {
+    border: 1px solid #A0A0A0;
+    background-color: #F1F1F1;
+    color: #222222;
+    padding: 2px;
+
+    .ke-colorpicker-table {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        border-collapse: separate;
+
+        .ke-colorpicker-cell {
+            font-size: 0;
+            line-height: 0;
+            border: 1px solid #F0F0EE;
+            cursor: pointer;
+            margin: 3px;
+            padding: 0;
+
+            .ke-colorpicker-cell-color {
+                width: 14px;
+                height: 14px;
+                margin: 3px;
+                padding: 0;
+                border: 0;
+            }
+        }
+        .ke-colorpicker-cell-top {
+            font-family: "sans serif", tahoma, verdana, helvetica;
+            font-size: 12px;
+            line-height: 24px;
+            border: 1px solid #F1F1F1;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .ke-colorpicker-cell-on {
+            border: 1px solid #5690D2;
+        }
+        .ke-colorpicker-cell-selected {
+            border: 1px solid #2446AB;
+        }
+
+    }
+} //colorpicker end
+
+/**
+ dialog
+ */
+.ke-dialog {
+    margin: 0;
+    padding: 0;
+    border: $dialogBorderStyle;
+    zoom: 1;
+    @include ke-shadow;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    overflow: hidden;
+
+    // start ke-dialog-header
+    .ke-dialog-header {
+        border: 0;
+        margin: 0;
+        font-weight: bold;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0px 10px;
+        text-align: left;
+        color: #222;
+        cursor: move;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom: 1px solid #c6c6c6;
+        background: transparent url(../common/dialog-title-bg.png) repeat-x scroll 0 0;
+        position: relative;
+        cursor: move;
+
+        .ke-dialog-icon-close {
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+            background: url("../common/icons-all.gif") 0 -59px;
+            position: absolute;
+            right: 5px;
+            top: 4px;
+
+            &:hover {
+                background-position: 0px -89px;
+            }
+        }
+
+    } //end ke-dialog-header
+
+    //start ke-content
+    .ke-dialog-content {
+
+        background-color: #FFF;
+        width: 100%;
+        height: 100%;
+        color: #333;
+        outline: 0;
+        zoom: 1;
+
+        // ke-dialog-body start
+        .ke-dialog-body {
+            font: 12px/1.5 "sans serif", tahoma, verdana, helvetica;
+            text-align: left;
+            overflow: hidden;
+            width: 100%;
+
+            .ke-textarea {
+                display: block;
+                width: 408px;
+                height: 260px;
+                font-family: "sans serif", tahoma, verdana, helvetica;
+                font-size: 12px;
+                border: 1px solid $inputBorderColor;
+
+                &:focus {
+                    border-color: $inputFocusBorderColor;
+                    outline: none;
+                }
+            }
+
+            .ke-select {
+                display: -moz-inline-stack;
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+                width: auto;
+                border: 1px solid $inputBorderColor;
+                height: $inputHeight;
+            }
+            .ke-form {
+                margin: 0;
+                padding: 0;
+            }
+
+            .ke-input-number {
+                width: 50px;
+            }
+
+            .ke-input-checkbox {
+                position: relative;
+                top:6px;
+            }
+
+            textarea {
+                display: block;
+                overflow: auto;
+                padding: 0;
+                resize: none;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .ke-input-text {
+                display: inline-block !important;
+                max-width: 400px;
+                height: $inputHeight;
+                line-height: $inputHeight;
+                border:1px solid $inputBorderColor;
+                font-size: 14px;
+                margin: 0;
+                outline: 0;
+                padding: 0px 10px;
+                *display: inline;
+
+                &:focus {
+                    border-color: $inputFocusBorderColor;
+                }
+            }
+
+            .ke-input-color {
+                border: $editorBorderStyle;
+                background-color: #FFFFFF;
+                font-size: 12px;
+                width: 60px;
+                height: 30px;
+                line-height: 30px;
+                padding-left: 5px;
+                overflow: hidden;
+                cursor: pointer;
+                display: -moz-inline-stack;
+                display: inline-block;
+                vertical-align: middle;
+                zoom: 1;
+                *display: inline;
+            }
+
+            .ke-upload-area {
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                top:-1px;
+                position: relative;
+                *height: 25px;
+
+                .ke-upload-file {
+                    position: absolute;
+                    font-size: 60px;
+                    top: 0;
+                    right: 0;
+                    padding: 0;
+                    margin: 0;
+                    z-index: 811212;
+                    border: 0 none;
+                    opacity: 0;
+                    cursor: pointer;
+                    width: 62px;
+                    height: 30px;
+                    filter: alpha(opacity=0);
+
+                }
+
+                .ke-button-common {
+                    top: -1px;
+                }
+                .ke-button {
+                    padding: 8px 15px;
+                }
+            }
+
+            .ke-dialog-content-inner {
+                padding: 10px 20px 0px 20px;
+
+                .ke-dialog-row {
+                    border:1px solid #FFFFFF;
+                    margin-bottom: 10px;
+                    overflow: hidden;
+
+                    .row-left {
+                        float: left;
+                        height: 30px;
+                        line-height: 30px;
+                        width: 60px;
+                        text-align: right;
+                    }
+                    .row-right {
+                        float: left;
+                        text-align: left;
+
+                        .ke-inline-block {
+                            @include ke-inline-block;
+
+                            .ke-upload-button {
+                                position: relative;
+                                top: -1px;
+                            }
+                        }
+
+                        label {
+                            cursor: pointer;
+                            display: -moz-inline-stack;
+                            display: inline-block;
+                            vertical-align: middle;
+                            text-align: right;
+                            zoom: 1;
+                            *display: inline;
+
+                            img {
+                                display: -moz-inline-stack;
+                                display: inline-block;
+                                vertical-align: middle;
+                                zoom: 1;
+                                *display: inline;
+                            }
+                        }
+                    }
+
+
+                } //end ke-dialog-row
+
+                //百度地图样式
+                .ke-header {
+                    height: 30px;
+                    line-height: 30px;
+
+                    .ke-input-text {
+                        height: 22px;
+                        line-height: 22px;
+                    }
+                    .ke-button {
+                        padding: 3px 10px;
+                    }
+                    .checkbox {
+                        margin-left:10px;
+                    }
+                }
+
+                /**
+                 tabs
+                 */
+                .ke-tabs {
+                    font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+                    border-bottom: $editorBorderStyle;
+                    margin-bottom: 20px;
+
+                    .ke-tabs-ul {
+                        list-style: none outside none;
+                        margin: 0;
+                        padding: 0;
+
+                        .ke-tabs-li {
+                            position: relative;
+                            margin: 0 2px -1px 0;
+                            padding: 0 20px;
+                            float: left;
+                            line-height: 25px;
+                            text-align: center;
+                            color: #337ab7;
+                            cursor: pointer;
+                        }
+                        .ke-tabs-li-selected {
+                            background-color: #FFF;
+                            border: $editorBorderStyle;
+                            border-bottom: 1px solid #FFF;
+                            color: #555555;
+                            cursor: default;
+                            border-top-left-radius: 3px;
+                            border-top-right-radius: 3px;
+                        }
+
+                        .ke-tabs-li-on {
+                            background-color: #FFF;
+                            color: #000;
+                        }
+                    } //end ul
+                } //end tabs
+
+            } //end ke-dialog-content-inner
+
+
+        } // end ke-dialog-body
+
+        .ke-dialog-loading {
+            position: absolute;
+            top: 0;
+            left: 1px;
+            z-index: 1;
+            text-align: center;
+
+            .ke-dialog-loading-content {
+                background: url("../common/loading.gif") no-repeat center;
+                color: #666;
+                font-size: 14px;
+                font-weight: bold;
+                height: 31px;
+                line-height: 31px;
+                padding-left: 36px;
+            }
+        } //end ke-dialog-loading
+
+    } //end ke-content
+
+    .ke-dialog-footer {
+        font: 12px/1 "sans serif", tahoma, verdana, helvetica;
+        text-align: right;
+        padding: 0 15px 5px 0;
+        background-color: #FFF;
+        height: 40px;
+
+        .ke-dialog-yes {
+            margin: 5px;
+        }
+
+        .ke-dialog-no {
+            margin: 5px 10px 5px 5px;
+        }
+    } // ke-dialog-footer
+
+    .ke-button-common {
+        display: inline-block;
+        text-align: center;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .ke-button-outer {
+        background-position: 0 -25px;
+        padding: 0;
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: middle;
+        zoom: 1;
+        *display: inline;
+    }
+
+    .ke-button {
+        color: #333;
+        font-size: 12px;
+        border: 1px solid #e6e6e6;
+        background-color: #e6e6e6;
+        padding: 7px 10px;
+        margin-top: -4px;
+        color: #444;
+        text-decoration: none;
+        transition: background-color .3s ease-out, border-color .3s ease-out;
+
+        &:hover {
+            border: $editorBorderStyle;
+            background-color: #e1e1e1;
+        }
+    }
+
+    .ke-dialog-btn {
+        font-size: 12px;
+        margin: 5px;
+        background: #2e8ded;
+        color: #fff !important;
+        padding: 8px 12px;
+        display: inline-block;
+        border-radius: 2px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: .3s ease-out;
+
+        &:hover {
+            filter: alpha(opacity=80);
+            box-shadow: none;
+            box-shadow: none;
+            opacity: .8;
+        }
+    }
+
+
+} //dialog end
+
+//.ke-dialog-preview {
+//    margin: 5px;
+//}
+
+
+//.ke-plugin-plainpaste-textarea,
+//.ke-plugin-wordpaste-iframe {
+//    display: block;
+//    width: 408px;
+//    height: 260px;
+//    font-family: "sans serif", tahoma, verdana, helvetica;
+//    font-size: 12px;
+//    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+//    border-style: solid;
+//    border-width: 1px;
+//}
+
+

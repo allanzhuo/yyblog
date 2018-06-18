@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta th:replace="frontend/fragment/style"/>
+    <title th:text="${settings.website_title} + '- 搜索'"></title>
+</head>
+<body class="animated fadeIn">
+<div id="search-app">
+    <common-header :params="params" :search="current"></common-header>
+    <hr class="header-hr">
+    <common-block :quote="quote"></common-block>
+    <div id="search-body" class="layui-container animated fadeInUp">
+        <div id="search-operate">
+            <div id="search-panel">
+                <div class="select-none layui-row layui-col-space20">
+                    <div class="layui-inline layui-col-md-offset2 layui-col-md6 layui-col-sm12 layui-col-xs12">
+                        <input name="sp" placeholder="键入Enter键以搜索" :value="sw" @keyup.enter="search()"
+                               autocomplete="off" class="layui-input search-box">
+                    </div>
+                    <div class="layui-inline layui-col-md3 layui-show-md-inline-block layui-hide-sm layui-hide-xs">
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" @click="search()">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="search-main" class="layui-row">
+            <table class="layui-table" lay-skin="nob">
+                <colgroup>
+                    <col width="120">
+                    <col width="100">
+                    <col>
+                    <col width="100">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>类型</th>
+                    <th>标题</th>
+                    <th>详情</th>
+                </tr>
+                </thead>
+                <tbody>
+                <template v-for="s in page.result">
+                    <tr>
+                        <td>{{postDate(s.post)}}</td>
+                        <td v-html="searchType(s)"></td>
+                        <td>{{s.resName}}</td>
+                        <td><a :href="s.resUrl" target="_blank">详细<i class="fa fa-angle-double-right"></i> </a></td>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-row text-center" id="search-pager"></div>
+    </div>
+    <common-footer :words="params.footer_words"></common-footer>
+</div>
+<div th:replace="frontend/fragment/script"></div>
+<script src="/static/assets/js/frontend/svg.js"></script>
+<script th:inline="javascript">
+    layui.use(['element', 'laypage'], function () {
+        var element = layui.element;
+        var laypage = layui.laypage;
+        laypage.render({
+            elem: 'search-pager'
+            , count: [[${page.totalCount}]]
+            , limit: [[${page.pageSize}]]
+            , curr: [[${page.pageNo}]]
+            , layout: ['prev', 'next']
+            , jump: function (obj, first) {
+                if (!first) {
+                    var sp = $("input[name=sp]").val();
+                    location.href = "/search?pageNo=" + obj.curr + "&sp=" + sp;
+                }
+            }
+        });
+    });
+
+    common.searchVM = new Vue({
+        el: "#search-app",
+        data: {
+            params: [[${settings}]]
+            , page: [[${page}]]
+            , su: [[${su}]]
+            , current: true
+            , quote: {
+                showBlog: true
+                , showNote: true
+                , showFile: true
+                , showSearch: true
+                , searchCount: [[${page.totalCount}]]
+                , noteCount: [[${nc}]]
+                , blogCount: [[${ac}]]
+                , fileCount: [[${fc}]]
+            }
+            , sw: common.getParam("sp") !== undefined ? decodeURIComponent(common.getParam("sp")) : common.getParam("sp")
+        },
+        methods: {
+            postDate: function (post) {
+                return common.dateFormatter(post, "/", false);
+            },
+            searchType: function (s) {
+                if (s.resType === "article") {
+                    return "<i class='fa fa-sticky-note'></i> 文章";
+                }
+                if (s.resType === "note") {
+                    return "<i class='fa fa-paper-plane'></i> 笔记"
+                }
+                if (s.resType === "file") {
+                    return "<i class='fa fa-file-archive-o'></i> 资源";
+                }
+            },
+            search: function () {
+                var sp = $("input[name=sp]").val();
+                location.href = "/search?sp=" + sp;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

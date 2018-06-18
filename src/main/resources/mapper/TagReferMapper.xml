@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.laoyeye.yyblog.mapper.TagReferMapper">
+	<sql id="Base_Column_List">
+		ID,
+		REFER_ID,
+		TAG_ID,
+		IS_SHOW,
+		TYPE
+	</sql>
+	<!-- 查询标签被引用的次数-->
+	<select id="countByTagId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		SELECT
+			COUNT(ID)
+		FROM
+			T_TAG_REFER
+		WHERE TAG_ID = #{tagId}
+	</select>
+	<insert id="saveTagRefer" parameterType="net.laoyeye.yyblog.model.TagRefer" >
+	    INSERT INTO T_TAG_REFER (ID, REFER_ID, TAG_ID, IS_SHOW, TYPE)
+	    VALUES (#{id,jdbcType=BIGINT}, #{referId,jdbcType=BIGINT}, 
+	    #{tagId,jdbcType=BIGINT}, #{isShow,jdbcType=BIT}, #{type,jdbcType=VARCHAR})
+    </insert>
+	<!-- 根据文章id查询标签名-->
+	<select id="listNameByArticleId" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT
+			TT.NAME
+		FROM
+			T_TAG_REFER TTR
+		LEFT JOIN T_TAG TT ON TT.ID = TTR.TAG_ID
+		WHERE
+			TTR.REFER_ID = #{referId,jdbcType=BIGINT}
+	</select>
+	
+	<delete id="deleteByReferId" parameterType="java.lang.Long" >
+    	DELETE FROM T_TAG_REFER
+    	WHERE REFER_ID = #{referId,jdbcType=BIGINT}
+	</delete>
+	
+	<!-- 查询30个标签和标签的引用数量-->
+	<select id="listNameAndCnt" resultType="net.laoyeye.yyblog.model.vo.TagVo">
+		SELECT
+			TT.NAME,
+			COUNT(TTR.TAG_ID) AS CNT
+		FROM
+			T_TAG_REFER TTR
+		LEFT JOIN T_TAG TT ON TT.ID = TTR.TAG_ID
+		GROUP BY
+			TTR.TAG_ID
+		ORDER BY
+			CNT DESC
+		LIMIT 30
+	</select>
+
+</mapper>

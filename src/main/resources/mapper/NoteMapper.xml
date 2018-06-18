@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.laoyeye.yyblog.mapper.NoteMapper">
+	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.vo.NoteVo">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+    	ID, 
+    	TITLE, 
+    	TEXT_CONTENT, 
+    	CONTENT, 
+    	TOP, 
+    	IS_SHOW, 
+    	CREATE_TIME, 
+    	UPDATE_TIME
+    </sql>
+	<!-- 查询笔记总数量 -->
+	<select id="countAllNote" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			T_NOTE
+	</select>
+	<!-- 查询最新笔记 -->
+	<select id="getLatestNote" resultMap="BaseResultMap">
+		SELECT
+			TITLE,
+			CONTENT,
+			CREATE_TIME
+		FROM
+			T_NOTE
+		ORDER BY
+			CREATE_TIME DESC
+		LIMIT 1
+	</select>
+	<!-- 新增保存笔记 -->
+	<insert id="saveNote" parameterType="net.laoyeye.yyblog.model.Note" >
+	    INSERT INTO T_NOTE (ID, TITLE, TEXT_CONTENT, 
+	      CONTENT, TOP, IS_SHOW, CREATE_TIME, 
+	      UPDATE_TIME)
+	    VALUES (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{textContent,jdbcType=VARCHAR}, 
+	      #{content,jdbcType=VARCHAR}, #{top,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+	      #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+   
+    <!-- 根据标题查询笔记 -->
+	<select id="listNoteByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Note">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_NOTE
+		<where>
+			<if test="title != null" >
+			TITLE LIKE CONCAT('%',#{title},'%')
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+	
+	<update id="update" parameterType="net.laoyeye.yyblog.model.Note" >
+	    UPDATE T_NOTE
+	    <set >
+	      <if test="title != null" >
+	        TITLE = #{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="textContent != null" >
+	        TEXT_CONTENT = #{textContent,jdbcType=VARCHAR},
+	      </if>
+	      <if test="content != null" >
+	        CONTENT = #{content,jdbcType=VARCHAR},
+	      </if>
+	      <if test="top != null" >
+	        TOP = #{top,jdbcType=BIT},
+	      </if>
+	      <if test="isShow != null" >
+	        IS_SHOW = #{isShow,jdbcType=BIT},
+	      </if>
+	      <if test="createTime != null" >
+	        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateTime != null" >
+	        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	    </set>
+	    WHERE ID = #{id,jdbcType=BIGINT}
+	</update>
+  	<!-- 删除笔记 -->
+	<delete id="delete" parameterType="java.lang.Long" >
+    	DELETE FROM T_NOTE
+    	WHERE ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<!-- 根据ID查询笔记 -->
+	<select id="getNoteById" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.Note">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_NOTE
+		WHERE ID = #{id,jdbcType=BIGINT}
+	</select>
+</mapper>

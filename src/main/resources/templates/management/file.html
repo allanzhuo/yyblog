@@ -1,0 +1,50 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>内容管理</cite></a>
+                <a><cite>资源管理</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>资源管理</legend>
+                </fieldset>
+                <div class="layui-btn-group fileTable">
+                    <button class="layui-btn layui-btn-sm" data-type="addFile"><i class="layui-icon">&#xe654;</i> 新增资源
+                    </button>
+                </div>
+                <table class="layui-hide" id="file-table" lay-filter="file"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="addFilePage">
+    <div class="layui-container layui-dialog" style="width: 420px;">
+        <div class="layui-row">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">资源名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required lay-verify="required" placeholder="请输入资源名称"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">资源url</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="url" required lay-verify="required" placeholder="请输入资源地址"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="fileTableBar">
+    <a class="layui-btn layui-btn-sm" lay-event="del">删除</a>
+</script>

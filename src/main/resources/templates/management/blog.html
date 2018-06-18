@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="/static/plugins/tagsinput/jquery.tagsinput.min.css">
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>发布内容</cite></a>
+                <a><cite>发布博文</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div id="article-post" class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>发布文章</legend>
+                </fieldset>
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-col-md6">
+                        <label class="layui-form-label">文章分类</label>
+                        <div class="layui-input-block">
+                            <select name="cateId" lay-verify="required" lay-search>
+                                <option value="">请选择</option>
+                                <option th:each="cate,cateStat:${cateList}" th:value="${cate.id}"
+                                        th:text="${cate.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">博文封面</label>
+                        <div class="layui-upload-drag" id="coverImg">
+                            <i class="layui-icon"></i>
+                            <p>点击上传博文封面，或将封面拖拽到此处</p>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">内容</label>
+                        <div class="layui-input-block" style="max-width: 1080px;">
+                            <textarea id="editor" placeholder="输入博文内容" autofocus style="visibility: hidden;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">文章摘要</label>
+                        <div class="layui-input-block">
+                            <textarea name="summary" placeholder="如果不填，则取文章内容的开头小部分（不包含图片以及文字格式）" class="layui-textarea"
+                                      style="resize: none;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item tags">
+                        <label class="layui-form-label">文章标签</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="tagName" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">评论功能</label>
+                            <div class="layui-inline">
+                                <input type="checkbox" name="commented" value="true" lay-skin="switch" lay-text="开启|关闭"
+                                       title="评论">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">打赏功能</label>
+                            <div class="layui-inline">
+                                <input type="checkbox" name="appreciable" value="true" lay-skin="switch"
+                                       lay-text="开启|关闭" title="打赏">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="postSubmit">立即发布</button>
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="draftSubmit">保存草稿
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/plugins/nkeditor/libs/JDialog/JDialog.min.js"></script>
+<script src="/static/plugins/nkeditor/NKeditor-all-min.js"></script>
+<script src="/static/plugins/tagsinput/jquery.tagsinput.min.js"></script>
