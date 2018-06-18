@@ -95,8 +95,9 @@ public class ArticleController {
 
 	@PostMapping("/doEdit")
 	@ResponseBody
-	public YYBlogResult doEdit(Article article, String tagName) {
-		article.setAuthorId(IDUtils.genId());
+	public YYBlogResult doEdit(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token, HttpServletRequest request, Article article, String tagName) {
+		User user = (User)request.getSession().getAttribute(token);
+		article.setAuthorId(user.getId());
 		return articleService.updateArticle(article, tagName);
 	}
 
