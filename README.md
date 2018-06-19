@@ -1,4 +1,4 @@
-# yyblog
+# yyblog简介
 
 一个java实现的博客系统
 
