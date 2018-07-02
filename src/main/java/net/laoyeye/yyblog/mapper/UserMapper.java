@@ -4,23 +4,23 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 
 public interface UserMapper {
 
-	User getUserByName(String username);
+	UserDO getUserByName(String username);
 
-	User getUserById(long id);
+	UserDO getUserById(long id);
 	
-	List<User> listUserByNickname(@Param("nickname") String nickname);
+	List<UserDO> listUserByNickname(@Param("nickname") String nickname);
 	
-	int update(User user);
+	int update(UserDO user);
 	
-	int updateByUsername(User user);
+	int updateByUsername(UserDO user);
 	
-	User getUserByOpenId(String openId);
+	UserDO getUserByOpenId(String openId);
 	
-	int save(User user);
+	int save(UserDO user);
 	
 	String getNicknameById(long id);
 }

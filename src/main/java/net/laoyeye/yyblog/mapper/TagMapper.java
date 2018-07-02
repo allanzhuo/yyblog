@@ -1,22 +1,22 @@
 package net.laoyeye.yyblog.mapper;
 
 import java.util.List;
-import net.laoyeye.yyblog.model.Tag;
+import net.laoyeye.yyblog.model.TagDO;
 
 public interface TagMapper {
-	List<Tag> listAllTag();
+	List<TagDO> listAllTag();
 
-	List<Tag> listTagByName(String name);
+	List<TagDO> listTagByName(String name);
 	
-	Tag getTagByName(String name);
+	TagDO getTagByName(String name);
 	
-	int updateById(Tag tag);
+	int updateById(TagDO tag);
 	
 	int delete(Long id);
 	
-	int saveTag(Tag tag);
+	int saveTag(TagDO tag);
 	
 	int countByName(String name);
 	
-	List<Tag> listTagByReferId(Long articleId);
+	List<TagDO> listTagByReferId(Long articleId);
 }

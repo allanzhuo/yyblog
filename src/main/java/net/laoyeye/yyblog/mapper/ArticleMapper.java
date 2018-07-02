@@ -4,26 +4,26 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import net.laoyeye.yyblog.model.Article;
+import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.query.IndexQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVo;
+import net.laoyeye.yyblog.model.vo.ArticleVO;
 
 public interface ArticleMapper {
 	int countAllArticle();
 	
-	ArticleVo getLatestArticle();
+	ArticleVO getLatestArticle();
 	
 	int countByCateId(Long cateId);
 	
-	int saveArticle(Article article);
+	int saveArticle(ArticleDO article);
 	
-	List<ArticleVo> listArticleByTitle(@Param("title") String title);
+	List<ArticleVO> listArticleByTitle(@Param("title") String title);
 	
-	List<ArticleVo> listIndexArticle(IndexQuery query);
+	List<ArticleVO> listIndexArticle(IndexQuery query);
 	
-	int update(Article article);
+	int update(ArticleDO article);
 	
-	Article getArticleById(long id);
+	ArticleDO getArticleById(long id);
 	
 	int delete(long id);
 	

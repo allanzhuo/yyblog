@@ -14,14 +14,14 @@
 		CREATE_TIME,
 		UPDATE_TIME
  	</sql>
-	<select id="getUserByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.User" >
+	<select id="getUserByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
 	    SELECT 
 	    <include refid="Base_Column_List" />
 	    FROM T_USER
 	    WHERE USERNAME = #{username}
 	    AND ENABLE = true
 	</select>
-	<select id="getUserById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.User" >
+	<select id="getUserById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.UserDO" >
 	    SELECT 
 	    <include refid="Base_Column_List" />
 	    FROM T_USER
@@ -29,7 +29,7 @@
 	</select>
 
 	<!-- 查询出所有的用户信息（不包括管理员） -->
-	<select id="listUserByNickname" resultType="net.laoyeye.yyblog.model.User">
+	<select id="listUserByNickname" resultType="net.laoyeye.yyblog.model.UserDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -43,7 +43,7 @@
 		ORDER BY CREATE_TIME
 	</select>
 
-	<update id="update" parameterType="net.laoyeye.yyblog.model.User">
+	<update id="update" parameterType="net.laoyeye.yyblog.model.UserDO">
 		UPDATE T_USER
 		<set>
 			<if test="username != null">
@@ -80,7 +80,7 @@
 		WHERE ID = #{id,jdbcType=BIGINT}
 	</update>
 	
-	<update id="updateByUsername" parameterType="net.laoyeye.yyblog.model.User">
+	<update id="updateByUsername" parameterType="net.laoyeye.yyblog.model.UserDO">
 		UPDATE T_USER
 		<set>
 			<if test="nickname != null">
@@ -114,14 +114,14 @@
 		WHERE USERNAME = #{username,jdbcType=VARCHAR}
 	</update>
 	
-	<select id="getUserByOpenId" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.User" >
+	<select id="getUserByOpenId" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
 	    SELECT 
 	    <include refid="Base_Column_List" />
 	    FROM T_USER
 	    WHERE OPEN_ID = #{openId,jdbcType=VARCHAR}
 	</select>
 	
-	<insert id="save" parameterType="net.laoyeye.yyblog.model.User" >
+	<insert id="save" parameterType="net.laoyeye.yyblog.model.UserDO" >
 	    INSERT INTO T_USER (ID, USERNAME, NICKNAME, PASSWORD, AVATAR, QQ_NUM, ROLE_ID,
 	    ENABLE, OPEN_ID, CREATE_TIME, UPDATE_TIME)
 	    VALUES (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},

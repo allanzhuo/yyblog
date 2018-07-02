@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.service.UploadService;
 import net.laoyeye.yyblog.service.UserService;
 
@@ -40,7 +40,7 @@ public class ProfileController {
 	public YYBlogResult edit(String username, String nickname, 
 			String password1, String password2, String avatar) {
 		if (password1.equals(password2)) {
-			User user = new User();
+			UserDO user = new UserDO();
 			user.setUsername(username);
 			if (!StringUtils.isEmpty(password1)) {
 				user.setPassword(DigestUtils.md5DigestAsHex(password1.getBytes()));	

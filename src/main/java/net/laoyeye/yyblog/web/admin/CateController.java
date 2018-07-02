@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Cate;
+import net.laoyeye.yyblog.model.CateDO;
 import net.laoyeye.yyblog.service.CateService;
 
 /**
@@ -35,7 +35,7 @@ public class CateController {
 
     @PostMapping("/add")
     @ResponseBody
-    public YYBlogResult add(Cate cate) {
+    public YYBlogResult add(CateDO cate) {
     	YYBlogResult result = cateService.save(cate);
     	return result;
     }
@@ -49,7 +49,7 @@ public class CateController {
 
     @PostMapping("/edit")
     @ResponseBody
-    public YYBlogResult edit(Cate cate) {
+    public YYBlogResult edit(CateDO cate) {
     	
         return cateService.updateById(cate);
     }

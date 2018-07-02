@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Keyword;
+import net.laoyeye.yyblog.model.KeywordDO;
 import net.laoyeye.yyblog.model.query.BaseQuery;
 import net.laoyeye.yyblog.service.KeywordService;
 
@@ -35,7 +35,7 @@ public class KeywordController {
     
     @PostMapping("/add")
     @ResponseBody
-    public YYBlogResult add(Keyword keyword) {
+    public YYBlogResult add(KeywordDO keyword) {
 
         return keywordService.saveKeyword(keyword);
     }
@@ -49,14 +49,14 @@ public class KeywordController {
     
     @PostMapping("/edit/enable")
     @ResponseBody
-    public YYBlogResult editEnable(Keyword keyword) {
+    public YYBlogResult editEnable(KeywordDO keyword) {
 
         return keywordService.update(keyword);
     }
 
     @PostMapping("/edit/words")
     @ResponseBody
-    public YYBlogResult editWords(Keyword keyword) {
+    public YYBlogResult editWords(KeywordDO keyword) {
     	
         return keywordService.update(keyword);
     }

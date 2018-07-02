@@ -10,7 +10,7 @@ import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.mapper.KeywordMapper;
-import net.laoyeye.yyblog.model.Keyword;
+import net.laoyeye.yyblog.model.KeywordDO;
 import net.laoyeye.yyblog.model.query.BaseQuery;
 import net.laoyeye.yyblog.service.KeywordService;
 
@@ -22,9 +22,9 @@ public class KeywordServiceImpl implements KeywordService{
 	@Override
 	public DataGridResult listPageKeyword(BaseQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<Keyword> list = keywordMapper.listKeyword();
+		List<KeywordDO> list = keywordMapper.listKeyword();
 		//取记录总条数
-		PageInfo<Keyword> pageInfo = new PageInfo<Keyword>(list);
+		PageInfo<KeywordDO> pageInfo = new PageInfo<KeywordDO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -34,7 +34,7 @@ public class KeywordServiceImpl implements KeywordService{
 	}
 
 	@Override
-	public YYBlogResult saveKeyword(Keyword keyword) {
+	public YYBlogResult saveKeyword(KeywordDO keyword) {
 		if (keywordMapper.countByWords(keyword.getWords()) == 0) {
 			keyword.setId(IDUtils.genId());
 			keyword.setEnable(true);
@@ -52,13 +52,13 @@ public class KeywordServiceImpl implements KeywordService{
 	}
 
 	@Override
-	public YYBlogResult update(Keyword keyword) {
+	public YYBlogResult update(KeywordDO keyword) {
 		keywordMapper.update(keyword);
 		return YYBlogResult.ok();
 	}
 
 	@Override
-	public List<Keyword> listValidKeyword() {
+	public List<KeywordDO> listValidKeyword() {
 
 		return keywordMapper.listValidKeyword();
 	}

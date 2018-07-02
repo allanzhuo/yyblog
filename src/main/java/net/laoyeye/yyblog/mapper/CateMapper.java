@@ -2,16 +2,16 @@ package net.laoyeye.yyblog.mapper;
 
 import java.util.List;
 
-import net.laoyeye.yyblog.model.Cate;
+import net.laoyeye.yyblog.model.CateDO;
 
 public interface CateMapper {
-	List<Cate> listAllCate();
+	List<CateDO> listAllCate();
 
 	int countByCode(String code);
 	
-	int save(Cate cate);
+	int save(CateDO cate);
 	
 	int delete(Long id);
 	
-	int updateById(Cate cate);
+	int updateById(CateDO cate);
 }

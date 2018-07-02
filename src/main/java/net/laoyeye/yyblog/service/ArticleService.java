@@ -2,9 +2,9 @@ package net.laoyeye.yyblog.service;
 
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Article;
+import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.query.ArticleQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVo;
+import net.laoyeye.yyblog.model.vo.ArticleVO;
 
 public interface ArticleService {
 	/**
@@ -14,15 +14,15 @@ public interface ArticleService {
 	/**
 	 * 获取最新文章
 	 */
-	ArticleVo getLatestArticle();
+	ArticleVO getLatestArticle();
 	/**
 	 * 创建文章
 	 */
-	YYBlogResult saveArticle(Article article, String tagName);
+	YYBlogResult saveArticle(ArticleDO article, String tagName);
 	/**
 	 * 创建草稿，首页用
 	 */
-	YYBlogResult saveSimpleArticle(Article article);
+	YYBlogResult saveSimpleArticle(ArticleDO article);
 	/**
 	 * 分页查询文章
 	 */
@@ -42,11 +42,11 @@ public interface ArticleService {
 	/**
 	 * 根据id获取文章
 	 */
-	Article getArticleById(long id);
+	ArticleDO getArticleById(long id);
 	/**
 	 * 更新文章
 	 */
-	YYBlogResult updateArticle(Article article, String tagName);
+	YYBlogResult updateArticle(ArticleDO article, String tagName);
 	/**
 	 * 删除文章
 	 */

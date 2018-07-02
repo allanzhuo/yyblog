@@ -9,15 +9,15 @@ import net.laoyeye.yyblog.mapper.CateMapper;
 import net.laoyeye.yyblog.mapper.SettingMapper;
 import net.laoyeye.yyblog.mapper.TagMapper;
 import net.laoyeye.yyblog.mapper.TagReferMapper;
-import net.laoyeye.yyblog.model.Article;
-import net.laoyeye.yyblog.model.Cate;
-import net.laoyeye.yyblog.model.Setting;
-import net.laoyeye.yyblog.model.Tag;
+import net.laoyeye.yyblog.model.ArticleDO;
+import net.laoyeye.yyblog.model.CateDO;
+import net.laoyeye.yyblog.model.SettingDO;
+import net.laoyeye.yyblog.model.TagDO;
 import net.laoyeye.yyblog.model.query.IndexQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVo;
-import net.laoyeye.yyblog.model.vo.IndexArticleVo;
-import net.laoyeye.yyblog.model.vo.IndexVo;
-import net.laoyeye.yyblog.model.vo.TagVo;
+import net.laoyeye.yyblog.model.vo.ArticleVO;
+import net.laoyeye.yyblog.model.vo.IndexArticleVO;
+import net.laoyeye.yyblog.model.vo.IndexVO;
+import net.laoyeye.yyblog.model.vo.TagVO;
 import net.laoyeye.yyblog.service.IndexService;
 
 import java.util.HashMap;
@@ -39,19 +39,19 @@ public class IndexServiceImpl implements IndexService {
     private TagMapper tagMapper;
 
     @Override
-    public IndexVo getIndexVo() {
-        List<Setting> settings = settingMapper.listAll();
+    public IndexVO getIndexVo() {
+        List<SettingDO> settings = settingMapper.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
-        for (Setting setting : settings) {
+        for (SettingDO setting : settings) {
         	map.put(setting.getCode(), setting.getValue());
 		}
         int articleCount = articleMapper.countAllArticle();
-        List<Cate> cateList = cateMapper.listAllCate();
+        List<CateDO> cateList = cateMapper.listAllCate();
         PageHelper.startPage(1, 10); 
         //ID,TITLE
-        List<ArticleVo> latestArticles = articleMapper.listArticleByTitle(null);
-        List<TagVo> tagList = tagReferMapper.listNameAndCnt();
-        IndexVo vo = new IndexVo();
+        List<ArticleVO> latestArticles = articleMapper.listArticleByTitle(null);
+        List<TagVO> tagList = tagReferMapper.listNameAndCnt();
+        IndexVO vo = new IndexVO();
         
         vo.setSettings(map);
         vo.setArticleCount(articleCount);
@@ -62,19 +62,19 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public IndexArticleVo next(IndexQuery query) {
+    public IndexArticleVO next(IndexQuery query) {
     	
     	PageHelper.startPage(query.getPage(), query.getLimit()); 
-    	List<ArticleVo> list = articleMapper.listIndexArticle(query);
+    	List<ArticleVO> list = articleMapper.listIndexArticle(query);
 		//取记录总条数
-		PageInfo<ArticleVo> pageInfo = new PageInfo<ArticleVo>(list);
+		PageInfo<ArticleVO> pageInfo = new PageInfo<ArticleVO>(list);
 		long total = pageInfo.getTotal();
 		Map<Long,Object> map = new HashMap<Long,Object>();
-		for (ArticleVo articleVo : list) {
-			List<Tag> listTag = tagMapper.listTagByReferId(articleVo.getId());
+		for (ArticleVO articleVo : list) {
+			List<TagDO> listTag = tagMapper.listTagByReferId(articleVo.getId());
 			map.put(articleVo.getId(), listTag);
 		}
-		IndexArticleVo vo = new IndexArticleVo();
+		IndexArticleVO vo = new IndexArticleVO();
 		vo.setData(list);
 		vo.setTags(map);
 		long totalPage = total % query.getLimit() == 0 ? total / query.getLimit():total / query.getLimit() + 1;

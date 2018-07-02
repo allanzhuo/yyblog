@@ -68,9 +68,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(getValidateInterceptor()).addPathPatterns("/**");
+		/*registry.addInterceptor(getValidateInterceptor()).addPathPatterns("/**");
 		registry.addInterceptor(getSessionInterceptor()).addPathPatterns("/management/**", "/token/**");
-		registry.addInterceptor(getAdminInterceptor()).addPathPatterns("/management/**");
+		registry.addInterceptor(getAdminInterceptor()).addPathPatterns("/management/**");*/
 	}
 
 	@Bean

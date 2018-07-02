@@ -19,11 +19,11 @@ import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.mapper.NoteMapper;
 import net.laoyeye.yyblog.mapper.TagMapper;
 import net.laoyeye.yyblog.mapper.TagReferMapper;
-import net.laoyeye.yyblog.model.Note;
-import net.laoyeye.yyblog.model.Tag;
-import net.laoyeye.yyblog.model.TagRefer;
+import net.laoyeye.yyblog.model.NoteDO;
+import net.laoyeye.yyblog.model.TagDO;
+import net.laoyeye.yyblog.model.TagReferDO;
 import net.laoyeye.yyblog.model.query.NoteQuery;
-import net.laoyeye.yyblog.model.vo.NoteVo;
+import net.laoyeye.yyblog.model.vo.NoteVO;
 import net.laoyeye.yyblog.service.NoteService;
 
 @Service
@@ -42,14 +42,14 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public NoteVo getLatestNote() {
+	public NoteVO getLatestNote() {
 
 		return noteMapper.getLatestNote();
 	}
 
 	@Transactional
 	@Override
-	public YYBlogResult saveNote(Note note, String tagName) {
+	public YYBlogResult saveNote(NoteDO note, String tagName) {
 
 		//插入笔记
 		note.setId(IDUtils.genId());
@@ -62,8 +62,8 @@ public class NoteServiceImpl implements NoteService {
 		if (!StringUtils.isEmpty(tagName)) {
 			//标签处理
 			String[] tagNameArray = tagName.split(",");
-			Tag tag = new Tag();
-			TagRefer tagRefer = new TagRefer();
+			TagDO tag = new TagDO();
+			TagReferDO tagRefer = new TagReferDO();
 			for (String name : Arrays.asList(tagNameArray)) {
 				if (tagMapper.countByName(name) == 0) {
 					tag.setId(IDUtils.genId());
@@ -87,9 +87,9 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public DataGridResult listPageNote(NoteQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<Note> list = noteMapper.listNoteByTitle(query.getTitle());
+		List<NoteDO> list = noteMapper.listNoteByTitle(query.getTitle());
 		//取记录总条数
-		PageInfo<Note> pageInfo = new PageInfo<Note>(list);
+		PageInfo<NoteDO> pageInfo = new PageInfo<NoteDO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -101,7 +101,7 @@ public class NoteServiceImpl implements NoteService {
 	@Transactional
 	@Override
 	public YYBlogResult updateIsShowById(Long id, Boolean isShow) {
-		Note note = new Note();
+		NoteDO note = new NoteDO();
 		note.setId(id);
 		note.setIsShow(isShow);
 		note.setUpdateTime(new Date());
@@ -112,7 +112,7 @@ public class NoteServiceImpl implements NoteService {
 	@Transactional
 	@Override
 	public YYBlogResult updateTopById(Long id, Boolean top) {
-		Note note = new Note();
+		NoteDO note = new NoteDO();
 		note.setId(id);
 		note.setTop(top);
 		note.setUpdateTime(new Date());
@@ -130,20 +130,20 @@ public class NoteServiceImpl implements NoteService {
 
 
 	@Override
-	public Note getNoteById(Long id) {
+	public NoteDO getNoteById(Long id) {
 
 		return noteMapper.getNoteById(id);
 	}
 
 	@Override
-	public YYBlogResult updateNote(Note note, String tagName) {
+	public YYBlogResult updateNote(NoteDO note, String tagName) {
 		note.setUpdateTime(new Date());
 		getTextContentByContent(note);
 		noteMapper.update(note);
 		tagReferMapper.deleteByReferId(note.getId());
 		String[] tagNameArray = tagName.split(",");
-		Tag tag = new Tag();
-		TagRefer tagRefer = new TagRefer();
+		TagDO tag = new TagDO();
+		TagReferDO tagRefer = new TagReferDO();
 		for (String name : Arrays.asList(tagNameArray)) {
 			if (tagMapper.countByName(name) == 0) {
 				tag.setId(IDUtils.genId());
@@ -162,7 +162,7 @@ public class NoteServiceImpl implements NoteService {
 		return YYBlogResult.ok();
 	}
 
-	private void getTextContentByContent(Note note) {
+	private void getTextContentByContent(NoteDO note) {
 		String textContent = FilterHtml.filterHtml(note.getContent().trim());
 		textContent = StringUtils.trimAllWhitespace(textContent);
 		note.setTextContent(textContent);

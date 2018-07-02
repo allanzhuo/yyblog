@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.laoyeye.yyblog.mapper.TaskMapper">
+	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.TaskDO" >
+      <id column="id" property="id" jdbcType="BIGINT" />
+	  <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+	  <result column="description" property="description" jdbcType="VARCHAR" />
+	  <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR" />
+	  <result column="bean_class" property="beanClass" jdbcType="VARCHAR" />
+	  <result column="job_status" property="jobStatus" jdbcType="VARCHAR" />
+	  <result column="job_group" property="jobGroup" jdbcType="VARCHAR" />
+	  <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+	  <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	  <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	  <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+	  id, job_name, description, cron_expression, bean_class, job_status, job_group, create_user, 
+	  create_time, update_user, update_time
+	</sql>
+	<select id="get" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.TaskDO">
+		select 
+	    <include refid="Base_Column_List" />
+	    from t_task
+	    where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="list" resultType="net.laoyeye.yyblog.model.TaskDO">
+		select
+		<include refid="Base_Column_List" />
+		from t_task
+		order by id asc
+	</select>
+	<select id="listTaskVoByDesc" resultType="net.laoyeye.yyblog.model.vo.TaskVO">
+		select
+		`id`,`job_name`,`description`,`cron_expression`,`bean_class`,`job_status`,`job_group`
+		from t_task
+		<where>
+			<if test="desc != null and desc != ''">
+				and description like CONCAT('%',#{desc},'%')
+			</if>
+		</where>
+		<!-- <choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose> -->
+		order by id asc
+	</select>
+
+	<insert id="save" parameterType="net.laoyeye.yyblog.model.TaskDO" >
+    insert into t_task (id, job_name, description, 
+      cron_expression, bean_class, job_status, 
+      job_group, create_user, create_time, 
+      update_user, update_time)
+    values (#{id,jdbcType=BIGINT}, #{jobName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{cronExpression,jdbcType=VARCHAR}, #{beanClass,jdbcType=VARCHAR}, #{jobStatus,jdbcType=VARCHAR}, 
+      #{jobGroup,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+   </insert>
+
+	<update id="update" parameterType="net.laoyeye.yyblog.model.TaskDO" >
+    update t_task
+    <set >
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cronExpression != null" >
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="beanClass != null" >
+        bean_class = #{beanClass,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null" >
+        job_status = #{jobStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jobGroup != null" >
+        job_group = #{jobGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  	</update>
+
+	<delete id="remove">
+		delete from t_task where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="removeBatch">
+		delete from t_task where id in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

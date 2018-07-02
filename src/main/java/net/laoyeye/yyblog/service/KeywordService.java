@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Keyword;
+import net.laoyeye.yyblog.model.KeywordDO;
 import net.laoyeye.yyblog.model.query.BaseQuery;
 
 public interface KeywordService {
@@ -16,11 +16,11 @@ public interface KeywordService {
 	/**
 	 * 查询所有有效的关键字
 	 */
-	List<Keyword> listValidKeyword();
+	List<KeywordDO> listValidKeyword();
 	/**
 	 * 保存关键字
 	 */
-	YYBlogResult saveKeyword(Keyword keyword);
+	YYBlogResult saveKeyword(KeywordDO keyword);
 	/**
 	 * 保存关键字
 	 */
@@ -28,5 +28,5 @@ public interface KeywordService {
 	/**
 	 * 修改关键字状态/内容
 	 */
-	YYBlogResult update(Keyword keyword);
+	YYBlogResult update(KeywordDO keyword);
 }

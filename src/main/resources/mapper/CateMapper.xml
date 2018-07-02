@@ -7,7 +7,7 @@
 		NAME
 	</sql>
 	<!-- 查询出所有的分類信息 -->
-	<select id="listAllCate" resultType="net.laoyeye.yyblog.model.Cate">
+	<select id="listAllCate" resultType="net.laoyeye.yyblog.model.CateDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -22,7 +22,7 @@
 			T_CATE
 		WHERE CODE = #{code}
 	</select>
-  	<insert id="save" parameterType="net.laoyeye.yyblog.model.Cate" >
+  	<insert id="save" parameterType="net.laoyeye.yyblog.model.CateDO" >
 	    INSERT INTO T_CATE (ID, CODE, NAME)
 	    VALUES (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
  	</insert>
@@ -31,7 +31,7 @@
 	    WHERE ID = #{id,jdbcType=INTEGER}
 	</delete>
 	
-	<update id="updateById" parameterType="net.laoyeye.yyblog.model.Cate" >
+	<update id="updateById" parameterType="net.laoyeye.yyblog.model.CateDO" >
 	    UPDATE T_CATE
 	    <set >
 	      <if test="code != null" >

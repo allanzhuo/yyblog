@@ -6,7 +6,7 @@
 		NAME
 	</sql>
 	<!-- 查询出所有的分類信息 -->
-	<select id="listAllTag" resultType="net.laoyeye.yyblog.model.Tag">
+	<select id="listAllTag" resultType="net.laoyeye.yyblog.model.TagDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -14,7 +14,7 @@
 		ORDER BY ID
 	</select>
 	<!-- 根据名称查询出分類信息 -->
-	<select id="listTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Tag">
+	<select id="listTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.TagDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -22,7 +22,7 @@
 		WHERE NAME LIKE CONCAT('%',#{name},'%')
 	</select>
 	
-	<update id="updateById" parameterType="net.laoyeye.yyblog.model.Tag" >
+	<update id="updateById" parameterType="net.laoyeye.yyblog.model.TagDO" >
 	    UPDATE t_tag
 	    <set >
 	      <if test="name != null" >
@@ -36,7 +36,7 @@
 	    WHERE ID = #{id,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="saveTag" parameterType="net.laoyeye.yyblog.model.Tag" >
+	<insert id="saveTag" parameterType="net.laoyeye.yyblog.model.TagDO" >
 	    INSERT INTO T_TAG (ID, NAME)
 	    VALUES (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
    </insert>
@@ -51,7 +51,7 @@
 	</select>
 	
 	<!-- 根据名称查询出标签信息 -->
-	<select id="getTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Tag">
+	<select id="getTagByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.TagDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -60,7 +60,7 @@
 	</select>
 	
 	<!-- 根据文章ID查询出文章的标签 -->
-	<select id="listTagByReferId" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.Tag">
+	<select id="listTagByReferId" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.TagDO">
 		SELECT
 			TT.ID,
 			TT.`NAME`

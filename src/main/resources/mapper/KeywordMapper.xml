@@ -4,13 +4,13 @@
 	<sql id="Base_Column_List" >
     	 ID, WORDS, ENABLE
  	</sql>
-	<select id="listKeyword" resultType="net.laoyeye.yyblog.model.Keyword" >
+	<select id="listKeyword" resultType="net.laoyeye.yyblog.model.KeywordDO" >
 	    SELECT 
 	    <include refid="Base_Column_List" />
 	    FROM T_KEYWORD
 	</select>
 
-	<select id="listValidKeyword" resultType="net.laoyeye.yyblog.model.Keyword" >
+	<select id="listValidKeyword" resultType="net.laoyeye.yyblog.model.KeywordDO" >
 	    SELECT 
 	    <include refid="Base_Column_List" />
 	    FROM T_KEYWORD
@@ -24,7 +24,7 @@
 	    WHERE WORDS = #{words}
 	</select>
 
-	<insert id="saveKeyword" parameterType="net.laoyeye.yyblog.model.Keyword" >
+	<insert id="saveKeyword" parameterType="net.laoyeye.yyblog.model.KeywordDO" >
 	    INSERT INTO T_KEYWORD (ID, WORDS, ENABLE)
 	    VALUES (#{id,jdbcType=BIGINT}, #{words,jdbcType=VARCHAR}, #{enable,jdbcType=BIT})
 	</insert>
@@ -35,7 +35,7 @@
     	WHERE ID = #{id,jdbcType=BIGINT}
 	</delete>
 	
-	<update id="update" parameterType="net.laoyeye.yyblog.model.Keyword">
+	<update id="update" parameterType="net.laoyeye.yyblog.model.KeywordDO">
 		UPDATE T_KEYWORD
 		<set>
 			<if test="words != null">

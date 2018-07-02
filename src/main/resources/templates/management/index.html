@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
@@ -28,7 +29,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
-                    <dd><a href="#settings"><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                    <dd><a href="#settings"><i class="fa fa-cogs"></i> 系统设置</a></dd>
                     <hr>
                     <dd><a href="/management/logout?from=management"><i class="fa fa-sign-out"></i> 退了</a></dd>
                 </dl>
@@ -50,7 +51,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>
-                        <dd><a href="#settings"><i class="fa fa-cogs"></i> 偏好设置</a></dd>
+                        <dd><a href="#settings"><i class="fa fa-cogs"></i> 系统设置</a></dd>
                         <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block"><a href="#home"><i
                                 class="fa fa-dashboard"></i> 控制台</a></dd>
                         <dd class="layui-hide-lg layui-hide-md layui-hide-sm layui-show-xs-block">
@@ -84,13 +85,15 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="#users"><i class="fa fa-users"></i> 用户管理</a></li>
-                <li class="layui-nav-item"><a href="#comment"><i class="fa fa-comment-o"></i> 评论管理</a></li>
-                <li class="layui-nav-item"><a href="#message"><i class="fa fa-bell-o"></i> 留言管理</a></li>
+                <li shiro:hasPermission="sys:user:comment" class="layui-nav-item"><a href="#comment"><i class="fa fa-comment-o"></i> 评论管理</a></li>
+                <li shiro:hasPermission="sys:user:message" class="layui-nav-item"><a href="#message"><i class="fa fa-bell-o"></i> 留言管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:void(0);"><i class="fa fa-cog"></i> 偏好设置</a>
+                    <a href="javascript:void(0);"><i class="fa fa-cog"></i> 系统设置</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#settings"><i class="fa fa-balance-scale"></i> 网站设置</a></dd>
                         <dd><a href="#qrcode"><i class="fa fa-money"></i> 打赏二维码</a></dd>
+                        <dd><a href="#task"><i class="fa fa-tasks"></i> 计划任务</a></dd>
+                        <dd><a href="#log"><i class="fa fa-calendar-check-o"></i> 系统日志</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="#aboutblog"><i class="fa fa-info-circle"></i> 关于老爷爷</a></li>

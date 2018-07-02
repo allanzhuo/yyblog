@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.laoyeye.yyblog.mapper.NoteMapper">
-	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.vo.NoteVo">
+	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.vo.NoteVO">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
 		<result column="content" jdbcType="VARCHAR" property="content" />
@@ -37,7 +37,7 @@
 		LIMIT 1
 	</select>
 	<!-- 新增保存笔记 -->
-	<insert id="saveNote" parameterType="net.laoyeye.yyblog.model.Note" >
+	<insert id="saveNote" parameterType="net.laoyeye.yyblog.model.NoteDO" >
 	    INSERT INTO T_NOTE (ID, TITLE, TEXT_CONTENT, 
 	      CONTENT, TOP, IS_SHOW, CREATE_TIME, 
 	      UPDATE_TIME)
@@ -47,7 +47,7 @@
     </insert>
    
     <!-- 根据标题查询笔记 -->
-	<select id="listNoteByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.Note">
+	<select id="listNoteByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.NoteDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -60,7 +60,7 @@
 		ORDER BY CREATE_TIME DESC
 	</select>
 	
-	<update id="update" parameterType="net.laoyeye.yyblog.model.Note" >
+	<update id="update" parameterType="net.laoyeye.yyblog.model.NoteDO" >
 	    UPDATE T_NOTE
 	    <set >
 	      <if test="title != null" >
@@ -93,7 +93,7 @@
     	WHERE ID = #{id,jdbcType=BIGINT}
 	</delete>
 	<!-- 根据ID查询笔记 -->
-	<select id="getNoteById" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.Note">
+	<select id="getNoteById" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.NoteDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM

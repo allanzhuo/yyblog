@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.utils.WebUtils;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.service.UserService;
 
 import java.io.IOException;
@@ -32,9 +32,9 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String sessionId = CookieUtils.getCookieValue(request, SessionParam.COOKIE_NAME);
 		if (StringUtils.isNotEmpty(sessionId)) {
-			User user = (User)request.getSession().getAttribute(sessionId);
+			UserDO user = (UserDO)request.getSession().getAttribute(sessionId);
 			if (user == null) {
-				User cookieUser = userService.getUserByToken(sessionId);
+				UserDO cookieUser = userService.getUserByToken(sessionId);
 				if (cookieUser != null) {
 					request.getSession().setAttribute(sessionId, cookieUser);
 					logger.info("[已登录用户]");
@@ -57,7 +57,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
     	String sessionId = CookieUtils.getCookieValue(request, SessionParam.COOKIE_NAME);
     	if (StringUtils.isNotEmpty(sessionId)) {
-			User user = (User)request.getSession().getAttribute(sessionId);
+			UserDO user = (UserDO)request.getSession().getAttribute(sessionId);
 			if (user == null) {
 				 if (modelAndView != null)
 	                    modelAndView.getModelMap().addAttribute("login", WebUtils.toMap(user));

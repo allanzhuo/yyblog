@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import net.laoyeye.yyblog.common.ParamKey;
+import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Setting;
+import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.service.SettingService;
 import net.laoyeye.yyblog.service.UploadService;
 
@@ -29,9 +29,9 @@ public class SettingsController {
 	
     @GetMapping
     public String index(Model model) {
-        List<Setting> settings = settingService.listAll();
+        List<SettingDO> settings = settingService.listAll();
         Map<String, Object> attributeMap = new HashMap<String, Object>();
-        for (Setting setting : settings) {
+        for (SettingDO setting : settings) {
         	attributeMap.put(setting.getCode(), setting.getValue());
 		}
         model.addAllAttributes(attributeMap);
@@ -40,14 +40,14 @@ public class SettingsController {
 
     @GetMapping("/qrcode")
     public String qrcode(Model model) {
-        model.addAttribute("alipay", settingService.getValueByCode(ParamKey.ALIPAY));
-        model.addAttribute("wechat", settingService.getValueByCode(ParamKey.WECHAT_PAY));
+        model.addAttribute("alipay", settingService.getValueByCode(Constant.ALIPAY));
+        model.addAttribute("wechat", settingService.getValueByCode(Constant.WECHAT_PAY));
         return "management/qrcode";
     }
 
     @PostMapping("/edit")
     @ResponseBody
-    public YYBlogResult editSettings(Setting setting) {
+    public YYBlogResult editSettings(SettingDO setting) {
     	
     	return settingService.updateValueByCode(setting);
     }

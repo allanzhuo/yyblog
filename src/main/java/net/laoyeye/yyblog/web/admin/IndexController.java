@@ -3,9 +3,9 @@ package net.laoyeye.yyblog.web.admin;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
-import net.laoyeye.yyblog.model.Article;
-import net.laoyeye.yyblog.model.Note;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.ArticleDO;
+import net.laoyeye.yyblog.model.NoteDO;
+import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.service.ArticleService;
 import net.laoyeye.yyblog.service.CateService;
 import net.laoyeye.yyblog.service.CommentService;
@@ -14,6 +14,7 @@ import net.laoyeye.yyblog.service.NoteService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +37,9 @@ public class IndexController {
 	private NoteService noteService;
 
     @GetMapping("/index")
-    public String index(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token,HttpServletRequest request,Model model) {
-    	User user = (User)request.getSession().getAttribute(token);
-        model.addAttribute("avatar", user.getAvatar());
+    public String index(HttpServletRequest request,Model model) {
+    	UserDO user = (UserDO)SecurityUtils.getSubject().getPrincipal();
+    	model.addAttribute("avatar", user.getAvatar());
         model.addAttribute("nickname", user.getNickname());
         return "management/index";
     }
@@ -57,18 +58,18 @@ public class IndexController {
 
     @PostMapping("/simple/add/article")
     @ResponseBody
-    public YYBlogResult simplePostArticle(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token, HttpServletRequest request, Article article) {
+    public YYBlogResult simplePostArticle(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token, HttpServletRequest request, ArticleDO article) {
         if (article.getContent().length() > 300) {
             return YYBlogResult.build(500, "草稿字数不宜过多！");
         }
-        User user = (User)request.getSession().getAttribute(token);
+        UserDO user = (UserDO)request.getSession().getAttribute(token);
 		article.setAuthorId(user.getId());
         return articleService.saveSimpleArticle(article);
     }
    
     @PostMapping("/simple/add/note")
     @ResponseBody
-    public YYBlogResult simplePostNote(Note note) {
+    public YYBlogResult simplePostNote(NoteDO note) {
         if (note.getContent().length() > 300) {
             return YYBlogResult.build(500, "笔记字数不宜过多！");
         }

@@ -2,9 +2,9 @@ package net.laoyeye.yyblog.service;
 
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Comment;
+import net.laoyeye.yyblog.model.CommentDO;
 import net.laoyeye.yyblog.model.query.CommentQuery;
-import net.laoyeye.yyblog.model.vo.CommentVo;
+import net.laoyeye.yyblog.model.vo.CommentVO;
 
 public interface CommentService {
 	/**
@@ -14,7 +14,7 @@ public interface CommentService {
 	/**
 	 * 获取最新的评论
 	 */
-	CommentVo getLatestComment();
+	CommentVO getLatestComment();
 	/**
 	 * 前台评论查询
 	 */
@@ -22,7 +22,7 @@ public interface CommentService {
 	/**
 	 * 前台评论查询
 	 */
-	YYBlogResult insert(Comment comment);
+	YYBlogResult insert(CommentDO comment);
 	
 	
 }

@@ -10,7 +10,7 @@
 			T_COMMENT
 	</select>
 	<!-- 查询最新评论 -->
-	<select id="getLatestComment" resultType="net.laoyeye.yyblog.model.vo.CommentVo">
+	<select id="getLatestComment" resultType="net.laoyeye.yyblog.model.vo.CommentVO">
 		SELECT
 			TC.*, 
 			TU.NICKNAME,
@@ -27,7 +27,7 @@
 		LIMIT 1
 	</select>
 	<!-- 根据文章Id，查询对应的评论 -->
-	<select id="listCommentByArticleId" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.vo.CommentVo">
+	<select id="listCommentByArticleId" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.vo.CommentVO">
 		SELECT
 			TC.*, 
 			TU.NICKNAME,
@@ -45,7 +45,7 @@
 			TC.CREATE_TIME ASC
 	</select>
 	
-	<insert id="insert" parameterType="net.laoyeye.yyblog.model.Comment" >
+	<insert id="insert" parameterType="net.laoyeye.yyblog.model.CommentDO" >
 	  INSERT INTO T_COMMENT (ID, USER_ID, ARTICLE_ID, 
       CONTENT, IP_ADDR, IP_CN_ADDR, 
       PARENT_ID, ENABLE, CREATE_TIME

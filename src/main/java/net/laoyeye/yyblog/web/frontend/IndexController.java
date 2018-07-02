@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
 import net.laoyeye.yyblog.model.query.IndexQuery;
-import net.laoyeye.yyblog.model.vo.IndexArticleVo;
+import net.laoyeye.yyblog.model.vo.IndexArticleVO;
 import net.laoyeye.yyblog.service.IndexService;
 
 /**
@@ -35,8 +35,8 @@ public class IndexController {
 
     @PostMapping(value = {"/next", "/index/next"})
     @ResponseBody
-    public IndexArticleVo next(IndexQuery query) {
-    	IndexArticleVo result = indexService.next(query);
+    public IndexArticleVO next(IndexQuery query) {
+    	IndexArticleVO result = indexService.next(query);
         return result;
     }
 

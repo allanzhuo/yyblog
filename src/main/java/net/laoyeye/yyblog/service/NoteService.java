@@ -2,9 +2,9 @@ package net.laoyeye.yyblog.service;
 
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Note;
+import net.laoyeye.yyblog.model.NoteDO;
 import net.laoyeye.yyblog.model.query.NoteQuery;
-import net.laoyeye.yyblog.model.vo.NoteVo;
+import net.laoyeye.yyblog.model.vo.NoteVO;
 
 public interface NoteService {
 	/**
@@ -14,11 +14,11 @@ public interface NoteService {
 	/**
 	 * 获取最新笔记
 	 */
-	NoteVo getLatestNote();
+	NoteVO getLatestNote();
 	/**
 	 * 新增保存笔记
 	 */
-	YYBlogResult saveNote(Note note, String tagName);
+	YYBlogResult saveNote(NoteDO note, String tagName);
 	/**
 	 * 查询笔记列表
 	 */
@@ -34,7 +34,7 @@ public interface NoteService {
 	/**
 	 * 修改笔记
 	 */
-	YYBlogResult updateNote(Note note, String tagName);
+	YYBlogResult updateNote(NoteDO note, String tagName);
 	/**
 	 * 删除笔记
 	 */
@@ -42,5 +42,5 @@ public interface NoteService {
 	/**
 	 * 根据ID获取笔记
 	 */
-	Note getNoteById(Long id);
+	NoteDO getNoteById(Long id);
 }

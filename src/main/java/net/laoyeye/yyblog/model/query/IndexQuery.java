@@ -10,7 +10,12 @@ import net.laoyeye.yyblog.common.utils.UrlUtils;
 public class IndexQuery extends BaseQuery {
 
 
-    private String title;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String title;
 
     private String textContent;
 

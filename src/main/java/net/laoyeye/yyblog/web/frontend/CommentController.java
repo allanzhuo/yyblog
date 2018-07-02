@@ -16,8 +16,8 @@ import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.common.utils.Injection;
 import net.laoyeye.yyblog.common.utils.StringUtils;
 import net.laoyeye.yyblog.common.utils.WebUtils;
-import net.laoyeye.yyblog.model.Comment;
-import net.laoyeye.yyblog.model.Keyword;
+import net.laoyeye.yyblog.model.CommentDO;
+import net.laoyeye.yyblog.model.KeywordDO;
 import net.laoyeye.yyblog.service.ArticleService;
 import net.laoyeye.yyblog.service.CommentService;
 import net.laoyeye.yyblog.service.KeywordService;
@@ -44,7 +44,7 @@ public class CommentController {
 
 	@PostMapping("/sub")
 	@ResponseBody
-	public YYBlogResult sub(Comment comment, HttpServletRequest request) {
+	public YYBlogResult sub(CommentDO comment, HttpServletRequest request) {
 		if (!settingService.getValueByCode("all_comment_open").equals("1") || !articleService.getArticleById(comment.getArticleId()).getCommented()) {
 			return YYBlogResult.build(500, "未开放评论功能，请勿非法操作！");
 		}
@@ -55,8 +55,8 @@ public class CommentController {
 		//后面改样式用到
 		comment.setParentId(null);
 		comment.setContent(Injection.stripSqlInjection(comment.getContent()));
-		List<Keyword> keywords = keywordService.listValidKeyword();
-		for (Keyword keyword : keywords) {
+		List<KeywordDO> keywords = keywordService.listValidKeyword();
+		for (KeywordDO keyword : keywords) {
 			comment.setContent(comment.getContent().replace(keyword.getWords(), StringUtils.addStrings(keyword.getWords(), keyword.getWords().length())));
 		}
 		comment.setCreateTime(new Date());

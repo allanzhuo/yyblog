@@ -19,11 +19,11 @@ import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.mapper.ArticleMapper;
 import net.laoyeye.yyblog.mapper.TagMapper;
 import net.laoyeye.yyblog.mapper.TagReferMapper;
-import net.laoyeye.yyblog.model.Article;
-import net.laoyeye.yyblog.model.Tag;
-import net.laoyeye.yyblog.model.TagRefer;
+import net.laoyeye.yyblog.model.ArticleDO;
+import net.laoyeye.yyblog.model.TagDO;
+import net.laoyeye.yyblog.model.TagReferDO;
 import net.laoyeye.yyblog.model.query.ArticleQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVo;
+import net.laoyeye.yyblog.model.vo.ArticleVO;
 import net.laoyeye.yyblog.service.ArticleService;
 
 @Service
@@ -42,14 +42,14 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public ArticleVo getLatestArticle() {
+	public ArticleVO getLatestArticle() {
 
 		return articleMapper.getLatestArticle();
 	}
 
 	@Transactional
 	@Override
-	public YYBlogResult saveArticle(Article article,String tagName) {
+	public YYBlogResult saveArticle(ArticleDO article,String tagName) {
 
 		//插入文章
 		article.setId(IDUtils.genId());
@@ -67,8 +67,8 @@ public class ArticleServiceImpl implements ArticleService{
 		if (!StringUtils.isEmpty(tagName)) {
 			//标签处理
 			String[] tagNameArray = tagName.split(",");
-			Tag tag = new Tag();
-			TagRefer tagRefer = new TagRefer();
+			TagDO tag = new TagDO();
+			TagReferDO tagRefer = new TagReferDO();
 			for (String name : Arrays.asList(tagNameArray)) {
 				if (tagMapper.countByName(name) == 0) {
 					tag.setId(IDUtils.genId());
@@ -91,9 +91,9 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public DataGridResult listPageArticle(ArticleQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<ArticleVo> list = articleMapper.listArticleByTitle(query.getTitle());
+		List<ArticleVO> list = articleMapper.listArticleByTitle(query.getTitle());
 		//取记录总条数
-		PageInfo<ArticleVo> pageInfo = new PageInfo<ArticleVo>(list);
+		PageInfo<ArticleVO> pageInfo = new PageInfo<ArticleVO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -105,7 +105,7 @@ public class ArticleServiceImpl implements ArticleService{
 	@Transactional
 	@Override
 	public YYBlogResult updateAppreciableById(Long id, Boolean appreciable) {
-		Article article = new Article();
+		ArticleDO article = new ArticleDO();
 		article.setId(id);
 		article.setAppreciable(appreciable);
 		article.setUpdateTime(new Date());
@@ -116,7 +116,7 @@ public class ArticleServiceImpl implements ArticleService{
 	@Transactional
 	@Override
 	public YYBlogResult updateCommentedById(Long id, Boolean commented) {
-		Article article = new Article();
+		ArticleDO article = new ArticleDO();
 		article.setId(id);
 		article.setCommented(commented);
 		article.setUpdateTime(new Date());
@@ -127,7 +127,7 @@ public class ArticleServiceImpl implements ArticleService{
 	@Transactional
 	@Override
 	public YYBlogResult updateTopById(Long id, Boolean top) {
-		Article article = new Article();
+		ArticleDO article = new ArticleDO();
 		article.setId(id);
 		article.setTop(top);
 		article.setUpdateTime(new Date());
@@ -136,21 +136,21 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public Article getArticleById(long id) {
-		Article articleById = articleMapper.getArticleById(id);
+	public ArticleDO getArticleById(long id) {
+		ArticleDO articleById = articleMapper.getArticleById(id);
 		return articleById;
 	}
 
 	@Transactional
 	@Override
-	public YYBlogResult updateArticle(Article article, String tagName) {
+	public YYBlogResult updateArticle(ArticleDO article, String tagName) {
 		article.setUpdateTime(new Date());
 		getSumByFilterContent(article);
 		articleMapper.update(article);
 		tagReferMapper.deleteByReferId(article.getId());
 		String[] tagNameArray = tagName.split(",");
-		Tag tag = new Tag();
-		TagRefer tagRefer = new TagRefer();
+		TagDO tag = new TagDO();
+		TagReferDO tagRefer = new TagReferDO();
 		for (String name : Arrays.asList(tagNameArray)) {
 			if (tagMapper.countByName(name) == 0) {
 				tag.setId(IDUtils.genId());
@@ -169,7 +169,7 @@ public class ArticleServiceImpl implements ArticleService{
 		return YYBlogResult.ok();
 	}
 
-	private void getSumByFilterContent(Article article) {
+	private void getSumByFilterContent(ArticleDO article) {
 		String clearContent = FilterHtml.filterHtml(article.getContent().trim());
 		clearContent = StringUtils.trimAllWhitespace(clearContent);
 		if (StringUtils.isEmpty(article.getSummary())) {
@@ -188,7 +188,7 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public YYBlogResult saveSimpleArticle(Article article) {
+	public YYBlogResult saveSimpleArticle(ArticleDO article) {
 		//插入文章
 		article.setId(IDUtils.genId());
 		article.setCreateTime(new Date());

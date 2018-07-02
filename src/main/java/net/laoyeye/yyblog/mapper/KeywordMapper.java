@@ -1,19 +1,19 @@
 package net.laoyeye.yyblog.mapper;
 
 import java.util.List;
-import net.laoyeye.yyblog.model.Keyword;
+import net.laoyeye.yyblog.model.KeywordDO;
 
 public interface KeywordMapper {
 	
-	List<Keyword> listKeyword();
+	List<KeywordDO> listKeyword();
 	
-	List<Keyword> listValidKeyword();
+	List<KeywordDO> listValidKeyword();
 	
-	int saveKeyword(Keyword keyword);
+	int saveKeyword(KeywordDO keyword);
 	
 	int countByWords(String words);
 	
 	int delete(long id);
 	
-	int update(Keyword keyword);
+	int update(KeywordDO keyword);
 }

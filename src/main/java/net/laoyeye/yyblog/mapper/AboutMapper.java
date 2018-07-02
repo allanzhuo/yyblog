@@ -2,13 +2,13 @@ package net.laoyeye.yyblog.mapper;
 
 import java.util.List;
 
-import net.laoyeye.yyblog.model.About;
+import net.laoyeye.yyblog.model.AboutDO;
 
 public interface AboutMapper {
 
-    int updateByTab(About about);
+    int updateByTab(AboutDO about);
 
-    About getAboutByTab(String tab);
+    AboutDO getAboutByTab(String tab);
     
-    List<About> listAll();
+    List<AboutDO> listAll();
 }

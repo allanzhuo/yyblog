@@ -2,16 +2,16 @@ package net.laoyeye.yyblog.mapper;
 
 import java.util.List;
 
-import net.laoyeye.yyblog.model.Comment;
-import net.laoyeye.yyblog.model.vo.CommentVo;
+import net.laoyeye.yyblog.model.CommentDO;
+import net.laoyeye.yyblog.model.vo.CommentVO;
 
 public interface CommentMapper {
 
 	int countAllComment();
 
-	CommentVo getLatestComment();
+	CommentVO getLatestComment();
 	
-	List<CommentVo> listCommentByArticleId(Long articleId);
+	List<CommentVO> listCommentByArticleId(Long articleId);
 	
-	int insert(Comment comment);
+	int insert(CommentDO comment);
 }

@@ -4,22 +4,22 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import net.laoyeye.yyblog.model.Note;
-import net.laoyeye.yyblog.model.vo.NoteVo;
+import net.laoyeye.yyblog.model.NoteDO;
+import net.laoyeye.yyblog.model.vo.NoteVO;
 
 public interface NoteMapper {
 
 	int countAllNote();
 
-	NoteVo getLatestNote();
+	NoteVO getLatestNote();
 	
-	int saveNote(Note note);
+	int saveNote(NoteDO note);
 	
-	List<Note> listNoteByTitle(@Param("title")String title);
+	List<NoteDO> listNoteByTitle(@Param("title")String title);
 	
-	int update(Note note);
+	int update(NoteDO note);
 	
 	int delete(long id);
 	
-	Note getNoteById(Long id);
+	NoteDO getNoteById(Long id);
 }

@@ -3,6 +3,8 @@ package net.laoyeye.yyblog.common;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.laoyeye.yyblog.enums.ResultEnum;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class NkResult<T> {
      */
     public NkResult(ResultEnum resultEnum) {
         this.code = resultEnum.getCode();
-        this.message = resultEnum.getMessage();
+        this.message = resultEnum.getValue();
     }
 
     public NkResult(String code, String message) {
@@ -84,7 +86,7 @@ public class NkResult<T> {
 
     public NkResult(T item){
         this.code = ResultEnum.SUCCESS.getCode();
-        this.message = ResultEnum.SUCCESS.getMessage();
+        this.message = ResultEnum.SUCCESS.getValue();
         this.item = item;
     }
 
@@ -181,7 +183,7 @@ public class NkResult<T> {
      * @return
      */
     public static NkResult instance(ResultEnum resultEnum) {
-        return new NkResult(resultEnum.getCode(), resultEnum.getMessage());
+        return new NkResult(resultEnum.getCode(), resultEnum.getValue());
     }
 
     /**

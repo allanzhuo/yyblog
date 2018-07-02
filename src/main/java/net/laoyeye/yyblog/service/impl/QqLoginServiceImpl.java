@@ -22,7 +22,7 @@ import net.laoyeye.yyblog.common.utils.AESUtils;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
 import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.mapper.UserMapper;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.service.QqLoginService;
 
 @Service
@@ -40,12 +40,12 @@ public class QqLoginServiceImpl implements QqLoginService {
 			OpenID openidObj = new OpenID(accessToken);
 			// 数据查找openid是否关联,如果没有关联先跳转到关联账号页面,如果直接登录.
 			String userOpenId = openidObj.getUserOpenID();
-			User user = userMapper.getUserByOpenId(userOpenId);
+			UserDO user = userMapper.getUserByOpenId(userOpenId);
 			if (StringUtils.isEmpty(user)) {
 				//获取用户信息
 				UserInfo qzoneUserInfo = new UserInfo(accessToken, userOpenId);
 				UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
-				user = new User();
+				user = new UserDO();
 				user.setId(IDUtils.genId());
 				user.setNickname(userInfoBean.getNickname());
 				user.setAvatar(userInfoBean.getAvatar().getAvatarURL50());

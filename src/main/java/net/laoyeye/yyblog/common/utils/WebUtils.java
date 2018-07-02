@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.laoyeye.yyblog.model.User;
-import net.laoyeye.yyblog.model.bo.IpInfoBo;
+import net.laoyeye.yyblog.model.UserDO;
+import net.laoyeye.yyblog.model.bo.IpInfoBO;
 
 /**
  * 博客工具类
@@ -23,7 +23,7 @@ public class WebUtils {
      * @param user
      * @return
      */
-    public static Map<String, Object> toMap(User user) {
+    public static Map<String, Object> toMap(UserDO user) {
         if (user == null) {
             return null;
         }
@@ -67,14 +67,14 @@ public class WebUtils {
                 .collect(Collectors.toMap(XParam::getName, XParam::getValue));
     }*/
 
-    public static IpInfoBo getIpInfo(String ip) {
+    public static IpInfoBO getIpInfo(String ip) {
     	ip = "222.71.208.120";
         String url = "http://ip.taobao.com/service/getIpInfo.php?ip=" + ip;
         String resp = HttpClientUtil.doGet(url);
-        return JsonUtils.jsonToPojo(resp, IpInfoBo.class);
+        return (IpInfoBO) JSONUtils.jsonToBean(resp, IpInfoBO.class);
     }
 
-    public static String getIpCnInfo(IpInfoBo ipInfo) {
+    public static String getIpCnInfo(IpInfoBO ipInfo) {
         String temp = ipInfo.getData().getCountry() + ipInfo.getData().getRegion() + ipInfo.getData().getCity();
         if (!ipInfo.getData().getCounty().toLowerCase().contains("x")) {
             return temp + ipInfo.getData().getCounty();

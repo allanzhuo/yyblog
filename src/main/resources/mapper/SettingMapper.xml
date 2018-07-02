@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.laoyeye.yyblog.mapper.SettingMapper">
-	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.Setting">
+	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.SettingDO">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
 		<result column="value" property="value" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
 		WHERE CODE = #{code}
 	</select>
 	
-	<update id="updateValueByCode" parameterType="net.laoyeye.yyblog.model.Setting">
+	<update id="updateValueByCode" parameterType="net.laoyeye.yyblog.model.SettingDO">
 		UPDATE 
 			T_SETTING
 		SET	

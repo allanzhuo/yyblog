@@ -16,7 +16,7 @@
 			T_TAG_REFER
 		WHERE TAG_ID = #{tagId}
 	</select>
-	<insert id="saveTagRefer" parameterType="net.laoyeye.yyblog.model.TagRefer" >
+	<insert id="saveTagRefer" parameterType="net.laoyeye.yyblog.model.TagReferDO" >
 	    INSERT INTO T_TAG_REFER (ID, REFER_ID, TAG_ID, IS_SHOW, TYPE)
 	    VALUES (#{id,jdbcType=BIGINT}, #{referId,jdbcType=BIGINT}, 
 	    #{tagId,jdbcType=BIGINT}, #{isShow,jdbcType=BIT}, #{type,jdbcType=VARCHAR})
@@ -38,7 +38,7 @@
 	</delete>
 	
 	<!-- 查询30个标签和标签的引用数量-->
-	<select id="listNameAndCnt" resultType="net.laoyeye.yyblog.model.vo.TagVo">
+	<select id="listNameAndCnt" resultType="net.laoyeye.yyblog.model.vo.TagVO">
 		SELECT
 			TT.NAME,
 			COUNT(TTR.TAG_ID) AS CNT

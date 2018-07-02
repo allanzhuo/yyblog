@@ -1,0 +1,38 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>计划任务</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>计划任务</legend>
+                </fieldset>
+                <div id="task-table-search">
+                    搜索标题：
+                    <div class="layui-inline">
+                        <input class="layui-input" name="id" id="task-name-search" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload">搜索</button>
+                    <button class="layui-btn layui-bg-red" data-type="batchRemove">删除</button>
+                    <button class="layui-btn layui-bg-blue" data-type="insert">新增</button>
+                </div>
+                <table class="layui-hide" id="task-table" lay-filter="task"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="jobStatusTpl">
+    <input type="checkbox" name="jobStatus" value="{{d.id}}" lay-skin="switch" lay-text="开启|关闭"
+           lay-filter="jobStatus" {{ d.jobStatus== true ? 'checked' : '' }}>
+</script>
+
+<script type="text/html" id="taskBar">
+    <a class="layui-btn layui-bg-blue layui-btn-sm" lay-event="run"><i class="layui-icon">&#xe652;</i>执行</a>
+    <a class="layui-btn layui-bg-red layui-btn-sm" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+</script>

@@ -10,7 +10,7 @@ import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.IDUtils;
 import net.laoyeye.yyblog.mapper.ArticleMapper;
 import net.laoyeye.yyblog.mapper.CateMapper;
-import net.laoyeye.yyblog.model.Cate;
+import net.laoyeye.yyblog.model.CateDO;
 import net.laoyeye.yyblog.service.CateService;
 
 @Service
@@ -21,7 +21,7 @@ public class CateServiceImpl implements CateService{
 	private ArticleMapper articleMapper;
 
 	@Override
-	public List<Cate> listAllCate() {
+	public List<CateDO> listAllCate() {
 
 		return cateMapper.listAllCate();
 	}
@@ -29,9 +29,9 @@ public class CateServiceImpl implements CateService{
 	@Override
 	public DataGridResult listPageCate(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize); 
-		List<Cate> list = cateMapper.listAllCate();
+		List<CateDO> list = cateMapper.listAllCate();
 		//取记录总条数
-		PageInfo<Cate> pageInfo = new PageInfo<Cate>(list);
+		PageInfo<CateDO> pageInfo = new PageInfo<CateDO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -41,7 +41,7 @@ public class CateServiceImpl implements CateService{
 	}
 
 	@Override
-	public YYBlogResult save(Cate cate) {
+	public YYBlogResult save(CateDO cate) {
 		int count = cateMapper.countByCode(cate.getCode());
     	if (count != 0) {
     		return YYBlogResult.build(400, "分类编码[" + cate.getName() + "]已存在！");
@@ -62,7 +62,7 @@ public class CateServiceImpl implements CateService{
 	}
 
 	@Override
-	public YYBlogResult updateById(Cate cate) {
+	public YYBlogResult updateById(CateDO cate) {
 		cateMapper.updateById(cate);
 		return YYBlogResult.ok();
 	}

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.SettingMapper;
-import net.laoyeye.yyblog.model.Setting;
+import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.service.SettingService;
 
 @Service
@@ -15,7 +15,7 @@ public class SettingServiceImpl implements SettingService{
 	private SettingMapper settingMapper;
 	
 	@Override
-	public List<Setting> listAll() {
+	public List<SettingDO> listAll() {
 
 		return settingMapper.listAll();
 	}
@@ -27,7 +27,7 @@ public class SettingServiceImpl implements SettingService{
 	}
 
 	@Override
-	public YYBlogResult updateValueByCode(Setting setting) {
+	public YYBlogResult updateValueByCode(SettingDO setting) {
 		int count = settingMapper.updateValueByCode(setting);
 		if (count != 1) {
 			YYBlogResult.build(500, "更新配置信息失败！");

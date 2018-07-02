@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.Tag;
+import net.laoyeye.yyblog.model.TagDO;
 import net.laoyeye.yyblog.model.query.TagQuery;
 import net.laoyeye.yyblog.service.TagService;
 
@@ -33,7 +33,7 @@ public class TagController {
 
     @PostMapping("/edit")
     @ResponseBody
-    public YYBlogResult edit(Tag tag) {
+    public YYBlogResult edit(TagDO tag) {
     	
         return tagService.updateById(tag);
     }

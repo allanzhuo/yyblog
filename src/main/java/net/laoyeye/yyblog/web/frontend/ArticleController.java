@@ -16,8 +16,8 @@ import io.swagger.annotations.ApiOperation;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.ArticleMapper;
-import net.laoyeye.yyblog.model.Article;
-import net.laoyeye.yyblog.model.Setting;
+import net.laoyeye.yyblog.model.ArticleDO;
+import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.model.query.CommentQuery;
 import net.laoyeye.yyblog.service.ArticleService;
 import net.laoyeye.yyblog.service.CateService;
@@ -63,12 +63,12 @@ public class ArticleController {
         	articleService.updateViewsById(id);
         } catch (Exception ignore) {
         }
-        List<Setting> settings = settingService.listAll();
+        List<SettingDO> settings = settingService.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
-        for (Setting setting : settings) {
+        for (SettingDO setting : settings) {
         	map.put(setting.getCode(), setting.getValue());
 		}
-        Article article = articleService.getArticleById(id);
+        ArticleDO article = articleService.getArticleById(id);
         model.addAttribute("settings", map);
         model.addAttribute("cateList", cateService.listAllCate());
         model.addAttribute("article", article);

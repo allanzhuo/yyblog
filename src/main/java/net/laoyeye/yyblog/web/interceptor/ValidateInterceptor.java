@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.utils.WebUtils;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ public class ValidateInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
     	String sessionId = CookieUtils.getCookieValue(request, SessionParam.COOKIE_NAME);
     	if (StringUtils.isNotEmpty(sessionId)) {
-			User user = (User)request.getSession().getAttribute(sessionId);
+			UserDO user = (UserDO)request.getSession().getAttribute(sessionId);
 			if (user != null) {
 				 if (modelAndView != null)
 	                    modelAndView.getModelMap().addAttribute("login", WebUtils.toMap(user));

@@ -11,10 +11,10 @@ import com.github.pagehelper.PageInfo;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.CommentMapper;
-import net.laoyeye.yyblog.model.Comment;
+import net.laoyeye.yyblog.model.CommentDO;
 import net.laoyeye.yyblog.model.query.CommentQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVo;
-import net.laoyeye.yyblog.model.vo.CommentVo;
+import net.laoyeye.yyblog.model.vo.ArticleVO;
+import net.laoyeye.yyblog.model.vo.CommentVO;
 import net.laoyeye.yyblog.service.CommentService;
 
 @Service
@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public CommentVo getLatestComment() {
+	public CommentVO getLatestComment() {
 
 		return commentMapper.getLatestComment();
 	}
@@ -37,9 +37,9 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public DataGridResult listCommentByArticleId(CommentQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<CommentVo> list = commentMapper.listCommentByArticleId(query.getArticleId());
+		List<CommentVO> list = commentMapper.listCommentByArticleId(query.getArticleId());
 		//取记录总条数
-		PageInfo<CommentVo> pageInfo = new PageInfo<CommentVo>(list);
+		PageInfo<CommentVO> pageInfo = new PageInfo<CommentVO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public YYBlogResult insert(Comment comment) {
+	public YYBlogResult insert(CommentDO comment) {
 		commentMapper.insert(comment);
 		return YYBlogResult.ok();
 	}

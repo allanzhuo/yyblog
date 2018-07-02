@@ -10,7 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.laoyeye.yyblog.mapper.AboutMapper;
 import net.laoyeye.yyblog.mapper.SettingMapper;
-import net.laoyeye.yyblog.model.Setting;
+import net.laoyeye.yyblog.model.SettingDO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +32,9 @@ public class AboutController {
     @ApiOperation("获取用户信息")
     @GetMapping
     public String index(Model model) {
-        List<Setting> settings = settingMapper.listAll();
+        List<SettingDO> settings = settingMapper.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
-        for (Setting setting : settings) {
+        for (SettingDO setting : settings) {
         	map.put(setting.getCode(), setting.getValue());
 		}
         model.addAttribute("settings", map);

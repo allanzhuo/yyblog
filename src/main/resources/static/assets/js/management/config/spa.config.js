@@ -80,6 +80,14 @@ $(function () {
                 templateUrl: url_prefix + 'profile',
                 controller: static_prefix + '/profile.js'
             },
+            'task': {
+                templateUrl: url_prefix + 'task',
+                controller: static_prefix + '/task.js'
+            },
+            'log': {
+                templateUrl: url_prefix + 'log',
+                controller: static_prefix + '/log.js'
+            },
             'defaults': 'home' //默认路由
         },
         errorTemplateId: '#error'

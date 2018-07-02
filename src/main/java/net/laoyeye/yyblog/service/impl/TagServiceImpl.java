@@ -13,7 +13,7 @@ import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.TagMapper;
 import net.laoyeye.yyblog.mapper.TagReferMapper;
-import net.laoyeye.yyblog.model.Tag;
+import net.laoyeye.yyblog.model.TagDO;
 import net.laoyeye.yyblog.model.query.TagQuery;
 import net.laoyeye.yyblog.service.TagService;
 
@@ -25,7 +25,7 @@ public class TagServiceImpl implements TagService {
 	private TagReferMapper tagReferMapper;
 
 	@Override
-	public List<Tag> listAllTag() {
+	public List<TagDO> listAllTag() {
 
 		return tagMapper.listAllTag();
 	}
@@ -34,9 +34,9 @@ public class TagServiceImpl implements TagService {
 	public DataGridResult listPageTag(TagQuery query) {
 		if (StringUtils.isBlank(query.getName())) {
 			PageHelper.startPage(query.getPage(), query.getLimit()); 
-			List<Tag> list = tagMapper.listAllTag();
+			List<TagDO> list = tagMapper.listAllTag();
 			//取记录总条数
-			PageInfo<Tag> pageInfo = new PageInfo<Tag>(list);
+			PageInfo<TagDO> pageInfo = new PageInfo<TagDO>(list);
 			long total = pageInfo.getTotal();
 			//创建一个返回值对象
 			DataGridResult result = new DataGridResult(); 
@@ -45,9 +45,9 @@ public class TagServiceImpl implements TagService {
 			return result;
 		}
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<Tag> list = tagMapper.listTagByName(query.getName());
+		List<TagDO> list = tagMapper.listTagByName(query.getName());
 		//取记录总条数
-		PageInfo<Tag> pageInfo = new PageInfo<Tag>(list);
+		PageInfo<TagDO> pageInfo = new PageInfo<TagDO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -67,7 +67,7 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public YYBlogResult updateById(Tag tag) {
+	public YYBlogResult updateById(TagDO tag) {
 		 tagMapper.updateById(tag);
 		 return YYBlogResult.ok();
 	}

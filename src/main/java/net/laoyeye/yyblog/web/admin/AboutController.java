@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.About;
+import net.laoyeye.yyblog.model.AboutDO;
 import net.laoyeye.yyblog.service.AboutService;
 
 /**
@@ -37,7 +37,7 @@ public class AboutController {
 
     @PostMapping("/update")
     @ResponseBody
-    public YYBlogResult update(About about) {
+    public YYBlogResult update(AboutDO about) {
     	
     	return aboutService.updateByTab(about);
     }

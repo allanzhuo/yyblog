@@ -18,7 +18,7 @@ import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.AESUtils;
 import net.laoyeye.yyblog.common.utils.CookieUtils;
 import net.laoyeye.yyblog.mapper.UserMapper;
-import net.laoyeye.yyblog.model.User;
+import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.model.query.UserQuery;
 import net.laoyeye.yyblog.service.UserService;
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public YYBlogResult getUserByName(HttpServletRequest request, HttpServletResponse response, String username, String password, Boolean remember) {
 		try {
-			User user = userMapper.getUserByName(username);
+			UserDO user = userMapper.getUserByName(username);
 			//如果没有此用户名
 			if (user == null) {
 				return YYBlogResult.build(400, "用户名或密码错误");
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService{
 			if (timestamp < currentstamp) {
 				return false;
 			}
-			User user = userMapper.getUserById(Long.parseLong(userId));
+			UserDO user = userMapper.getUserById(Long.parseLong(userId));
 			if (user != null && user.getRoleId() == 1 && user.getEnable() == true) {
 				return true;
 			}
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUserByToken(String token) {
+	public UserDO getUserByToken(String token) {
 		try {
 			String[] array = AESUtils.decrypt(token, SessionParam.COOKIE_SECRET_KEY).split(SessionParam.COOKIE_SPLIT);
 			String userId = array[0];
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService{
 			if (timestamp < currentstamp) {
 				return null;
 			}
-			User user = userMapper.getUserById(Long.parseLong(userId));
+			UserDO user = userMapper.getUserById(Long.parseLong(userId));
 			if (user != null && user.getEnable() == true) {
 				user.setPassword(null);
 				return user;
@@ -106,9 +106,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public DataGridResult listPageUser(UserQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<User> list = userMapper.listUserByNickname(query.getNickname());
+		List<UserDO> list = userMapper.listUserByNickname(query.getNickname());
 		//取记录总条数
-		PageInfo<User> pageInfo = new PageInfo<User>(list);
+		PageInfo<UserDO> pageInfo = new PageInfo<UserDO>(list);
 		long total = pageInfo.getTotal();
 		//创建一个返回值对象
 		DataGridResult result = new DataGridResult(); 
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public YYBlogResult updateEnableById(Long id, Boolean enable) {
-		User user = new User();
+		UserDO user = new UserDO();
 		user.setId(id);
 		user.setEnable(enable);
 		user.setUpdateTime(new Date());
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public YYBlogResult updateByUsername(User user) {
+	public YYBlogResult updateByUsername(UserDO user) {
 		int count = userMapper.updateByUsername(user);
 		if (count == 1) {
 			return YYBlogResult.ok();

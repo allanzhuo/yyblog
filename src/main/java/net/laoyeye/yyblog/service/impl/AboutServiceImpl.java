@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.AboutMapper;
-import net.laoyeye.yyblog.model.About;
+import net.laoyeye.yyblog.model.AboutDO;
 import net.laoyeye.yyblog.service.AboutService;
 
 @Service
@@ -14,13 +14,13 @@ public class AboutServiceImpl implements AboutService{
 	private AboutMapper aboutMapper;
 
 	@Override
-	public YYBlogResult updateByTab(About about) {
+	public YYBlogResult updateByTab(AboutDO about) {
 		aboutMapper.updateByTab(about);
 		return YYBlogResult.ok();
 	}
 
 	@Override
-	public About getAboutByTab(String tab) {
+	public AboutDO getAboutByTab(String tab) {
 
 		return aboutMapper.getAboutByTab(tab);
 	}

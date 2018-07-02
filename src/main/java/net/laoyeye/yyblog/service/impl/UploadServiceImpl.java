@@ -9,7 +9,7 @@ import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.COSClientUtils;
 import net.laoyeye.yyblog.mapper.SettingMapper;
-import net.laoyeye.yyblog.model.Setting;
+import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.service.UploadService;
 
 @Service
@@ -45,7 +45,7 @@ public class UploadServiceImpl implements UploadService{
 			COSClientUtils cosClientUtil = new COSClientUtils();  
 			name = cosClientUtil.uploadFile2Cos(file);
 			path = SessionParam.ACCESS_URL + name;
-			Setting set = new Setting();
+			SettingDO set = new SettingDO();
 			set.setCode(type);
 			set.setValue(path);
 			int count = settingMapper.updateValueByCode(set);

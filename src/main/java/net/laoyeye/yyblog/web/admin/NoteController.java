@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.IDUtils;
-import net.laoyeye.yyblog.model.Note;
+import net.laoyeye.yyblog.model.NoteDO;
 import net.laoyeye.yyblog.model.query.NoteQuery;
 import net.laoyeye.yyblog.service.NoteService;
 import net.laoyeye.yyblog.service.TagReferService;
@@ -38,7 +38,7 @@ public class NoteController {
 
     @PostMapping("/add")
     @ResponseBody
-    public YYBlogResult add(Note note, String tagName) {
+    public YYBlogResult add(NoteDO note, String tagName) {
     	return noteService.saveNote(note, tagName);
     }
     @PostMapping("/list")
@@ -80,7 +80,7 @@ public class NoteController {
 
     @PostMapping("/doEdit")
     @ResponseBody
-    public YYBlogResult doEdit(Note note, String tagNames) {
+    public YYBlogResult doEdit(NoteDO note, String tagNames) {
     	
         return noteService.updateNote(note, tagNames);
     }

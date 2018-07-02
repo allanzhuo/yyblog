@@ -27,7 +27,7 @@
 			T_ARTICLE
 	</select>
 	<!-- 查询最新博文 -->
-	<select id="getLatestArticle" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+	<select id="getLatestArticle" resultType="net.laoyeye.yyblog.model.vo.ArticleVO">
 		SELECT
 			TITLE,
 			SUMMARY,
@@ -49,7 +49,7 @@
 		WHERE CATE_ID = #{cateId}
 	</select>
 	
- 	<insert id="saveArticle" parameterType="net.laoyeye.yyblog.model.Article" >
+ 	<insert id="saveArticle" parameterType="net.laoyeye.yyblog.model.ArticleDO" >
 	    INSERT INTO T_ARTICLE (ID, TITLE, CATE_ID, 
 	      COVER, SUMMARY, VIEWS, 
 	      APPROVE_CNT, COMMENTED, APPRECIABLE, 
@@ -64,7 +64,7 @@
    </insert>
   
   	<!-- 根据标题查询文章 -->
-	<select id="listArticleByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+	<select id="listArticleByTitle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.vo.ArticleVO">
 		SELECT
 		  AT.ID,
 		  AT.TITLE, 
@@ -86,7 +86,7 @@
 		</where>
 		ORDER BY AT.CREATE_TIME DESC
 	</select>
- 	<update id="update" parameterType="net.laoyeye.yyblog.model.Article" >
+ 	<update id="update" parameterType="net.laoyeye.yyblog.model.ArticleDO" >
 	    UPDATE T_ARTICLE
 	    <set >
 	      <if test="title != null" >
@@ -138,7 +138,7 @@
 	    WHERE ID = #{id,jdbcType=BIGINT}
    </update>
    <!--  根据id获取文章 -->
-   <select id="getArticleById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.Article">
+   <select id="getArticleById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.ArticleDO">
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
@@ -153,7 +153,7 @@
 	</delete>
 	
 	<!-- 根据文章分类/标签/标题/内容查询文章 -->
-	<select id="listIndexArticle" parameterType="net.laoyeye.yyblog.model.query.IndexQuery" resultType="net.laoyeye.yyblog.model.vo.ArticleVo">
+	<select id="listIndexArticle" parameterType="net.laoyeye.yyblog.model.query.IndexQuery" resultType="net.laoyeye.yyblog.model.vo.ArticleVO">
 		SELECT DISTINCT
 			AT .ID,
 			AT .TITLE,
