@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -102,7 +103,8 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;
 	}
-
+	
+	@Cacheable(value="user", key="#query.nickname")
 	@Override
 	public DataGridResult listPageUser(UserQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 

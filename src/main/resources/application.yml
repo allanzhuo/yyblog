@@ -27,6 +27,10 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 100MB
+  cache:
+    type: ehcache
+    ehcache:
+      config: config/ehcache.xml
 server:
   port: 8080
   tomcat:
