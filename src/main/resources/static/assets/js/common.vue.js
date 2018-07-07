@@ -16,7 +16,7 @@ var template = {
     '    <div class="layui-container">' +
     '        <div class="layui-row nav-header">' +
     '            <div class="layui-col-xs9 layui-col-sm3 layui-col-md3">' +
-    '                <a class="logo animated flipInX" href="/index"><img src="/static/assets/img/favicon.png" height="35" width="35"/>&nbsp;{{params.website_logo_words}}</a>' +
+    '                <a class="logo animated flipInX" href="/index"><i class="fa fa-send-o"></i>&nbsp;{{params.website_logo_words}}</a>' +
     '                <h2 id="title" style="display: none;margin-left: 10%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" v-if="st">{{title}}</h2>' +
     '            </div>' +
     '            <div class="layui-col-xs3 layui-col-sm-offset2 layui-col-sm7 layui-hide-md layui-hide-lg nav-btn">' +

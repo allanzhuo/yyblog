@@ -17,21 +17,20 @@ import net.laoyeye.yyblog.model.bo.IpInfoBO;
  */
 public class WebUtils {
 
-    /**
+/*    *//**
      * 删除不必要的信息，避免暴露过多信息
      *
      * @param user
      * @return
-     */
+     *//*
     public static Map<String, Object> toMap(UserDO user) {
         if (user == null) {
             return null;
         }
         return Maps.hashMap("id", user.getId()
                 , "nickname", user.getNickname()
-                , "avatar", user.getAvatar()
-                , "role", user.getRoleId());
-    }
+                , "avatar", user.getAvatar());
+    }*/
 
     public static String getIpAddress(HttpServletRequest request)
     {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
-import net.laoyeye.yyblog.annotation.LogAnno;
+import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.utils.HttpClientUtil;
 import net.laoyeye.yyblog.common.utils.JSONUtils;
 import net.laoyeye.yyblog.common.utils.WebUtils;
@@ -39,7 +39,7 @@ public class LogAspect {
     LogService logService;
 
 
-    @Pointcut("@annotation(net.laoyeye.yyblog.annotation.LogAnno)")
+    @Pointcut("@annotation(net.laoyeye.yyblog.annotation.Log)")
     public void logPointCut() {
     }
 
@@ -59,7 +59,7 @@ public class LogAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         LogDO sysLog = new LogDO();
-        LogAnno log = method.getAnnotation(LogAnno.class);
+        Log log = method.getAnnotation(Log.class);
         if (log != null) {
             // 注解上的描述
             sysLog.setOperation(log.value());
@@ -72,13 +72,14 @@ public class LogAspect {
         Object[] args = joinPoint.getArgs();
         try {
             String params = Arrays.toString(args);
+            //太长的没啥意义
             if (params.length() > 4999) {
-            	params.substring(0, 5000);
+            	params = null;
 			}
             sysLog.setParams(params);
             String params2 = JSONUtils.beanToJson(args[0]);
             if (params2.length() > 4999) {
-            	params2.substring(0, 5000);
+            	params2 = null;
 			}
             sysLog.setParams2(params2);
         } catch (Exception e) {
@@ -91,9 +92,9 @@ public class LogAspect {
         // 用户名
         UserDO currUser = (UserDO)SecurityUtils.getSubject().getPrincipal();
         if (null == currUser) {
-            if (null != sysLog.getParams()) {
+            if (null != sysLog.getParams2()) {
                 sysLog.setUserId(-1L);
-                sysLog.setUsername(sysLog.getParams());
+                sysLog.setUsername(sysLog.getParams2());
             } else {
                 sysLog.setUserId(-1L);
                 sysLog.setUsername("获取用户信息为空");

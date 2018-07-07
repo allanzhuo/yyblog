@@ -6,6 +6,13 @@ package net.laoyeye.yyblog.common;
 public interface Constant {
 
     /**
+     * 后台首页地址
+     */
+    String MANAGEMENT_INDEX = "/management/index";
+    
+    
+    
+    /**
      * 是否全局开放评论
      */
     String ALL_COMMENT_OPEN = "all_comment_open";

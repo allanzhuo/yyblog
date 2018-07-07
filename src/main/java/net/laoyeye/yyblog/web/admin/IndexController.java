@@ -1,8 +1,7 @@
 package net.laoyeye.yyblog.web.admin;
 
-import net.laoyeye.yyblog.common.SessionParam;
+import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.common.utils.CookieUtils;
 import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.NoteDO;
 import net.laoyeye.yyblog.model.UserDO;
@@ -10,11 +9,7 @@ import net.laoyeye.yyblog.service.ArticleService;
 import net.laoyeye.yyblog.service.CateService;
 import net.laoyeye.yyblog.service.CommentService;
 import net.laoyeye.yyblog.service.NoteService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shiro.SecurityUtils;
+import net.laoyeye.yyblog.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller("adminIndexController")
 @RequestMapping("/management")
-public class IndexController {
+public class IndexController extends BaseController{
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
@@ -37,8 +32,8 @@ public class IndexController {
 	private NoteService noteService;
 
     @GetMapping("/index")
-    public String index(HttpServletRequest request,Model model) {
-    	UserDO user = (UserDO)SecurityUtils.getSubject().getPrincipal();
+    public String index(Model model) {
+    	UserDO user = getUser();
     	model.addAttribute("avatar", user.getAvatar());
         model.addAttribute("nickname", user.getNickname());
         return "management/index";
@@ -58,11 +53,11 @@ public class IndexController {
 
     @PostMapping("/simple/add/article")
     @ResponseBody
-    public YYBlogResult simplePostArticle(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token, HttpServletRequest request, ArticleDO article) {
+    public YYBlogResult simplePostArticle(ArticleDO article) {
         if (article.getContent().length() > 300) {
             return YYBlogResult.build(500, "草稿字数不宜过多！");
         }
-        UserDO user = (UserDO)request.getSession().getAttribute(token);
+        UserDO user = getUser();
 		article.setAuthorId(user.getId());
         return articleService.saveSimpleArticle(article);
     }
@@ -77,13 +72,12 @@ public class IndexController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response, String from) {
-        request.getSession().invalidate();
-        CookieUtils.deleteCookie(request, response, SessionParam.COOKIE_NAME);
+    public String logout(String from) {
+    	logout();
         if (StringUtils.isEmpty(from)) {
             return "redirect:/";
         } else {
-            return "redirect:" + SessionParam.MANAGEMENT_INDEX;
+            return "redirect:" + Constant.MANAGEMENT_INDEX;
         }
     }
 }

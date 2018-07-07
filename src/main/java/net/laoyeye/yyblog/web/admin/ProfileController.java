@@ -7,31 +7,28 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.service.UploadService;
 import net.laoyeye.yyblog.service.UserService;
+import net.laoyeye.yyblog.web.BaseController;
 
 import java.util.Date;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * created by laoyeye on 2018/1/27 at 19:53
  */
 @Controller
 @RequestMapping("/management/profile")
-public class ProfileController {
+public class ProfileController extends BaseController{
 	@Autowired
 	private UploadService uploadService;
 	@Autowired
 	private UserService userService;
 
 	@GetMapping
-	public String index(@CookieValue(SessionParam.COOKIE_NAME) String cookie, HttpServletRequest request, Model model) {
-		model.addAttribute("loginUser", request.getSession().getAttribute(cookie));
+	public String index(Model model) {
+		model.addAttribute("loginUser", getUser());
 		return "management/profile";
 	}
 

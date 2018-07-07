@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
+ * user实体类
  * @author 小卖铺的老爷爷
  * @date 2018年1月13日
  * @website www.laoyeye.net
@@ -20,8 +20,7 @@ public class UserDO implements Serializable {
     private String nickname;
     private String password;
     private String avatar;
-    private String qqNum;
-    private Long roleId;
+    private String email;
     private Boolean enable;
     private String openId;
     private Date createTime;
@@ -57,17 +56,11 @@ public class UserDO implements Serializable {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-	public String getQqNum() {
-		return qqNum;
+	public String getEmail() {
+		return email;
 	}
-	public void setQqNum(String qqNum) {
-		this.qqNum = qqNum;
-	}
-	public Long getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Boolean getEnable() {
 		return enable;

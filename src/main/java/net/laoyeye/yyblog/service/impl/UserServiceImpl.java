@@ -17,7 +17,6 @@ import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.AESUtils;
-import net.laoyeye.yyblog.common.utils.CookieUtils;
 import net.laoyeye.yyblog.mapper.UserMapper;
 import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.model.query.UserQuery;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper userMapper;
 
-	@Override
+/*	@Override
 	public YYBlogResult getUserByName(HttpServletRequest request, HttpServletResponse response, String username, String password, Boolean remember) {
 		try {
 			UserDO user = userMapper.getUserByName(username);
@@ -56,10 +55,10 @@ public class UserServiceImpl implements UserService{
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public boolean checkUserByToken(String token) {
-		try {
+	/*	try {
 			String[] array = AESUtils.decrypt(token, SessionParam.COOKIE_SECRET_KEY).split(SessionParam.COOKIE_SPLIT);
 			String userId = array[0];
 			String date = array[1];
@@ -76,7 +75,7 @@ public class UserServiceImpl implements UserService{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		return false;
 	}
 
@@ -104,7 +103,7 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 	
-	@Cacheable(value="user", key="#query.nickname")
+	/*@Cacheable(value="user", key="#query.nickname"+"")*/
 	@Override
 	public DataGridResult listPageUser(UserQuery query) {
 		PageHelper.startPage(query.getPage(), query.getLimit()); 

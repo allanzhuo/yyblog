@@ -8,28 +8,28 @@ import net.laoyeye.yyblog.enums.EnumCodeList.CodeListItem;
  * @date 2018年4月24日
  * @website www.laoyeye.net
  */
-public enum ResultEnum implements CodeListItem{
+public enum ResultEnum {
 
-	NO_RECORDS("102", "查无记录."),
+	NO_RECORDS(102, "查无记录."),
 	
-	UNSURPPORT_OPT("103", "暂时不支持此操作."),
+	UNSURPPORT_OPT(103, "暂时不支持此操作."),
 	
-	SUCCESS("200", "操作成功."),
+	SUCCESS(200, "操作成功."),
 	
-	NOT_FOUND("404", "非法的操作."),
+	NOT_FOUND(404, "非法的操作."),
 	
-	UN_AUTHORIZED("403", "你没有操作权限."),
+	UN_AUTHORIZED(403, "你没有操作权限."),
 	
-	UNKONW_ERROR("500", "系统开了小差."),
+	UNKONW_ERROR(500, "系统开了小差."),
 	
-	FAIL("505", "操作失败."),
+	FAIL(505, "操作失败."),
 	
-	USERNAME_EXISTS("300", "用户名已存在.");
+	USERNAME_EXISTS(300, "用户名已存在.");
 
 	private String value = null;
-	private String code = null;
+	private Integer code = null;
 
-	private ResultEnum(String _code, String _value) {
+	private ResultEnum(Integer _code, String _value) {
 		this.value = _value;
 		this.code = _code;
 	}
@@ -49,7 +49,7 @@ public enum ResultEnum implements CodeListItem{
 	}
 
 	/** 获取code */
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 }

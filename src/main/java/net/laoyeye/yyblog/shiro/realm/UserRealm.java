@@ -1,8 +1,8 @@
 package net.laoyeye.yyblog.shiro.realm;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -18,25 +18,18 @@ import org.springframework.util.DigestUtils;
 
 import net.laoyeye.yyblog.mapper.UserMapper;
 import net.laoyeye.yyblog.model.UserDO;
+import net.laoyeye.yyblog.service.MenuService;
 import net.laoyeye.yyblog.web.config.ApplicationContextRegister;
 
 public class UserRealm extends AuthorizingRealm {
-/*	@Autowired
-	UserDao userMapper;
-	@Autowired
-	MenuService menuService;*/
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		/*Long userId = ShiroUtils.getUserId();
+		Long userId = ((UserDO)SecurityUtils.getSubject().getPrincipal()).getId();
 		MenuService menuService = ApplicationContextRegister.getBean(MenuService.class);
 		Set<String> perms = menuService.listPerms(userId);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setStringPermissions(perms);*/
-		Set<String> sets = new HashSet<>();
-        sets.add("sys:user:comment");
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.setStringPermissions(sets);
+		info.setStringPermissions(perms);
 		return info;
 	}
 

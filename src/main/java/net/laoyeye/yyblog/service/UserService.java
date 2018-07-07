@@ -9,8 +9,8 @@ import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.model.query.UserQuery;
 
 public interface UserService {
-	YYBlogResult getUserByName(HttpServletRequest request, HttpServletResponse response, 
-			String username, String password, Boolean remember);
+//	YYBlogResult getUserByName(HttpServletRequest request, HttpServletResponse response, 
+//			String username, String password, Boolean remember);
 	/**
 	 * 后台的验证，前台不要调此接口
 	 */

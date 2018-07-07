@@ -12,10 +12,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import net.laoyeye.yyblog.web.interceptor.AdminInterceptor;
-import net.laoyeye.yyblog.web.interceptor.SessionInterceptor;
-import net.laoyeye.yyblog.web.interceptor.ValidateInterceptor;
-
 /**
  * 配置文件设置
  * @author 小卖铺的老爷爷
@@ -32,7 +28,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		this.environment = environment;
 	}
 
-	@Bean
+/*	@Bean
 	public AdminInterceptor getAdminInterceptor(){
 		return new AdminInterceptor();
 	}
@@ -45,7 +41,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ValidateInterceptor getValidateInterceptor(){
 		return new ValidateInterceptor();
-	}  
+	}  */
 
 	/**
 	 * 配置静态资源路径以及上传文件的路径
@@ -73,13 +69,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(getAdminInterceptor()).addPathPatterns("/management/**");*/
 	}
 
-	@Bean
+/*	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
-		/*return container -> {
+		return container -> {
             container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/error?errorCode=404"));
             container.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error?errorCode=500"));
             container.addErrorPages(new ErrorPage(Throwable.class, "/error?errorCode=500"));
-        };*/
+        };
 		return new EmbeddedServletContainerCustomizer() { 
 			@Override 
 			public void customize(ConfigurableEmbeddedServletContainer container) {
@@ -89,7 +85,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 				container.addErrorPages(new ErrorPage(java.lang.Throwable.class, "/error/500"));
 			}
 		};
-	}
+	}*/
 
 
 }

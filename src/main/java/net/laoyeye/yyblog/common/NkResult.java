@@ -18,7 +18,7 @@ public class NkResult<T> {
     /**
      * 错误代码,成功返回 000, 否则返回其他
      */
-    private String code;
+    private Integer code;
 
     /**
      * 返回提示信息
@@ -67,18 +67,18 @@ public class NkResult<T> {
         this.message = resultEnum.getValue();
     }
 
-    public NkResult(String code, String message) {
+    public NkResult(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public NkResult(String code, String message, List<T> items) {
+    public NkResult(Integer code, String message, List<T> items) {
         this.code = code;
         this.message = message;
         this.items = items;
     }
 
-    public NkResult(String code, String message, T item) {
+    public NkResult(Integer code, String message, T item) {
         this.code = code;
         this.message = message;
         this.item = item;
@@ -90,11 +90,11 @@ public class NkResult<T> {
         this.item = item;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -174,7 +174,7 @@ public class NkResult<T> {
      * 返回 ResultVo 实例
      * @return
      */
-    public static NkResult instance(String code, String message) {
+    public static NkResult instance(Integer code, String message) {
         return new NkResult(code, message);
     }
 
