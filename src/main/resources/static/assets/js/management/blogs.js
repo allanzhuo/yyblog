@@ -73,9 +73,14 @@ layui.use(['form', 'table', 'element'], function () {
             location.hash = vipspa.stringifyPattern("blog_edit", [data.id]);
         } else if (obj.event === 'del') {
             layer.confirm('确认删除吗？', function (index) {
-                obj.del();
                 common.ajax(common.url.prefix + "/blog/delete/" + data.id, {}, function (json) {
-                    common.okMsgHandle(json,'删除成功！');
+                	if (json.code == 200) {
+                		obj.del();
+                		common.okMsgHandle(json,'删除成功！');
+                	} else {
+                		common.okMsgHandle(json);
+                	}
+						
                 });
                 layer.close(index);
             });
@@ -94,22 +99,37 @@ layui.use(['form', 'table', 'element'], function () {
 
     form.on('switch(appreciable)', function (obj) {
         common.ajax(common.url.prefix + "/blog/edit/appreciable/" + this.value, {appreciable: obj.elem.checked}, function (json) {
-            common.okMsgHandle(json);
-            layer.tips('打赏：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
+            if (json.code == 200) {
+            	common.okMsgHandle(json);
+            	layer.tips('打赏：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
+        	} else {
+        		common.okMsgHandle(json);
+        		layer.tips('操作未生效！', obj.othis);
+        	}
         });
     });
 
     form.on('switch(commented)', function (obj) {
         common.ajax(common.url.prefix + "/blog/edit/commented/" + this.value, {commented: obj.elem.checked}, function (json) {
-            common.okMsgHandle(json);
-            layer.tips('评论：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
+            if (json.code == 200) {
+            	 common.okMsgHandle(json);
+                 layer.tips('评论：' + ((obj.elem.checked) ? "开启" : "关闭"), obj.othis);
+        	} else {
+        		common.okMsgHandle(json);
+        		layer.tips('操作未生效！', obj.othis);
+        	}
         });
     });
 
     form.on('checkbox(top)', function (obj) {
         common.ajax(common.url.prefix + "/blog/edit/top/" + this.value, {top: obj.elem.checked}, function (json) {
-            common.okMsgHandle(json);
-            layer.tips(((obj.elem.checked) ? "已置顶" : "取消置顶"), obj.othis);
+            if (json.code == 200) {
+            	 common.okMsgHandle(json);
+                 layer.tips(((obj.elem.checked) ? "已置顶" : "取消置顶"), obj.othis);
+            } else {
+            	common.okMsgHandle(json);
+            	layer.tips('操作未生效！', obj.othis);
+       	}
         });
     });
 

@@ -59,14 +59,14 @@
                         <dd><a href=""><i class="fa fa-sign-out"></i> 退了</a></dd>
                     </dl>
                 </li>
-                <li shiro:hasPermission="sys:user:message" class="layui-nav-item">
+                <li shiro:hasPermission="blog:blog:addIndex" class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-keyboard-o"></i> 发布内容</a>
                     <dl class="layui-nav-child">
-                        <dd><a class="" href="#blog"><i class="fa fa-book"></i> 发布博文</a></dd>
+                        <dd><a href="#blog"><i class="fa fa-book"></i> 发布博文</a></dd>
                         <dd><a href="#note"><i class="fa fa-sticky-note-o"></i> 撰写笔记</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
+                <li shiro:hasPermission="blog:content:index" class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-code"></i> 内容管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
@@ -76,7 +76,7 @@
                     </dl>
                 </li>
 
-                <li class="layui-nav-item">
+                <li shiro:hasPermission="blog:cate:index" class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-star-o"></i> 类别管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#tag"><i class="fa fa-tags"></i> 标签管理</a></dd>
@@ -84,16 +84,16 @@
                         <dd><a href="#keyword"><i class="fa fa-text-width"></i> 关键字管理</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="#users"><i class="fa fa-users"></i> 用户管理</a></li>
-                <li shiro:hasPermission="sys:user:comment" class="layui-nav-item"><a href="#comment"><i class="fa fa-comment-o"></i> 评论管理</a></li>
-                <li shiro:hasPermission="sys:user:message" class="layui-nav-item"><a href="#message"><i class="fa fa-bell-o"></i> 留言管理</a></li>
-                <li class="layui-nav-item">
+                <li shiro:hasPermission="blog:comment:index" class="layui-nav-item"><a href="#comment"><i class="fa fa-comment-o"></i> 评论管理</a></li>
+                <li shiro:hasPermission="blog:message:index" class="layui-nav-item"><a href="#message"><i class="fa fa-bell-o"></i> 留言管理</a></li>
+                <li shiro:hasPermission="sys:user:index" class="layui-nav-item"><a href="#users"><i class="fa fa-users"></i> 用户管理</a></li>
+                <li shiro:hasPermission="sys:sys:index" class="layui-nav-item">
                     <a href="javascript:void(0);"><i class="fa fa-cog"></i> 系统设置</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="#settings"><i class="fa fa-balance-scale"></i> 网站设置</a></dd>
-                        <dd><a href="#qrcode"><i class="fa fa-money"></i> 打赏二维码</a></dd>
-                        <dd><a href="#task"><i class="fa fa-tasks"></i> 计划任务</a></dd>
-                        <dd><a href="#log"><i class="fa fa-calendar-check-o"></i> 系统日志</a></dd>
+                        <dd shiro:hasPermission="sys:set:index" ><a href="#settings"><i class="fa fa-balance-scale"></i> 网站设置</a></dd>
+                        <dd shiro:hasPermission="sys:qrcode:index" ><a href="#qrcode"><i class="fa fa-money"></i> 打赏二维码</a></dd>
+                        <dd shiro:hasPermission="sys:task:index" ><a href="#task"><i class="fa fa-tasks"></i> 计划任务</a></dd>
+                        <dd shiro:hasPermission="sys:log:index" ><a href="#log"><i class="fa fa-calendar-check-o"></i> 系统日志</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="#aboutblog"><i class="fa fa-info-circle"></i> 关于老爷爷</a></li>
