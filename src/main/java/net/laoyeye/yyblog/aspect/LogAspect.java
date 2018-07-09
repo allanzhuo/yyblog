@@ -38,7 +38,6 @@ public class LogAspect {
     @Autowired
     LogService logService;
 
-
     @Pointcut("@annotation(net.laoyeye.yyblog.annotation.Log)")
     public void logPointCut() {
     }

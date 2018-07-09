@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
+import net.laoyeye.yyblog.model.UserDO;
+import net.laoyeye.yyblog.web.BaseController;
 
 
 /**
  * created by laoyeye on 2018/1/14 at 12:47
  */
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 
 	@GetMapping("/login")
-	public String login(@CookieValue(value = SessionParam.COOKIE_NAME, required = false) String token) {
+	public String login() {
 //		if (StringUtils.isEmpty(token)) {
 //            return "management/login";
 //        }
@@ -33,6 +35,10 @@ public class LoginController {
 //			}
 //            return "/";
 //        }
+		UserDO user = getUser();
+		if (user != null) {
+			return "redirect:management/index";
+		}
         return "management/login";
 	}
 	

@@ -21,6 +21,8 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import net.laoyeye.yyblog.shiro.realm.UserRealm;
@@ -101,7 +103,7 @@ public class ShiroConfig {
 //        } else {
 //            securityManager.setCacheManager(ehCacheManager());
 //        }
-        //securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
@@ -176,28 +178,25 @@ public class ShiroConfig {
 //        return redisSessionDAO;
 //    }
 
-//    @Bean
-//    public SessionDAO sessionDAO() {
-//        if (Constant.CACHE_TYPE_REDIS.equals(cacheType)) {
-//            return redisSessionDAO();
-//        } else {
-//            return new MemorySessionDAO();
-//        }
-//    }
+    @Bean
+    public SessionDAO sessionDAO() {
+        
+        return new MemorySessionDAO();
+    }
 
     /**
      * shiro session的管理
      */
-//    @Bean
-//    public DefaultWebSessionManager sessionManager() {
-//        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-//        sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
-//        sessionManager.setSessionDAO(sessionDAO());
-//        Collection<SessionListener> listeners = new ArrayList<SessionListener>();
-//        listeners.add(new BDSessionListener());
-//        sessionManager.setSessionListeners(listeners);
-//        return sessionManager;
-//    }
+    @Bean
+    public DefaultWebSessionManager sessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        //sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
+        sessionManager.setSessionDAO(sessionDAO());
+        Collection<SessionListener> listeners = new ArrayList<SessionListener>();
+        //listeners.add(new BDSessionListener());
+        sessionManager.setSessionListeners(listeners);
+        return sessionManager;
+    }
 //
 //    @Bean
 //    public EhCacheManager ehCacheManager() {

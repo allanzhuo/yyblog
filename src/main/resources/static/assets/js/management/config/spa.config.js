@@ -88,6 +88,10 @@ $(function () {
                 templateUrl: url_prefix + 'log',
                 controller: static_prefix + '/log.js'
             },
+            'online': {
+                templateUrl: url_prefix + 'online',
+                controller: static_prefix + '/online.js'
+            },
             'defaults': 'home' //默认路由
         },
         errorTemplateId: '#error'
