@@ -13,14 +13,14 @@
 	<select id="getLatestComment" resultType="net.laoyeye.yyblog.model.vo.CommentVO">
 		SELECT
 			TC.*, 
-			TU.NICKNAME,
+			SU.NICKNAME,
 			TA.TITLE
 		FROM
 			T_COMMENT TC,
-			T_USER TU,
+			SYS_USER SU,
 			T_ARTICLE TA
 		WHERE
-			TU.ID = TC.USER_ID
+			SU.ID = TC.USER_ID
 		AND TA.ID = TC.ARTICLE_ID
 		ORDER BY
 			TC.CREATE_TIME DESC
@@ -35,10 +35,10 @@
 			TA.TITLE
 		FROM
 			T_COMMENT TC,
-			T_USER TU,
+			SYS_USER SU,
 			T_ARTICLE TA
 		WHERE
-			TU.ID = TC.USER_ID
+			SU.ID = TC.USER_ID
 		AND TA.ID = TC.ARTICLE_ID
 		AND TC.ARTICLE_ID = #{articleId}
 		ORDER BY

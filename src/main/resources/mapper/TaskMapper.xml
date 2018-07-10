@@ -22,19 +22,19 @@
 	<select id="get" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.TaskDO">
 		select 
 	    <include refid="Base_Column_List" />
-	    from t_task
+	    from sys_task
 	    where id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="list" resultType="net.laoyeye.yyblog.model.TaskDO">
 		select
 		<include refid="Base_Column_List" />
-		from t_task
+		from sys_task
 		order by id asc
 	</select>
 	<select id="listTaskVoByDesc" resultType="net.laoyeye.yyblog.model.vo.TaskVO">
 		select
 		`id`,`job_name`,`description`,`cron_expression`,`bean_class`,`job_status`,`job_group`
-		from t_task
+		from sys_task
 		<where>
 			<if test="desc != null and desc != ''">
 				and description like CONCAT('%',#{desc},'%')
@@ -52,7 +52,7 @@
 	</select>
 
 	<insert id="save" parameterType="net.laoyeye.yyblog.model.TaskDO" >
-    insert into t_task (id, job_name, description, 
+    insert into sys_task (id, job_name, description, 
       cron_expression, bean_class, job_status, 
       job_group, create_user, create_time, 
       update_user, update_time)
@@ -63,7 +63,7 @@
    </insert>
 
 	<update id="update" parameterType="net.laoyeye.yyblog.model.TaskDO" >
-    update t_task
+    update sys_task
     <set >
       <if test="jobName != null" >
         job_name = #{jobName,jdbcType=VARCHAR},
@@ -100,11 +100,11 @@
   	</update>
 
 	<delete id="remove">
-		delete from t_task where id = #{id,jdbcType=BIGINT}
+		delete from sys_task where id = #{id,jdbcType=BIGINT}
 	</delete>
 
 	<delete id="removeBatch">
-		delete from t_task where id in
+		delete from sys_task where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}

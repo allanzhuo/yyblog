@@ -20,13 +20,13 @@
 	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from t_log
+		from sys_log
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="listByUsernameAndOperation" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from t_log
+		from sys_log
 		<where>
 			<if test="username != null">
 				and username LIKE CONCAT('%',#{username},'%')
@@ -39,7 +39,7 @@
 	</select>
 
 	<insert id="save" parameterType="net.laoyeye.yyblog.model.LogDO">
-		insert into t_log (id, user_id, username,
+		insert into sys_log (id, user_id, username,
 		operation, time, method,
 		params, params2, ip,
 		create_time)
@@ -52,7 +52,7 @@
 	</insert>
 
 	<update id="update" parameterType="net.laoyeye.yyblog.model.LogDO">
-		update t_log
+		update sys_log
 		<set>
 			<if test="userId != null">
 				user_id = #{userId,jdbcType=BIGINT},
@@ -86,12 +86,12 @@
 	</update>
 
 	<delete id="remove" parameterType="java.lang.Long">
-		delete from t_log
+		delete from sys_log
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 
 	<delete id="removeBatch">
-		delete from t_log where id in
+		delete from sys_log where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}
