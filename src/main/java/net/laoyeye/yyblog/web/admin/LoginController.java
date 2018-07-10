@@ -4,14 +4,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.laoyeye.yyblog.annotation.Log;
-import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
+import net.laoyeye.yyblog.enums.ResultEnum;
 import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.web.BaseController;
 
@@ -24,17 +23,6 @@ public class LoginController extends BaseController{
 
 	@GetMapping("/login")
 	public String login() {
-//		if (StringUtils.isEmpty(token)) {
-//            return "management/login";
-//        }
-//
-//        if (StringUtils.isNotEmpty(token)) {
-//        	boolean check = userService.checkUserByToken(token);
-//        	if (check) {
-//        		return "redirmanagement/index";
-//			}
-//            return "/";
-//        }
 		UserDO user = getUser();
 		if (user != null) {
 			return "redirect:management/index";
@@ -55,7 +43,7 @@ public class LoginController extends BaseController{
 			/*token.setRememberMe(remember);*/
 			subject.login(token);
 		} catch (Exception e) {
-			return YYBlogResult.build(403, e.getMessage());
+			return YYBlogResult.build(ResultEnum.UNKONW_ERROR.getCode(), e.getMessage());
 		}
 		return YYBlogResult.ok();
 	}

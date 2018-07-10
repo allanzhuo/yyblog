@@ -41,7 +41,12 @@ public class UserRealm extends AuthorizingRealm {
 
 		UserMapper userMapper = ApplicationContextRegister.getBean(UserMapper.class);
 		// 查询用户信息
-		UserDO user = userMapper.getUserByName(username);
+		UserDO user = null;
+		if (username.length() > 12) {
+			user = userMapper.getUserByOpenId(username);
+		} else {
+			user = userMapper.getUserByName(username);
+		}
 
 		// 账号不存在
 		if (user == null) {
