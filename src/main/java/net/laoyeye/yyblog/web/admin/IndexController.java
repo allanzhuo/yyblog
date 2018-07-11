@@ -10,6 +10,8 @@ import net.laoyeye.yyblog.service.CateService;
 import net.laoyeye.yyblog.service.CommentService;
 import net.laoyeye.yyblog.service.NoteService;
 import net.laoyeye.yyblog.web.BaseController;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,7 @@ public class IndexController extends BaseController{
 	@Autowired
 	private NoteService noteService;
 
+	@RequiresPermissions("blog:manage:index")
     @GetMapping("/index")
     public String index(Model model) {
     	UserDO user = getUser();

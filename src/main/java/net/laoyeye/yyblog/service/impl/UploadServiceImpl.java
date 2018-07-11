@@ -4,8 +4,9 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.NKBlogResult;
-import net.laoyeye.yyblog.common.SessionParam;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.COSClientUtils;
 import net.laoyeye.yyblog.mapper.SettingMapper;
@@ -30,7 +31,7 @@ public class UploadServiceImpl implements UploadService{
 		} catch (Exception e) {
 			return YYBlogResult.build(500, e.getMessage());
 		}  
-		return YYBlogResult.ok(SessionParam.ACCESS_URL + name);
+		return YYBlogResult.ok(Constant.ACCESS_URL + name);
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class UploadServiceImpl implements UploadService{
 		try {
 			COSClientUtils cosClientUtil = new COSClientUtils();  
 			name = cosClientUtil.uploadFile2Cos(file);
-			path = SessionParam.ACCESS_URL + name;
+			path = Constant.ACCESS_URL + name;
 			SettingDO set = new SettingDO();
 			set.setCode(type);
 			set.setValue(path);
@@ -55,7 +56,7 @@ public class UploadServiceImpl implements UploadService{
 		} catch (Exception e) {
 			return YYBlogResult.build(500, e.getMessage());
 		}  
-		return YYBlogResult.ok(SessionParam.ACCESS_URL + name);
+		return YYBlogResult.ok(Constant.ACCESS_URL + name);
 	}
 
 	@Override
@@ -73,7 +74,7 @@ public class UploadServiceImpl implements UploadService{
 		}  
 
 		HashMap<String, Object> image = new HashMap<>();
-		image.put("url", SessionParam.ACCESS_URL+name);
+		image.put("url", Constant.ACCESS_URL+name);
 		return NKBlogResult.ok(image);
 	}
 

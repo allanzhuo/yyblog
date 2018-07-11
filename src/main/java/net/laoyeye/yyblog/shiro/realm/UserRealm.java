@@ -44,24 +44,32 @@ public class UserRealm extends AuthorizingRealm {
 		UserDO user = null;
 		if (username.length() > 12) {
 			user = userMapper.getUserByOpenId(username);
+			// 账号不存在
+			if (user == null) {
+				throw new UnknownAccountException("账号或密码不正确");
+			}
+			// 账号锁定
+			if (user.getEnable() == false) {
+				throw new LockedAccountException("账号已被锁定,请联系管理员");
+			}
 		} else {
 			user = userMapper.getUserByName(username);
+			// 账号不存在
+			if (user == null) {
+				throw new UnknownAccountException("账号或密码不正确");
+			}
+			
+			// 密码错误
+			if (!DigestUtils.md5DigestAsHex(password.getBytes()).equals(user.getPassword())) {
+				throw new IncorrectCredentialsException("账号或密码不正确");
+			}
+			
+			// 账号锁定
+			if (user.getEnable() == false) {
+				throw new LockedAccountException("账号已被锁定,请联系管理员");
+			}
 		}
 
-		// 账号不存在
-		if (user == null) {
-			throw new UnknownAccountException("账号或密码不正确");
-		}
-
-		// 密码错误
-		if (!DigestUtils.md5DigestAsHex(password.getBytes()).equals(user.getPassword())) {
-			throw new IncorrectCredentialsException("账号或密码不正确");
-		}
-
-		// 账号锁定
-		if (user.getEnable() == false) {
-			throw new LockedAccountException("账号已被锁定,请联系管理员");
-		}
 		//不使用shiro自带的密码验证
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
 		return info;

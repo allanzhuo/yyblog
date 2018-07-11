@@ -46,8 +46,8 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="">
                 <li class="layui-nav-item layui-show-xs-block layui-hide">
                     <a href="javascript:;">
-                        <img src="/static/assets/img/common.png" class="layui-nav-img">
-                        小卖铺的老爷爷
+                        <img th:src="${avatar}" class="layui-nav-img">
+                    	<span th:text="${nickname}"></span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="#profile"><i class="fa fa-user"></i> 我的资料</a></dd>

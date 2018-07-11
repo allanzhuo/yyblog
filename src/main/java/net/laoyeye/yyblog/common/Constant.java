@@ -1,7 +1,10 @@
 package net.laoyeye.yyblog.common;
 
 /**
- * created by laoyeye on 2018/1/22 at 13:37
+ * 参数定义
+ * @author 小卖铺的老爷爷
+ * @date 2018年3月20日
+ * @website www.laoyeye.net
  */
 public interface Constant {
 
@@ -9,8 +12,6 @@ public interface Constant {
      * 后台首页地址
      */
     String MANAGEMENT_INDEX = "/management/index";
-    
-    
     
     /**
      * 是否全局开放评论
@@ -70,4 +71,14 @@ public interface Constant {
      * 信息板
      */
     String INFO_LABEL = "info_label";
+    
+    /**
+     * 前后台登录地址
+     */
+    String LOGIN_URL = "/login";
+    
+    /**
+     * 对象存储地址
+     */
+    String ACCESS_URL = "http://images.laoyeye.net/";
 }
