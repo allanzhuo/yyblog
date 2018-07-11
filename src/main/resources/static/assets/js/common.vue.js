@@ -107,7 +107,6 @@ var template = {
     '               <a href="/token/logout" style="font-size: 14px;">' +
     '                   <img id="logout" @mouseover="tipsOver()" @mouseout="tipsOut()" style="height: 45px;width: 45px;border: 1px solid #ccc;" class="layui-circle" :src="login != null ?login.avatar:\'\'">&nbsp;&nbsp;欢迎你，{{login.nickname}}！' +
     '               </a>' +
-    '               &nbsp;<a v-if="login !=null && login.role == 1" href="/management/index" target="_blank" class="layui-text">后台管理 <i class="fa fa-angle-double-right"></i> </a>' +
     '           </p>' +
     '       </div>' +
     '       </template>' +
@@ -123,7 +122,6 @@ var template = {
     '               <a href="/token/logout" style="font-size: 14px;">' +
     '                   <img id="logout" @mouseover="tipsOver()" @mouseout="tipsOut()" style="height: 45px;width: 45px;" class="layui-circle" :src="login != null ?login.avatar:\'\'">&nbsp;&nbsp;欢迎你，{{login.nickname}}！' +
     '               </a>' +
-    '               &nbsp;<a v-if="login !=null && login.role == 1" href="/management/index" target="_blank" class="layui-text">后台管理 <i class="fa fa-angle-double-right"></i> </a>' +
     '           </p>' +
     '       </div>' +
     '       <div class="layui-tab-item layui-text" v-html="utext" v-show="info">' +

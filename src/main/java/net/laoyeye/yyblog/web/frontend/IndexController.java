@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.laoyeye.yyblog.common.Constant;
+import net.laoyeye.yyblog.common.utils.WebUtils;
 import net.laoyeye.yyblog.model.query.IndexQuery;
 import net.laoyeye.yyblog.model.vo.IndexArticleVO;
 import net.laoyeye.yyblog.service.IndexService;
@@ -27,6 +28,7 @@ public class IndexController extends BaseController{
     @GetMapping(value = {"", "/index"})
     public String index(Model model) {
         model.addAttribute("indexVo", indexService.getIndexVo());
+        model.addAttribute("login", WebUtils.toMap(getUser()));
         return "frontend/index";
     }
 

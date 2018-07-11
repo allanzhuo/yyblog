@@ -30,8 +30,8 @@
 	<select id="listCommentByArticleId" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.vo.CommentVO">
 		SELECT
 			TC.*, 
-			TU.NICKNAME,
-			TU.AVATAR,
+			SU.NICKNAME,
+			SU.AVATAR,
 			TA.TITLE
 		FROM
 			T_COMMENT TC,

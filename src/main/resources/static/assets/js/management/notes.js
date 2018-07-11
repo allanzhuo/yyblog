@@ -12,14 +12,6 @@ layui.use(['form', 'table', 'element'], function () {
         , limit: 10
         , size: 'lg'
         , method: "post"
-        , where: {
-            order: 'desc'
-            , sort: 'createTime'
-        }
-        , initSort: {
-            field: 'createTime'
-            , type: 'desc'
-        }
         , cols: [[
             {type: 'numbers'}
             , {

@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
+import net.laoyeye.yyblog.common.utils.WebUtils;
 import net.laoyeye.yyblog.mapper.ArticleMapper;
 import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.SettingDO;
@@ -25,6 +26,7 @@ import net.laoyeye.yyblog.service.CommentService;
 import net.laoyeye.yyblog.service.SettingService;
 import net.laoyeye.yyblog.service.TagReferService;
 import net.laoyeye.yyblog.service.UserService;
+import net.laoyeye.yyblog.web.BaseController;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +41,7 @@ import java.util.Map;
 @Api(description="文章查询")
 @Controller
 @RequestMapping("/article")
-public class ArticleController {
+public class ArticleController extends BaseController{
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
@@ -77,6 +79,7 @@ public class ArticleController {
         //回头改
         model.addAttribute("articles",  articleMapper.listArticleByTitle(null));
         model.addAttribute("similars", articleMapper.listArticleByTitle(null));
+        model.addAttribute("login", WebUtils.toMap(getUser()));
         CommentQuery query = new CommentQuery();
         query.setLimit(10);
         query.setPage(1);

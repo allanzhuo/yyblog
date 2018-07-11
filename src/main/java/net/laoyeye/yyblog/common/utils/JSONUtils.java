@@ -6,7 +6,15 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * fastjson转换工具
+ * 这个工具好像有点BUG，待发现后修改
+ * beta版本有个jackjson的转换工具，已经很完善了
+ * https://github.com/allanzhuo/yyblog/blob/beta1/src/main/java/net/laoyeye/yyblog/common/utils/JsonUtils.java
+ * @author 小卖铺的老爷爷
+ * @date 2018年7月11日
+ * @website www.laoyeye.net
+ */
 public class JSONUtils {
 	/**
 	 * Bean对象转JSON
@@ -63,11 +71,11 @@ public class JSONUtils {
 	 * @param clazz
 	 * @return
 	 */
-	public static Object jsonToBean(String json, Object clazz) {
+	public static <T> T jsonToBean(String json, Class<T> clazz) {
 		if (StringUtils.isEmpty(json) || clazz == null) {
 			return null;
 		}
-		return JSON.parseObject(json, clazz.getClass());
+		return JSON.parseObject(json, clazz);
 	}
 
 	/**
