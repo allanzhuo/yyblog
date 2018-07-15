@@ -13,7 +13,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>
-                E:/applog/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
+                applog/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
             </FileNamePattern>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
