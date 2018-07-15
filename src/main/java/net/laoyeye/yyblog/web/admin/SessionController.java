@@ -1,20 +1,13 @@
 package net.laoyeye.yyblog.web.admin;
 
-import java.security.Principal;
-import java.util.Collection;
-import java.util.List;
-import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
-import net.laoyeye.yyblog.model.vo.UserOnlineVO;
 import net.laoyeye.yyblog.service.SessionService;
 
 @RequestMapping("/management/online")

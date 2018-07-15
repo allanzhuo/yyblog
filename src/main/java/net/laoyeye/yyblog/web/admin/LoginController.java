@@ -23,6 +23,8 @@ public class LoginController extends BaseController{
 
 	@GetMapping("/login")
 	public String login() {
+		//判断是记住登陆还是授权登陆
+		//boolean authenticated = getSubjct().isAuthenticated();
 		UserDO user = getUser();
 		if (user != null) {
 			return "redirect:management/index";
@@ -33,14 +35,14 @@ public class LoginController extends BaseController{
 	@Log("登陆验证")
 	@PostMapping("/login")
 	@ResponseBody
-	public YYBlogResult login(String username, String password, Boolean remember) {
-		if (remember == null) {
-			remember = false;
+	public YYBlogResult login(String username, String password, Boolean rememberMe) {
+		if (rememberMe == null) {
+			rememberMe = false;
 		}
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		Subject subject = SecurityUtils.getSubject();
 		try {
-			/*token.setRememberMe(remember);*/
+			token.setRememberMe(rememberMe);
 			subject.login(token);
 		} catch (Exception e) {
 			return YYBlogResult.build(ResultEnum.UNKONW_ERROR.getCode(), e.getMessage());

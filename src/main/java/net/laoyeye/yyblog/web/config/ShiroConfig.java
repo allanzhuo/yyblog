@@ -7,18 +7,17 @@ import java.util.LinkedHashMap;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
+import org.apache.shiro.io.ResourceUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
@@ -29,23 +28,6 @@ import net.laoyeye.yyblog.shiro.realm.UserRealm;
 
 @Configuration
 public class ShiroConfig {
-    /*@Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.password}")
-    private String password;
-    @Value("${spring.redis.port}")
-    private int port;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-
-    @Value("${spring.cache.type}")
-    private String cacheType;
-
-    @Value("${server.session-timeout}")
-    private int tomcatTimeout;*/
-
-//    @Autowired
-//    CacheManager cacheManager;
 
     @Bean("lifecycleBeanPostProcessor")
     public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
@@ -84,7 +66,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/article/**", "anon");
         filterChainDefinitionMap.put("/about/**", "anon");
         filterChainDefinitionMap.put("/api/**", "anon");
-        filterChainDefinitionMap.put("/**", "authc");
+       /* filterChainDefinitionMap.put("/**", "authc");*/
+        filterChainDefinitionMap.put("/**", "user");  
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
@@ -93,15 +76,11 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        // 自定义缓存实现 使用EhCache
+        securityManager.setCacheManager(ehCacheManager());
         //设置realm.
         securityManager.setRealm(userRealm());
-        //securityManager.setRememberMeManager(rememberMeManager);
-        // 自定义缓存实现 使用redis
-//        if (Constant.CACHE_TYPE_REDIS.equals(cacheType)) {
-//            securityManager.setCacheManager(cacheManager());
-//        } else {
-//            securityManager.setCacheManager(ehCacheManager());
-//        }
+        securityManager.setRememberMeManager(rememberMeManager());
         securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
@@ -137,46 +116,6 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
-    /**
-     * 配置shiro redisManager
-     *
-     * @return
-     */
-//    @Bean
-//    public RedisManager redisManager() {
-//        RedisManager redisManager = new RedisManager();
-//        redisManager.setHost(host);
-//        redisManager.setPort(port);
-//        redisManager.setExpire(1800);// 配置缓存过期时间
-//        //redisManager.setTimeout(1800);
-//        redisManager.setPassword(password);
-//        return redisManager;
-//    }
-
-    /**
-     * cacheManager 缓存 redis实现
-     * 使用的是shiro-redis开源插件
-     *
-     * @return
-     */
-//    public RedisCacheManager cacheManager() {
-//        RedisCacheManager redisCacheManager = new RedisCacheManager();
-//        redisCacheManager.setRedisManager(redisManager());
-//        return redisCacheManager;
-//    }
-
-
-    /**
-     * RedisSessionDAO shiro sessionDao层的实现 通过redis
-     * 使用的是shiro-redis开源插件
-     */
-//    @Bean
-//    public RedisSessionDAO redisSessionDAO() {
-//        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
-//        redisSessionDAO.setRedisManager(redisManager());
-//        return redisSessionDAO;
-//    }
-
     @Bean
     public SessionDAO sessionDAO() {
         
@@ -189,20 +128,46 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        //sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
         sessionManager.setSessionDAO(sessionDAO());
         Collection<SessionListener> listeners = new ArrayList<SessionListener>();
-        //listeners.add(new BDSessionListener());
         sessionManager.setSessionListeners(listeners);
         return sessionManager;
     }
-//
-//    @Bean
-//    public EhCacheManager ehCacheManager() {
-//        EhCacheManager em = new EhCacheManager();
-//        em.setCacheManager(CacheManager.create());
-//        return em;
-//    }
+    
+    @Bean
+    public EhCacheManager ehCacheManager() {
+        EhCacheManager em = new EhCacheManager();
+        em.setCacheManagerConfigFile("classpath:config/ehcache.xml");
+        return em;
+    }
+    
+    /**
+    * cookie管理器;
+    * @return
+    */
+    @Bean
+    public CookieRememberMeManager rememberMeManager(){
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        //rememberme cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位），通过以下代码可以获取
+        //KeyGenerator keygen = KeyGenerator.getInstance("AES");
+        //SecretKey deskey = keygen.generateKey();
+        //System.out.println(Base64.encodeToString(deskey.getEncoded()));
+        byte[] cipherKey = Base64.decode("wGiHplamyXlVB11UXWol8g==");
+        cookieRememberMeManager.setCipherKey(cipherKey);
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        return cookieRememberMeManager;
+    }
+    
+    @Bean
+    public SimpleCookie rememberMeCookie(){
+        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //如果httyOnly设置为true，则客户端不会暴露给客户端脚本代码，使用HttpOnly cookie有助于减少某些类型的跨站点脚本攻击；
+        simpleCookie.setHttpOnly(true);
+        //记住我cookie生效时间,默认30天 ,单位秒：60 * 60 * 24 * 30
+        simpleCookie.setMaxAge(259200);
+        return simpleCookie;
+    }
 
 
 }

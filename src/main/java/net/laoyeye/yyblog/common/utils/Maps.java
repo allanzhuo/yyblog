@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 快捷操作Map相关工具
  */
+@SuppressWarnings("unchecked")
 public final class Maps {
     enum MapType {
         /**
@@ -18,7 +19,7 @@ public final class Maps {
         TreeMap
     }
 
-    public static <K, V> HashMap<K, V> hashMap(Object... keyValues) {
+	public static <K, V> HashMap<K, V> hashMap(Object... keyValues) {
         return (HashMap<K, V>) map(MapType.HashMap, keyValues);
     }
 

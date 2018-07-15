@@ -9,7 +9,6 @@ import net.laoyeye.yyblog.mapper.CateMapper;
 import net.laoyeye.yyblog.mapper.SettingMapper;
 import net.laoyeye.yyblog.mapper.TagMapper;
 import net.laoyeye.yyblog.mapper.TagReferMapper;
-import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.CateDO;
 import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.model.TagDO;

@@ -13,7 +13,6 @@ import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.mapper.CommentMapper;
 import net.laoyeye.yyblog.model.CommentDO;
 import net.laoyeye.yyblog.model.query.CommentQuery;
-import net.laoyeye.yyblog.model.vo.ArticleVO;
 import net.laoyeye.yyblog.model.vo.CommentVO;
 import net.laoyeye.yyblog.service.CommentService;
 

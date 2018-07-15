@@ -4,6 +4,9 @@ spring:
     cache: false
     #非严格模式的HTML语法检查
     mode: LEGACYHTML5
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     druid:
       db-type: mysql
@@ -27,12 +30,8 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 100MB
-  cache:
-    type: ehcache
-    ehcache:
-      config: config/ehcache.xml
 server:
-  port: 8080
+  port: 8081
   tomcat:
     uri-encoding: utf-8
     max-connections: 2000

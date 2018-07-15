@@ -1,7 +1,5 @@
 package net.laoyeye.yyblog.enums;
 
-import net.laoyeye.yyblog.enums.EnumCodeList.CodeListItem;
-
 /**
  * 老爷爷自定义响应码
  * @author 小卖铺的老爷爷
