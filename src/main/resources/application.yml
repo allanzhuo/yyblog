@@ -31,7 +31,7 @@ spring:
       max-file-size: 20MB
       max-request-size: 100MB
 server:
-  port: 8081
+  port: 8080
   tomcat:
     uri-encoding: utf-8
     max-connections: 2000
