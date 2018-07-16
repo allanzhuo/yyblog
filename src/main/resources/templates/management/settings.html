@@ -239,38 +239,15 @@
                         </div>
 
                         <fieldset class="layui-elem-field layui-field-title">
-                            <legend>第三方设置</legend>
+                            <legend>腾讯云存储设置</legend>
                         </fieldset>
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">开启QQ登录</label>
-                                <div class="layui-input-inline">
-                                    <input type="checkbox" name="qqStatus" lay-skin="switch" lay-text="开启|关闭"
-                                           lay-filter="qqLoginSwitch" th:checked="${qq_login eq '1'}">
-                                </div>
-                                <div class="layui-form-mid layui-word-aux">开启则网站用户可以使用QQ快速登录</div>
-                            </div>
-                        </div>
-
-                        <div id="qq-login-id" class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">APP ID</label>
-                                <div class="layui-input-inline" style="width: 250px;">
-                                    <input type="text" name="app_id" placeholder="请输入AppId"
-                                           th:value="${app_id}" autocomplete="off" class="layui-input"></div>
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
-                            </div>
-                        </div>
-
-                        <div id="qq-login-key" class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">APP Key</label>
+                                <label class="layui-form-label">SecretId</label>
                                 <div class="layui-input-inline" style="width: 450px;">
-                                    <input type="text" name="app_key" placeholder="请输入AppKey"
-                                           th:value="${app_key}" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="secret_id" placeholder="开发者拥有的项目身份识别 ID，用以身份认证"
+                                           th:value="${secret_id}" autocomplete="off" class="layui-input"></div>
                             </div>
                             <div class="layui-inline">
                                 <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
@@ -279,18 +256,40 @@
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">统计代码(暂不可用)</label>
-                                <div class="layui-input-inline" style="width: 550px;">
-                                    <textarea name="statisticsCode" placeholder="请输入" class="layui-textarea"
-                                              th:utext="${statistics_code}"></textarea>
-                                </div>
-                                <div class="layui-inline">
-                                    <button class="layui-btn-sm layui-btn" lay-submit lay-filter="statistics">提交
-                                    </button>
-                                </div>
+                                <label class="layui-form-label">SecretKey</label>
+                                <div class="layui-input-inline" style="width: 450px;">
+                                    <input type="text" name="secret_key" placeholder="开发者拥有的项目身份密钥"
+                                           th:value="${secret_key}" autocomplete="off" class="layui-input"></div>
                             </div>
-
+                            <div class="layui-inline">
+                                <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
+                            </div>
                         </div>
+                        
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">Bucket</label>
+                                <div class="layui-input-inline" style="width: 450px;">
+                                    <input type="text" name="bucket" placeholder="COS中用于存储数据的容器"
+                                           th:value="${bucket}" autocomplete="off" class="layui-input"></div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
+                            </div>
+                        </div>
+                        
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">Region</label>
+                                <div class="layui-input-inline" style="width: 450px;">
+                                    <input type="text" name="region" placeholder="域名中的地域信息"
+                                           th:value="${region}" autocomplete="off" class="layui-input"></div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn-sm layui-btn" lay-submit lay-filter="settings">提交</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

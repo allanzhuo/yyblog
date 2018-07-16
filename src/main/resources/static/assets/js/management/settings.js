@@ -45,20 +45,6 @@ layui.use(['form', 'element'], function () {
         })
     });
 
-    form.on('switch(qqLoginSwitch)', function (data) {
-        var s = data.elem.checked;
-        if (s) {
-            $("#qq-login-id,#qq-login-key").removeClass("layui-hide");
-        } else {
-            $("#qq-login-id,#qq-login-key").addClass("layui-hide");
-        }
-        common.ajax(common.url.prefix + "/settings/edit", {code: 'qq_login', value: s ? 1 : 0}, function (json) {
-            if (json.code === common.status.ok) {
-                layer.tips('qq快捷登录：' + ((data.elem.checked) ? '开启' : '关闭'), data.othis);
-            }
-        })
-    });
-
     form.on('submit(settings)', function (data) {
         var $this = $(data.elem);
         var $data = $this.parents(".layui-inline").prev(".layui-inline").find("input[type=text]");
@@ -100,14 +86,6 @@ layui.use(['form', 'element'], function () {
             } else {
                 layer.msg("修改链接文本失败！");
             }
-        });
-        return false;
-    });
-
-    form.on('submit(statistics)', function () {
-        var statisticsCode = $("textarea[name=statisticsCode]").val();
-        common.ajax(common.url.prefix + "/settings/edit", {code: 'statistics_code', value: statisticsCode}, function (json1) {
-            common.okMsgHandle(json1)
         });
         return false;
     });

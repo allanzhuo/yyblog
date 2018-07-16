@@ -9,12 +9,14 @@ import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.NKBlogResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.common.utils.COSClientUtils;
+import net.laoyeye.yyblog.enums.SettingEnum;
 import net.laoyeye.yyblog.mapper.SettingMapper;
 import net.laoyeye.yyblog.model.SettingDO;
 import net.laoyeye.yyblog.service.UploadService;
 
 @Service
 public class UploadServiceImpl implements UploadService{
+	
 	@Autowired
 	private SettingMapper settingMapper;
 
@@ -26,8 +28,7 @@ public class UploadServiceImpl implements UploadService{
 		}
 		String name = null;
 		try {
-			COSClientUtils cosClientUtil = new COSClientUtils();  
-			name = cosClientUtil.uploadFile2Cos(file);
+			name = this.handlerCos(file);
 		} catch (Exception e) {
 			return YYBlogResult.build(500, e.getMessage());
 		}  
@@ -43,8 +44,7 @@ public class UploadServiceImpl implements UploadService{
 		String name = null;
 		String path = null;
 		try {
-			COSClientUtils cosClientUtil = new COSClientUtils();  
-			name = cosClientUtil.uploadFile2Cos(file);
+			name = this.handlerCos(file);
 			path = Constant.ACCESS_URL + name;
 			SettingDO set = new SettingDO();
 			set.setCode(type);
@@ -67,8 +67,7 @@ public class UploadServiceImpl implements UploadService{
 		}
 		String name = null;
 		try {
-			COSClientUtils cosClientUtil = new COSClientUtils();  
-			name = cosClientUtil.uploadFile2Cos(file);
+			name = this.handlerCos(file);
 		} catch (Exception e) {
 			return NKBlogResult.build(001, "上传失败"+e.getMessage());
 		}  
@@ -77,5 +76,16 @@ public class UploadServiceImpl implements UploadService{
 		image.put("url", Constant.ACCESS_URL+name);
 		return NKBlogResult.ok(image);
 	}
+	
+	private String handlerCos(MultipartFile file) throws Exception{
+		String secretId = settingMapper.getValueByCode(SettingEnum.SECRET_ID.getCode());
+		String secretKey = settingMapper.getValueByCode(SettingEnum.SECRET_KEY.getCode());
+		String bucket = settingMapper.getValueByCode(SettingEnum.BUCKET.getCode());
+		String region = settingMapper.getValueByCode(SettingEnum.REGION.getCode());
+		COSClientUtils cosClientUtil = new COSClientUtils(secretId, secretKey, region);   
+		String name = cosClientUtil.uploadFile2Cos(file, bucket);
+		cosClientUtil.destory();
+		return name;
+	} 
 
 }

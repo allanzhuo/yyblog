@@ -44,7 +44,7 @@ layui.use(['element', 'form', 'layer', 'upload'], function () {
             if (res.code === 200) {
                 $("#coverImg").html('<p><img style="width: 144px;height: 90px;" src="' + res.data + '"></p>');
             }
-            layer.msg("上传成功！");
+            layer.msg(res.message);
         }
         , error: function () {
             layer.msg("上传失败！");

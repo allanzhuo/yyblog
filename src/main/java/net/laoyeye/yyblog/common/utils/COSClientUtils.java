@@ -22,26 +22,28 @@ public class COSClientUtils {
   
     //todo 这些变量信息自行到 腾讯云对象存储控制台 获取  
     // 存储通名称            替换成自己的  
-    private static final String bucketName = "xxxx";  
+/*    private static final String bucketName = "yyblog-gggg";  
     //secretId          替换成自己的  
-    private static final String secretId = "xxxx";  
+    private static final String secretId = "AKIDPnX2";  
     // secretKey                替换成自己的  
-    private static final String secretKey = "xxx";  
+    private static final String secretKey = "XDH";  
   
     // 1 初始化用户身份信息(secretId, secretKey)  
     private static final COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);  
     // 2 设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224  
     private static final ClientConfig clientConfig = new ClientConfig(new Region("ap-shanghai"));  
     // 3 生成cos客户端  
-    private static final COSClient cosClient = new COSClient(cred, clientConfig);  
+    private static final COSClient cosClient = new COSClient(cred, clientConfig);  */
     // 文件存储目录  
     //private String filedir = "blog/";  
     private COSClient cOSClient;  
   
-    public COSClientUtils() {  
+    public COSClientUtils(String secretId, String secretKey,String region) {
+    	COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
+    	ClientConfig clientConfig = new ClientConfig(new Region(region));  
         cOSClient = new COSClient(cred, clientConfig);  
-    }  
-  
+    }
+
     /** 
      * 销毁 
      */  
@@ -54,19 +56,19 @@ public class COSClientUtils {
      * 
      * @param url 
      */  
-    public void uploadImg2Cos(String url) throws Exception {  
+    public void uploadImg2Cos(String url,String bucketName) throws Exception {  
         File fileOnServer = new File(url);  
         FileInputStream fin;  
         try {  
             fin = new FileInputStream(fileOnServer);  
             String[] split = url.split("/");  
-            this.uploadFile2Cos(fin, split[split.length - 1]);  
+            this.uploadFile2Cos(fin, split[split.length - 1],bucketName);  
         } catch (FileNotFoundException e) {  
-            throw new Exception("图片上传失败");  
+            throw new Exception("图片上传失败！");  
         }  
     }  
   
-    public String uploadFile2Cos(MultipartFile file) throws Exception {  
+    public String uploadFile2Cos(MultipartFile file,String bucketName) throws Exception {  
         if (file.getSize() > 10 * 1024 * 1024) {  
             throw new Exception("上传图片大小不能超过10M！");  
         }  
@@ -75,10 +77,10 @@ public class COSClientUtils {
         String name = IDUtils.genImageName() + substring;  
         try {  
             InputStream inputStream = file.getInputStream();  
-            this.uploadFile2Cos(inputStream, name);  
+            this.uploadFile2Cos(inputStream, name, bucketName);  
             return name;  
         } catch (Exception e) {  
-            throw new Exception("图片上传失败");  
+            throw new Exception("图片上传失败！");  
         }  
     }  
   
@@ -88,8 +90,8 @@ public class COSClientUtils {
      * @param fileUrl 
      * @return 
      */  
-    public String getImgUrl(String fileUrl) {  
-        return getUrl(fileUrl);  
+    public String getImgUrl(String fileUrl,String bucketName) {  
+        return getUrl(fileUrl,bucketName);  
     }  
   
     /** 
@@ -98,11 +100,11 @@ public class COSClientUtils {
      * @param key 
      * @return 
      */  
-    public String getUrl(String key) {  
+    public String getUrl(String key,String bucketName) {  
         // 设置URL过期时间为10年 3600l* 1000*24*365*10  
         Date expiration = new Date(System.currentTimeMillis() + 3600L * 1000 * 24 * 365 * 10);  
         // 生成URL  
-        URL url = cosClient.generatePresignedUrl(bucketName, key, expiration);  
+        URL url = cOSClient.generatePresignedUrl(bucketName, key, expiration);  
         if (url != null) {  
             return url.toString();  
         }  
@@ -118,7 +120,7 @@ public class COSClientUtils {
      *            文件名称 包括后缀名 
      * @return 出错返回"" ,唯一MD5数字签名 
      */  
-    public String uploadFile2Cos(InputStream instream, String fileName) {  
+    public String uploadFile2Cos(InputStream instream, String fileName,String bucketName) {  
         String ret = "";  
         try {  
             // 创建上传Object的Metadata  
@@ -183,9 +185,9 @@ public class COSClientUtils {
         return "image/jpeg";  
     }  
   
-	public static void main(String[] args) throws FileNotFoundException {
+/*	public static void main(String[] args) throws FileNotFoundException {
 		COSClientUtils cosClientUtil = new COSClientUtils();  
-		/*String name = "123.jpg";*/
+		String name = "123.jpg";
 		File localFile = new File("E:/b.png");
 		FileInputStream fileInputStream = new FileInputStream(localFile);
         String name = cosClientUtil.uploadFile2Cos(fileInputStream,"456.png");  
@@ -194,5 +196,5 @@ public class COSClientUtils {
 		System.out.println(imgUrl);
 		cosClientUtil.destory();
 
-	}
+	}*/
 }  
