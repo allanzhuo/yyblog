@@ -98,7 +98,7 @@ var template = {
     '       </div>' +
     '       <div class="layui-tab-item" :class="{ \'layui-show\' : !info }">' +
     '           <p style="text-align: center" v-show="login == null">' +
-    '               <a v-if="qq == 1" @click="tip()" href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
+    '               <a href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
     '                   <i class="fa fa-qq"></i> 网站用户' +
     '               </a>' +
     '               <a href="/login" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-user-o"></i> 网站管理</a>' +
@@ -113,7 +113,7 @@ var template = {
     '       <template v-if="order != 1">' +
     '       <div class="layui-tab-item layui-show">' +
     '           <p style="text-align: center" v-show="login == null">' +
-    '               <a v-if="qq == 1" @click="tip()" href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
+    '               <a href="/api/qq" class="layui-btn layui-btn-sm layui-btn-primary">' +
     '                   <i class="fa fa-qq"></i> 网站用户' +
     '               </a>' +
     '               <a href="/login" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-user-o"></i> 网站管理</a>' +

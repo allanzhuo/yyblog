@@ -13,7 +13,7 @@
                       :name="params.website_title" :tags="tags" :similars="similars"
                       :alipay="params.alipay" :wechat="params.wechat_pay" :login="login">
 
-        <common-info slot="info" :info="showInfoLabel" :qq="params.qq_login" :login="login"></common-info>
+        <common-info slot="info" :info="showInfoLabel" :login="login"></common-info>
 
         <common-comment v-show="params.all_comment_open == 1 && article.commented" slot="post" :id="article.id"
                      :login="login"></common-comment>
