@@ -17,7 +17,10 @@ import net.laoyeye.yyblog.service.IndexService;
 import net.laoyeye.yyblog.web.BaseController;
 
 /**
- * created by laoyeye on 2018/1/31 at 13:48
+ * 前台首页
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月23日
+ * @website www.laoyeye.net
  */
 @Controller
 @RequestMapping("/")

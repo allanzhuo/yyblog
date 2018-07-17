@@ -8,7 +8,7 @@ import net.laoyeye.yyblog.enums.EnumCodeList.CodeListItem;
  * @author laoyeye
  *
  */
-public enum SettingEnum implements CodeListItem {
+public enum SettingCosEnum implements CodeListItem {
 
 
     /**
@@ -31,13 +31,13 @@ public enum SettingEnum implements CodeListItem {
     private String value = null;
     private String code = null;
 
-    private SettingEnum(String _code, String _value) {
+    private SettingCosEnum(String _code, String _value) {
         this.value = _value;
         this.code = _code;
     }
 
-    public static SettingEnum getEnumByKey(String key) {
-        for (SettingEnum e : SettingEnum.values()) {
+    public static SettingCosEnum getEnumByKey(String key) {
+        for (SettingCosEnum e : SettingCosEnum.values()) {
             if (e.getCode().equals(key)) {
                 return e;
             }

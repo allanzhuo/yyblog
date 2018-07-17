@@ -5,7 +5,10 @@ import net.laoyeye.yyblog.model.vo.IndexArticleVO;
 import net.laoyeye.yyblog.model.vo.IndexVO;
 
 /**
- * created by LAOYEYE on 2018/1/31 at 19:03
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月23日
+ * @website www.laoyeye.net
  */
 public interface IndexService {
 
