@@ -13,7 +13,10 @@ import net.laoyeye.yyblog.model.AboutDO;
 import net.laoyeye.yyblog.service.AboutService;
 
 /**
- * created by laoyeye on 2018/1/20 at 16:33
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月20日
+ * @website www.laoyeye.net
  */
 @Controller("adminAboutontroller")
 @RequestMapping("/management/about")

@@ -19,7 +19,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * created by laoyeye on 2018/3/19
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年3月9日
+ * @website www.laoyeye.net
  */
 @Controller("adminIndexController")
 @RequestMapping("/management")

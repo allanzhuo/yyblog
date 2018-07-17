@@ -13,7 +13,10 @@ import net.laoyeye.yyblog.model.query.UserQuery;
 import net.laoyeye.yyblog.service.UserService;
 
 /**
- * created by laoyeye on 2018/1/23 at 18:00
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月23日
+ * @website www.laoyeye.net
  */
 @Controller
 @RequestMapping("/management/user")

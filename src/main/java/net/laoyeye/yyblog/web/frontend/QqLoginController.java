@@ -15,7 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * created by laoyeye on 2018/1/22 at 20:53
+ * QQ登录
+ * @author 小卖铺的老爷爷
+ * @date 2018年3月9日
+ * @website www.laoyeye.net
  */
 @Controller
 @RequestMapping("/api")

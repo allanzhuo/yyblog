@@ -16,7 +16,10 @@ import net.laoyeye.yyblog.web.BaseController;
 import java.util.Date;
 
 /**
- * created by laoyeye on 2018/1/27 at 19:53
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月27日
+ * @website www.laoyeye.net
  */
 @Controller
 @RequestMapping("/management/profile")

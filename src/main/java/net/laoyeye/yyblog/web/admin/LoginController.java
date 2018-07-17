@@ -13,10 +13,11 @@ import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.enums.ResultEnum;
 import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.web.BaseController;
-
-
 /**
- * created by laoyeye on 2018/1/14 at 12:47
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月14日
+ * @website www.laoyeye.net
  */
 @Controller
 public class LoginController extends BaseController{

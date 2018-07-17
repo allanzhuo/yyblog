@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * created by laoyeye on 2018/1/25 at 14:28
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月25日
+ * @website www.laoyeye.net
  */
 @Controller("managementMessageController")
 @RequestMapping("/management/message")

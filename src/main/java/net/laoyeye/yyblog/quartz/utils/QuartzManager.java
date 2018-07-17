@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 /**
- * 
- * 
- * @title: QuartzManager.java
- * @description: 计划任务管理
- *
+ * 计划任务管理
+ * @author 小卖铺的老爷爷
+ * @date 2018年6月17日
+ * @website www.laoyeye.net
  */
 @Service
 public class QuartzManager {

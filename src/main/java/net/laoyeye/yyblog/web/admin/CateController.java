@@ -12,7 +12,10 @@ import net.laoyeye.yyblog.model.CateDO;
 import net.laoyeye.yyblog.service.CateService;
 
 /**
- * created by laoyeye on 2018/1/14 at 15:21
+ * 
+ * @author 小卖铺的老爷爷
+ * @date 2018年1月14日
+ * @website www.laoyeye.net
  */
 @Controller
 @RequestMapping("/management/cate")
