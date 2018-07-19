@@ -1,5 +1,6 @@
 package net.laoyeye.yyblog.web.admin;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.enums.JobStatusEnum;
@@ -28,7 +30,9 @@ import net.laoyeye.yyblog.service.TaskService;
 public class TaskController{
 	@Autowired
 	private TaskService taskService;
-
+	
+	@Log("进入任务管理界面")
+	@RequiresPermissions("sys:task:index")
 	@GetMapping
 	public String taskScheduleJob() {
 		return "management/task";
@@ -47,6 +51,8 @@ public class TaskController{
 		return result;
 	}
 
+	@Log("修改任务")
+	@RequiresPermissions("sys:task:update")
     @PostMapping("/edit")
     @ResponseBody
 	public YYBlogResult edit(TaskDO task) {
@@ -58,6 +64,8 @@ public class TaskController{
 		return YYBlogResult.ok();
 	}
 
+	@Log("修改任务状态")
+	@RequiresPermissions("sys:task:update")
 	@PostMapping("/changeStatus/{id}")
 	@ResponseBody
 	public YYBlogResult changeStatus(@PathVariable("id") Long id, Boolean jobStatus) {
@@ -74,6 +82,8 @@ public class TaskController{
 	/**
 	 * 删除
 	 */
+	@Log("删除任务")
+	@RequiresPermissions("sys:task:delete")
 	@PostMapping("/remove/{id}")
 	@ResponseBody
 	public YYBlogResult remove(@PathVariable("id") Long id) {
@@ -90,6 +100,8 @@ public class TaskController{
 	/**
 	 * 立即运行
 	 */
+	@Log("立即运行任务")
+	@RequiresPermissions("sys:task:update")
 	@PostMapping("/run/{id}")
 	@ResponseBody
 	public YYBlogResult run(@PathVariable("id") Long id) {
@@ -109,6 +121,8 @@ public class TaskController{
 	/**
 	 * 删除
 	 */
+	@Log("批量删除任务")
+	@RequiresPermissions("sys:task:delete")
 	@PostMapping("/removeBatch")
 	@ResponseBody
 	public YYBlogResult removeBatch(@RequestParam("ids[]") Long[] ids) {
@@ -125,6 +139,8 @@ public class TaskController{
 	/**
 	 * 新增保存
 	 */
+	@Log("新增任务")
+	@RequiresPermissions("sys:task:add")
 	@ResponseBody
 	@PostMapping("/save")
 	public YYBlogResult save(TaskDO task) {

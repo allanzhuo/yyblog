@@ -1,5 +1,6 @@
 package net.laoyeye.yyblog.web.admin;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.DataGridResult;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.model.query.LogQuery;
@@ -42,6 +44,8 @@ public class LogController{
 	/**
 	 * 删除
 	 */
+	@Log("删除日志")
+	@RequiresPermissions("sys:log:delete")
 	@PostMapping("/remove/{id}")
 	@ResponseBody
 	public YYBlogResult remove(@PathVariable("id") Long id) {
@@ -54,6 +58,8 @@ public class LogController{
 	/**
 	 * 删除
 	 */
+	@Log("批量删除日志")
+	@RequiresPermissions("sys:log:delete")
 	@PostMapping("/removeBatch")
 	@ResponseBody
 	public YYBlogResult removeBatch(@RequestParam("ids[]") Long[] ids) {

@@ -1,11 +1,13 @@
 package net.laoyeye.yyblog.web.admin;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.model.SettingDO;
@@ -54,7 +56,9 @@ public class SettingsController {
     	
     	return settingService.updateValueByCode(setting);
     }
-
+    
+	@Log("上传打赏码")
+	@RequiresPermissions("sys:qrcode:upload")
     @PostMapping("/upload")
     @ResponseBody
     public YYBlogResult upload(@RequestParam(value = "file", required = false) MultipartFile file, String payType) {

@@ -62,15 +62,15 @@
                 <li shiro:hasPermission="blog:blog:addIndex" class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-keyboard-o"></i> 发布内容</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="#blog"><i class="fa fa-book"></i> 发布博文</a></dd>
-                        <dd><a href="#note"><i class="fa fa-sticky-note-o"></i> 撰写笔记</a></dd>
+                        <dd><a shiro:hasPermission="blog:blog:index" href="#blog"><i class="fa fa-book"></i> 发布博文</a></dd>
+                        <dd><a shiro:hasPermission="blog:note:index" href="#note"><i class="fa fa-sticky-note-o"></i> 撰写笔记</a></dd>
                     </dl>
                 </li>
                 <li shiro:hasPermission="blog:content:index" class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-code"></i> 内容管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
-                        <dd><a href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
+                        <dd><a shiro:hasPermission="blog:notes:index" href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
                         <dd><a href="#file"><i class="fa fa-file"></i> 分享管理</a></dd>
                         <dd><a href="#about"><i class="fa fa-trademark"></i> 关于内容</a></dd>
                     </dl>
