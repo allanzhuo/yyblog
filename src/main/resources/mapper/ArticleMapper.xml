@@ -26,6 +26,15 @@
 		FROM
 			T_ARTICLE
 	</select>
+	<!-- 查询已发布文章总数量 -->
+	<select id="countArticle" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			T_ARTICLE
+		WHERE
+			DRAFT = false
+	</select>
 	<!-- 查询最新博文 -->
 	<select id="getLatestArticle" resultType="net.laoyeye.yyblog.model.vo.ArticleVO">
 		SELECT
@@ -184,6 +193,7 @@
 			<if test="tag != null" >
 				AND TT.NAME = #{tag}
 			</if>
+			AND AT.DRAFT = false
 		</where>
 		ORDER BY AT.TOP DESC,AT.CREATE_TIME DESC
 	</select>

@@ -57,7 +57,7 @@ public class IndexServiceImpl implements IndexService {
 			}
         	map.put(setting.getCode(), setting.getValue());
 		}
-        int articleCount = articleMapper.countAllArticle();
+        int articleCount = articleMapper.countArticle();
         List<CateDO> cateList = cateMapper.listAllCate();
         PageHelper.startPage(1, 10); 
         //ID,TITLE

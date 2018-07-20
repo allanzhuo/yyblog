@@ -11,6 +11,8 @@ import net.laoyeye.yyblog.model.vo.ArticleVO;
 public interface ArticleMapper {
 	int countAllArticle();
 	
+	int countArticle();
+	
 	ArticleVO getLatestArticle();
 	
 	int countByCateId(Long cateId);
