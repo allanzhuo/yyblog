@@ -11,9 +11,9 @@ spring:
     druid:
       db-type: mysql
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://118.25.38.57:3306/blog_pro?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
-      username: root
-      password: zhangzhuo321..
+      url: jdbc:mysql://xxxxxx:3306/xxxx?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+      username: xxxxx
+      password: xxxx
       initial-size: 5
       min-idle: 5
       max-active: 20

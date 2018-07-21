@@ -53,6 +53,7 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 2. git下载源码
 3. 根据提供的脚本创建数据库，数据库编码为UTF-8
 4. 修改application.yml文件，更新数据库地址、账号和密码
+5. 修改qqconnectconfig.properties文件，更新app_ID、app_KEY和redirect_URI
 5. 登陆系统，初始账号：admin 密码为123456
 6. 后台设置自己的腾讯云COS配置
 
