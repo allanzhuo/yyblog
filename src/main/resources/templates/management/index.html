@@ -71,7 +71,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="#blogs"><i class="fa fa-book"></i> 博文管理</a></dd>
                         <dd><a shiro:hasPermission="blog:notes:index" href="#notes"><i class="fa fa-sticky-note-o"></i> 笔记管理</a></dd>
-                        <dd><a href="#file"><i class="fa fa-file"></i> 分享管理</a></dd>
+                        <dd><a shiro:hasPermission="blog:file:index" href="#file"><i class="fa fa-file"></i> 资源管理</a></dd>
                         <dd><a href="#about"><i class="fa fa-trademark"></i> 关于内容</a></dd>
                     </dl>
                 </li>

@@ -5,7 +5,7 @@ var template = {
     '       <div class="layui-col-md4 layui-col-md-offset4 copyright">' +
     '           <p style="text-align: center;">' +
     '               <i class="fa fa-copyright"></i>&nbsp;{{words}} &nbsp; Powered by' +
-    '                <a href="//www.laoyeye.net" target="_blank" style="color: #1E9FFF;">小卖铺的老爷爷</a> '+
+    '                <a href="http://www.cnblogs.com/laoyeye/" target="_blank" style="color: #1E9FFF;">小卖铺的老爷爷</a> '+
     '				 <br/> <a href="http://www.miibeian.gov.cn/">皖ICP备18004998号</a> <a href="/management/index">后台管理</a> '+
     '           </p>' +
     '       </div>' +

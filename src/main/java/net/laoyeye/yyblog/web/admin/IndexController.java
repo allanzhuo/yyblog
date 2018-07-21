@@ -1,5 +1,6 @@
 package net.laoyeye.yyblog.web.admin;
 
+import net.laoyeye.yyblog.annotation.Log;
 import net.laoyeye.yyblog.common.Constant;
 import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.model.ArticleDO;
@@ -57,6 +58,8 @@ public class IndexController extends BaseController{
         return "management/home";
     }
 
+	@Log("保存文章")
+	@RequiresPermissions("blog:blog:add")
     @PostMapping("/simple/add/article")
     @ResponseBody
     public YYBlogResult simplePostArticle(ArticleDO article) {
@@ -68,6 +71,8 @@ public class IndexController extends BaseController{
         return articleService.saveSimpleArticle(article);
     }
    
+	@Log("保存笔记")
+	@RequiresPermissions("blog:note:add")
     @PostMapping("/simple/add/note")
     @ResponseBody
     public YYBlogResult simplePostNote(NoteDO note) {
