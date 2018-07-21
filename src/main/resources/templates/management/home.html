@@ -1,0 +1,179 @@
+<div class="layui-row layui-admin-mt10">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a><cite>控制台</cite></a>
+            </span>
+</div>
+<hr>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content start">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-row">
+                        <h3>欢迎使用 老爷爷博客！</h3>
+                        <p class="layui-text" style="font-style: italic;">请尽情使用吧。</p>
+                    </div>
+                    <div class="layui-row layui-admin-mt20">
+                        <div class="layui-col-md4">
+                            <h3>公告：</h3>
+                            <div class="layui-admin-mt15">
+                                <p class="layui-text font-italic font-size14 layui-admin-mt10">
+                                    	演示账号只拥有部分页面的查看权限，更多体验，请下载系统源码~<br>
+                                    	<h2>如果本项目对您有所帮助<br>
+                                    	还请方便点击下Star▶▶▶
+                                    <iframe src="//ghbtns.com/github-btn.html?user=allanzhuo&repo=yyblog&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+										</h2>
+								</p>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <h3>管理内容</h3>
+                            <div class="layui-text">
+                                <p class="layui-admin-mt10"><i class="fa fa-edit"></i> <a href="#blog">撰写一篇新博文</a>
+                                </p>
+                                <p class="layui-admin-mt5"><i class="fa fa-sticky-note-o"></i> <a
+                                        href="#note">写一篇新日记</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4">
+                            <h3>网站概览</h3>
+                            <div class="layui-text">
+                                <p class="layui-admin-mt10"><i class="fa fa-book"></i>
+                                    <a href="#aboutblog">
+                                        	关于/反馈
+                                    </a>
+                                </p>
+                                <p class="layui-admin-mt5"><i class="fa fa-comment-o"></i> <a style="cursor: pointer;"
+                                                                                              onclick="layer.msg('等待后续加入...');">评论统计</a>
+                                </p>
+                                <p class="layui-admin-mt5"><i class="fa fa-user-o"></i> <a style="cursor: pointer;"
+                                                                                           onclick="layer.msg('等待后续加入...');">访客统计</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-md4">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <h4>概览</h4>
+                    <hr>
+                    <div class="layui-row">
+                        <div class="layui-col-md4"><i class="fa fa-graduation-cap"></i>【<span
+                                th:text="${articleCnt}"></span>】篇文章
+                        </div>
+                        <div class="layui-col-md4"><i class="fa fa-sticky-note"></i>【<span
+                                th:text="${noteCnt}"></span>】篇随笔
+                        </div>
+                        <div class="layui-col-md4"><i class="fa fa-bullhorn"></i>【<span th:text="${commentCnt}"></span>】条评论
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">最新博文</li>
+                <li>最新随笔</li>
+                <li>最新评论</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-row">
+                        <h4 style="font-weight: bolder;">标题：<span
+                                th:text="${latestArticle != null ? latestArticle.title :''}"></span></h4>
+                        <p class="layui-admin-mt10">发布时间：<span
+                                th:if="${latestArticle!=null}" th:text="${#dates.format(latestArticle.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
+                            <div class="layui-field-box" th:utext="${latestArticle != null ?latestArticle.summary:''}">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row">
+                        <h4 style="font-weight: bolder;">标题：<span
+                                th:text="${latestNote!=null?latestNote.title:''}"></span></h4>
+                        <p class="layui-admin-mt10">发布时间：<span 
+                        th:if="${latestNote!=null}" th:text="${#dates.format(latestNote.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                        </p>
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
+                            <div class="layui-field-box" th:utext="${latestNote!=null?latestNote.content:''}">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row">
+                        <h4 style="font-weight: bolder;">用户：<span
+                                th:text="${latestComment!=null?latestComment.nickname:''}"></span></h4>
+                        <p class="layui-admin-mt10">发布时间：<span
+                                th:if="${latestComment!=null}" th:text="${#dates.format(latestComment.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+                        <p class="layui-admin-mt10">文章标题：<span
+                                th:text="${latestComment!=null?latestComment.title:''}"></span></p>
+                        <fieldset class="layui-elem-field layui-field-title" style="word-break: break-all;">
+                            <div class="layui-field-box" th:utext="${latestComment!=null?latestComment.content:''}">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-md4">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show layui-form">
+                    <h4>文章草稿</h4>
+                    <hr>
+                    <p><input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                              autocomplete="off" class="layui-input"></p>
+                    <p class=" layui-admin-mt10">
+                        <select name="cateId" lay-verify="required" lay-search>
+                            <option value="">请选择分类</option>
+                            <option th:each="cate,cateStat:${cateList}" th:value="${cate.id}"
+                                    th:text="${cate.name}"></option>
+                        </select>
+                    </p>
+                    <p class="layui-admin-mt10"><textarea name="content" required lay-verify="required"
+                                                          placeholder="输入你想的内容作为草稿，草稿的字数不要超过300字"
+                                                          class="layui-textarea"></textarea>
+                    </p>
+                    <p class="layui-admin-mt10">
+                        <button class="layui-btn layui-btn-sm" lay-submit lay-filter="simpleArticlePost">保存草稿</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-md4">
+        <div class="layui-tab layui-tab-card">
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show layui-form">
+                    <h4>日记／随笔</h4>
+                    <hr>
+                    <p><input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                              autocomplete="off" class="layui-input"></p>
+                    <p class="layui-admin-mt10"><textarea name="content" required lay-verify="required"
+                                                          placeholder="随笔内容，字数不要超过300"
+                                                          class="layui-textarea"></textarea></p>
+                    <p class="layui-admin-mt10" style="text-align: right;">
+                        <button class="layui-btn layui-btn-sm" lay-submit lay-filter="simpleNotePost">发布日记／随笔</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
