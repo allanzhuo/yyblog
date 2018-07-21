@@ -95,6 +95,27 @@
 		</where>
 		ORDER BY AT.CREATE_TIME DESC
 	</select>
+	
+	<select id="listSimilarsArticle" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.vo.ArticleVO">
+		SELECT
+		  AT.ID,
+		  AT.TITLE, 
+		  CT.NAME CATE_NAME, 
+	      AT.CREATE_TIME, 
+	      AT.DRAFT,
+	      AT.APPROVE_CNT,
+	      AT.VIEWS, 
+	      AT.COMMENTED, 
+	      AT.APPRECIABLE, 
+	      AT.TOP
+		FROM
+			T_ARTICLE AT
+		LEFT JOIN T_CATE CT ON CT.ID = AT.CATE_ID
+		WHERE
+			AT.DRAFT = false
+		ORDER BY AT.CREATE_TIME DESC
+	</select>
+	
  	<update id="update" parameterType="net.laoyeye.yyblog.model.ArticleDO" >
 	    UPDATE T_ARTICLE
 	    <set >

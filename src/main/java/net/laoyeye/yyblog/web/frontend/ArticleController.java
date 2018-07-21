@@ -77,8 +77,8 @@ public class ArticleController extends BaseController{
         model.addAttribute("tags", tagReferService.listNameByArticleId(article.getId()));
         model.addAttribute("author", userService.getNicknameById(article.getAuthorId()));
         //回头改
-        model.addAttribute("articles",  articleMapper.listArticleByTitle(null));
-        model.addAttribute("similars", articleMapper.listArticleByTitle(null));
+        model.addAttribute("articles",  articleMapper.listSimilarsArticle());
+        model.addAttribute("similars", articleMapper.listSimilarsArticle());
         model.addAttribute("login", WebUtils.toMap(getUser()));
         CommentQuery query = new CommentQuery();
         query.setLimit(10);

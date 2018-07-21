@@ -61,7 +61,7 @@ public class IndexServiceImpl implements IndexService {
         List<CateDO> cateList = cateMapper.listAllCate();
         PageHelper.startPage(1, 10); 
         //ID,TITLE
-        List<ArticleVO> latestArticles = articleMapper.listArticleByTitle(null);
+        List<ArticleVO> latestArticles = articleMapper.listSimilarsArticle();
         List<TagVO> tagList = tagReferMapper.listNameAndCnt();
         IndexVO vo = new IndexVO();
         

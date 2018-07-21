@@ -10,7 +10,7 @@ import net.laoyeye.yyblog.model.vo.ArticleVO;
 
 public interface ArticleMapper {
 	int countAllArticle();
-	
+	//前台查询
 	int countArticle();
 	
 	ArticleVO getLatestArticle();
@@ -20,7 +20,9 @@ public interface ArticleMapper {
 	int saveArticle(ArticleDO article);
 	
 	List<ArticleVO> listArticleByTitle(@Param("title") String title);
-	
+	//前台查询
+	List<ArticleVO> listSimilarsArticle();
+	//前台查询
 	List<ArticleVO> listIndexArticle(IndexQuery query);
 	
 	int update(ArticleDO article);
