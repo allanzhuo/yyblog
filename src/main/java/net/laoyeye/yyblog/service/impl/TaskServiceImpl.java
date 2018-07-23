@@ -97,7 +97,6 @@ public class TaskServiceImpl implements TaskService {
 			if (JobStatusEnum.RUNNING.getCode().equals(task.getJobStatus())) {
 				quartzManager.addJob(task);
 			}
-
 		}
 	}
 
