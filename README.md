@@ -70,6 +70,7 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 3. [JAVA实用案例之文件导入导出（POI方式）](https://www.cnblogs.com/laoyeye/p/6938889.html)
 4. [JAVA文件导出之jasperreport报表开发](https://www.cnblogs.com/laoyeye/p/7707149.html)
 5. [利用Swagger2自动生成对外接口的文档](https://www.cnblogs.com/laoyeye/p/9047504.html)
+6. [Quartz实现JAVA定时任务的动态配置](https://www.cnblogs.com/laoyeye/p/9352002.html)
 
 ### 项目演示
 - 演示地址：1、前台：www.laoyeye.net 2、后台：http://www.laoyeye.net/management/index
