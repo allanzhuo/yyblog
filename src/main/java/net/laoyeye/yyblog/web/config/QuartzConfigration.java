@@ -32,7 +32,7 @@ public class QuartzConfigration {
         return schedulerFactoryBean;
     }
 
-    // 指定quartz.properties，可配置配置文件中配置相关属性，这里先注掉了
+    // 指定quartz.properties，可配置配置文件中配置相关属性
     @Bean
     public Properties quartzProperties() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
