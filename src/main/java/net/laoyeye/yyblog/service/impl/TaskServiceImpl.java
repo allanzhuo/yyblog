@@ -110,11 +110,8 @@ public class TaskServiceImpl implements TaskService {
             quartzManager.deleteJob(task);
             task.setJobStatus(JobStatusEnum.STOP.getCode());
         } else {
-            if (!JobStatusEnum.RUNNING.getCode().equals(jobStatus)) {
-            } else {
-                task.setJobStatus(JobStatusEnum.RUNNING.getCode());
-                quartzManager.addJob(task);
-            }
+            task.setJobStatus(JobStatusEnum.RUNNING.getCode());
+            quartzManager.addJob(task);
         }
         update(task);
     }
