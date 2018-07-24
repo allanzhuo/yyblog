@@ -18,7 +18,6 @@ public class QuartzConfigration {
     @Autowired
     private JobFactory jobFactory;
 
-
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean() {
         SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
@@ -32,7 +31,7 @@ public class QuartzConfigration {
         return schedulerFactoryBean;
     }
 
-    // 指定quartz.properties，可配置配置文件中配置相关属性
+    // 指定quartz.properties，可在配置文件中配置相关属性
     @Bean
     public Properties quartzProperties() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
