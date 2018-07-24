@@ -5,13 +5,13 @@ import java.util.List;
 import net.laoyeye.yyblog.model.CateDO;
 
 public interface CateMapper {
-	List<CateDO> listAllCate();
+    List<CateDO> listAllCate();
 
-	int countByCode(String code);
-	
-	int save(CateDO cate);
-	
-	int delete(Long id);
-	
-	int updateById(CateDO cate);
+    int countByCode(String code);
+    
+    int save(CateDO cate);
+    
+    int delete(Long id);
+    
+    int updateById(CateDO cate);
 }

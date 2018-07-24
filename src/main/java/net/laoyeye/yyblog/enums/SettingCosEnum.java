@@ -12,21 +12,21 @@ public enum SettingCosEnum implements CodeListItem {
 
 
     /**
-	 * secret_id=腾讯云存储的secret_id
-	 */
-	SECRET_ID("secret_id", "腾讯云存储的secret_id"),
+     * secret_id=腾讯云存储的secret_id
+     */
+    SECRET_ID("secret_id", "腾讯云存储的secret_id"),
     /**
-	 * secret_key=腾讯云存储的secret_key
-	 */
-	SECRET_KEY("secret_key", "腾讯云存储的secret_key"),
-	/**
-	 * bucket=COS存储桶名称
-	 */
-	BUCKET("bucket", "COS存储桶名称"),
+     * secret_key=腾讯云存储的secret_key
+     */
+    SECRET_KEY("secret_key", "腾讯云存储的secret_key"),
     /**
-	 * region=bucket的区域
-	 */
-	REGION("region", "bucket的区域");
+     * bucket=COS存储桶名称
+     */
+    BUCKET("bucket", "COS存储桶名称"),
+    /**
+     * region=bucket的区域
+     */
+    REGION("region", "bucket的区域");
 
     private String value = null;
     private String code = null;

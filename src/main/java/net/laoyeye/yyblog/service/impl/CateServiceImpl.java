@@ -15,56 +15,56 @@ import net.laoyeye.yyblog.service.CateService;
 
 @Service
 public class CateServiceImpl implements CateService{
-	@Autowired
-	private CateMapper cateMapper;
-	@Autowired
-	private ArticleMapper articleMapper;
+    @Autowired
+    private CateMapper cateMapper;
+    @Autowired
+    private ArticleMapper articleMapper;
 
-	@Override
-	public List<CateDO> listAllCate() {
+    @Override
+    public List<CateDO> listAllCate() {
 
-		return cateMapper.listAllCate();
-	}
+        return cateMapper.listAllCate();
+    }
 
-	@Override
-	public DataGridResult listPageCate(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize); 
-		List<CateDO> list = cateMapper.listAllCate();
-		//取记录总条数
-		PageInfo<CateDO> pageInfo = new PageInfo<CateDO>(list);
-		long total = pageInfo.getTotal();
-		//创建一个返回值对象
-		DataGridResult result = new DataGridResult(); 
-		result.setData(list);
-		result.setCount(total);
-		return result;
-	}
+    @Override
+    public DataGridResult listPageCate(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize); 
+        List<CateDO> list = cateMapper.listAllCate();
+        //取记录总条数
+        PageInfo<CateDO> pageInfo = new PageInfo<CateDO>(list);
+        long total = pageInfo.getTotal();
+        //创建一个返回值对象
+        DataGridResult result = new DataGridResult(); 
+        result.setData(list);
+        result.setCount(total);
+        return result;
+    }
 
-	@Override
-	public YYBlogResult save(CateDO cate) {
-		int count = cateMapper.countByCode(cate.getCode());
-    	if (count != 0) {
-    		return YYBlogResult.build(400, "分类编码[" + cate.getName() + "]已存在！");
-		}
-    	cate.setId(IDUtils.genId());
-    	cateMapper.save(cate);
-    	return YYBlogResult.ok();
-	}
+    @Override
+    public YYBlogResult save(CateDO cate) {
+        int count = cateMapper.countByCode(cate.getCode());
+        if (count != 0) {
+            return YYBlogResult.build(400, "分类编码[" + cate.getName() + "]已存在！");
+        }
+        cate.setId(IDUtils.genId());
+        cateMapper.save(cate);
+        return YYBlogResult.ok();
+    }
 
-	@Override
-	public YYBlogResult delete(Long id) {
-		int count = articleMapper.countByCateId(id);
-		if (count != 0) {
-    		return YYBlogResult.build(400, "请删除分类文章后再删除！");
-		}
-		cateMapper.delete(id);
-		return YYBlogResult.ok();
-	}
+    @Override
+    public YYBlogResult delete(Long id) {
+        int count = articleMapper.countByCateId(id);
+        if (count != 0) {
+            return YYBlogResult.build(400, "请删除分类文章后再删除！");
+        }
+        cateMapper.delete(id);
+        return YYBlogResult.ok();
+    }
 
-	@Override
-	public YYBlogResult updateById(CateDO cate) {
-		cateMapper.updateById(cate);
-		return YYBlogResult.ok();
-	}
+    @Override
+    public YYBlogResult updateById(CateDO cate) {
+        cateMapper.updateById(cate);
+        return YYBlogResult.ok();
+    }
 
 }

@@ -7,11 +7,11 @@ import net.laoyeye.yyblog.model.vo.CommentVO;
 
 public interface CommentMapper {
 
-	int countAllComment();
+    int countAllComment();
 
-	CommentVO getLatestComment();
-	
-	List<CommentVO> listCommentByArticleId(Long articleId);
-	
-	int insert(CommentDO comment);
+    CommentVO getLatestComment();
+    
+    List<CommentVO> listCommentByArticleId(Long articleId);
+    
+    int insert(CommentDO comment);
 }

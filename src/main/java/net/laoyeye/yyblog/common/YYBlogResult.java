@@ -61,23 +61,23 @@ public class YYBlogResult {
 //        return this.code == 200;
 //    }
 
-	public Integer getCode() {
-		return code;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
     public String getMessage() {
-		return message;
-	}
+        return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public Object getData() {
+    public Object getData() {
         return data;
     }
 

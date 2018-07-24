@@ -33,34 +33,34 @@ import net.laoyeye.yyblog.service.SettingService;
 @RequestMapping("/token/comment")
 public class CommentController {
 
-	@Autowired
-	private CommentService commentService;
-	@Autowired
-	private KeywordService keywordService;
-	@Autowired
-	private SettingService settingService;
-	@Autowired
-	private ArticleService articleService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private KeywordService keywordService;
+    @Autowired
+    private SettingService settingService;
+    @Autowired
+    private ArticleService articleService;
 
-	@PostMapping("/sub")
-	@ResponseBody
-	public YYBlogResult sub(CommentDO comment, HttpServletRequest request) {
-		if (!settingService.getValueByCode("all_comment_open").equals("1") || !articleService.getArticleById(comment.getArticleId()).getCommented()) {
-			return YYBlogResult.build(500, "未开放评论功能，请勿非法操作！");
-		}
-		comment.setId(IDUtils.genId());
-		comment.setEnable(true);
-		comment.setIpAddr(WebUtils.getIpAddress(request));
-		comment.setIpCnAddr(WebUtils.getIpCnInfo(WebUtils.getIpInfo(comment.getIpAddr())));
-		//后面改样式用到
-		comment.setParentId(null);
-		comment.setContent(Injection.stripSqlInjection(comment.getContent()));
-		List<KeywordDO> keywords = keywordService.listValidKeyword();
-		for (KeywordDO keyword : keywords) {
-			comment.setContent(comment.getContent().replace(keyword.getWords(), StringUtils.addStrings(keyword.getWords(), keyword.getWords().length())));
-		}
-		comment.setCreateTime(new Date());
-		return commentService.insert(comment);
+    @PostMapping("/sub")
+    @ResponseBody
+    public YYBlogResult sub(CommentDO comment, HttpServletRequest request) {
+        if (!settingService.getValueByCode("all_comment_open").equals("1") || !articleService.getArticleById(comment.getArticleId()).getCommented()) {
+            return YYBlogResult.build(500, "未开放评论功能，请勿非法操作！");
+        }
+        comment.setId(IDUtils.genId());
+        comment.setEnable(true);
+        comment.setIpAddr(WebUtils.getIpAddress(request));
+        comment.setIpCnAddr(WebUtils.getIpCnInfo(WebUtils.getIpInfo(comment.getIpAddr())));
+        //后面改样式用到
+        comment.setParentId(null);
+        comment.setContent(Injection.stripSqlInjection(comment.getContent()));
+        List<KeywordDO> keywords = keywordService.listValidKeyword();
+        for (KeywordDO keyword : keywords) {
+            comment.setContent(comment.getContent().replace(keyword.getWords(), StringUtils.addStrings(keyword.getWords(), keyword.getWords().length())));
+        }
+        comment.setCreateTime(new Date());
+        return commentService.insert(comment);
 
-	}
+    }
 }

@@ -8,11 +8,11 @@ import net.laoyeye.yyblog.model.query.LogQuery;
 
 @Service
 public interface LogService {
-	void save(LogDO logDO);
-	
-	DataGridResult list(LogQuery query);
-	
-	int remove(Long id);
-	
-	int removeBatch(Long[] ids);
+    void save(LogDO logDO);
+    
+    DataGridResult list(LogQuery query);
+    
+    int remove(Long id);
+    
+    int removeBatch(Long[] ids);
 }

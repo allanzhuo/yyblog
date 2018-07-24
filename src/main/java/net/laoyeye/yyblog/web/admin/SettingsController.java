@@ -27,18 +27,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("/management/settings")
 public class SettingsController {
-	@Autowired
-	private SettingService settingService;
-	@Autowired
-	private UploadService uploadService;
-	
+    @Autowired
+    private SettingService settingService;
+    @Autowired
+    private UploadService uploadService;
+    
     @GetMapping
     public String index(Model model) {
         List<SettingDO> settings = settingService.listAll();
         Map<String, Object> attributeMap = new HashMap<String, Object>();
         for (SettingDO setting : settings) {
-        	attributeMap.put(setting.getCode(), setting.getValue());
-		}
+            attributeMap.put(setting.getCode(), setting.getValue());
+        }
         model.addAllAttributes(attributeMap);
         return "management/settings";
     }
@@ -53,19 +53,19 @@ public class SettingsController {
     @PostMapping("/edit")
     @ResponseBody
     public YYBlogResult editSettings(SettingDO setting) {
-    	
-    	return settingService.updateValueByCode(setting);
+        
+        return settingService.updateValueByCode(setting);
     }
     
-	@Log("上传打赏码")
-	@RequiresPermissions("sys:qrcode:upload")
+    @Log("上传打赏码")
+    @RequiresPermissions("sys:qrcode:upload")
     @PostMapping("/upload")
     @ResponseBody
     public YYBlogResult upload(@RequestParam(value = "file", required = false) MultipartFile file, String payType) {
         if (file != null) {
             return uploadService.uploadQrcode(file, payType);
         } else {
-        	return YYBlogResult.build(500, "上传文件为空！");
+            return YYBlogResult.build(500, "上传文件为空！");
         }
     }
 }

@@ -12,7 +12,6 @@ import net.laoyeye.yyblog.common.YYBlogResult;
 import net.laoyeye.yyblog.service.QqLoginService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * QQ登录
@@ -24,26 +23,26 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api")
 public class QqLoginController {
 
-	@Autowired
-	private QqLoginService qqLoginService;
+    @Autowired
+    private QqLoginService qqLoginService;
 
-	@GetMapping("/qq")
-	public String qqLogin(HttpServletRequest request) {
-		String authorizeUrl = null;
-		try {
-			authorizeUrl = new Oauth().getAuthorizeURL(request);
-		} catch (QQConnectException e) {
-			e.printStackTrace();
-		}
-		return "redirect:" + authorizeUrl;
-	}
+    @GetMapping("/qq")
+    public String qqLogin(HttpServletRequest request) {
+        String authorizeUrl = null;
+        try {
+            authorizeUrl = new Oauth().getAuthorizeURL(request);
+        } catch (QQConnectException e) {
+            e.printStackTrace();
+        }
+        return "redirect:" + authorizeUrl;
+    }
 
-	@GetMapping("/qq/callback")
-	public String qqCallback(HttpServletRequest request, HttpServletResponse response) {	
-		YYBlogResult result = qqLoginService.login(request, response);
-		if (result.getCode() == 200) {
-			return "redirect:/index";
-		}
-		 return "error/page";
-	}
+    @GetMapping("/qq/callback")
+    public String qqCallback(HttpServletRequest request) {
+        YYBlogResult result = qqLoginService.login(request);
+        if (result.getCode() == 200) {
+            return "redirect:/index";
+        }
+         return "error/page";
+    }
 }

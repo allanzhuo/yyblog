@@ -13,19 +13,19 @@ import net.laoyeye.yyblog.mapper.MenuMapper;
 import net.laoyeye.yyblog.service.MenuService;
 @Service
 public class MenuServiceImpl implements MenuService {
-	@Autowired
-	private MenuMapper menuMapper;
-	
-	@Override
-	public Set<String> listPerms(Long userId) {
-		List<String> perms = menuMapper.listUserPerms(userId);
-		Set<String> permsSet = new HashSet<>();
-		for (String perm : perms) {
-			if (StringUtils.isNotBlank(perm)) {
-				permsSet.addAll(Arrays.asList(perm.trim().split(",")));
-			}
-		}
-		return permsSet;
-	}
+    @Autowired
+    private MenuMapper menuMapper;
+    
+    @Override
+    public Set<String> listPerms(Long userId) {
+        List<String> perms = menuMapper.listUserPerms(userId);
+        Set<String> permsSet = new HashSet<>();
+        for (String perm : perms) {
+            if (StringUtils.isNotBlank(perm)) {
+                permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+            }
+        }
+        return permsSet;
+    }
 
 }

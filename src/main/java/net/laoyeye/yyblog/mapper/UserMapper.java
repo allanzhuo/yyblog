@@ -8,19 +8,19 @@ import net.laoyeye.yyblog.model.UserDO;
 
 public interface UserMapper {
 
-	UserDO getUserByName(String username);
+    UserDO getUserByName(String username);
 
-	UserDO getUserById(long id);
-	
-	List<UserDO> listUserByNickname(@Param("nickname") String nickname);
-	
-	int update(UserDO user);
-	
-	int updateByUsername(UserDO user);
-	
-	UserDO getUserByOpenId(String openId);
-	
-	int save(UserDO user);
-	
-	String getNicknameById(long id);
+    UserDO getUserById(long id);
+    
+    List<UserDO> listUserByNickname(@Param("nickname") String nickname);
+    
+    int update(UserDO user);
+    
+    int updateByUsername(UserDO user);
+    
+    UserDO getUserByOpenId(String openId);
+    
+    int save(UserDO user);
+    
+    String getNicknameById(long id);
 }

@@ -10,12 +10,11 @@ import net.laoyeye.yyblog.annotation.Log;
 @RequestMapping("/management/file")
 public class FileController {
 
-	@Log("打开资源管理页面")
-	@RequiresPermissions("blog:file:index")
+    @Log("打开资源管理页面")
+    @RequiresPermissions("blog:file:index")
     @RequestMapping
     public String file() {
         return "management/file";
     }
 
-   
 }

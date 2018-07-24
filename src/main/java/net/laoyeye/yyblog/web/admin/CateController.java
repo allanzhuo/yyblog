@@ -20,9 +20,9 @@ import net.laoyeye.yyblog.service.CateService;
 @Controller
 @RequestMapping("/management/cate")
 public class CateController {
-	@Autowired
-	private CateService cateService;
-	
+    @Autowired
+    private CateService cateService;
+    
     @RequestMapping
     public String cate() {
     
@@ -32,28 +32,28 @@ public class CateController {
     @GetMapping("/list")
     @ResponseBody
     public DataGridResult listCate(int page, int limit) {
-    	DataGridResult result = cateService.listPageCate(page, limit);
+        DataGridResult result = cateService.listPageCate(page, limit);
         return result;
     }
 
     @PostMapping("/add")
     @ResponseBody
     public YYBlogResult add(CateDO cate) {
-    	YYBlogResult result = cateService.save(cate);
-    	return result;
+        YYBlogResult result = cateService.save(cate);
+        return result;
     }
 
     @PostMapping("/delete")
     @ResponseBody
     public YYBlogResult delete(long id) {
-    	
+        
         return cateService.delete(id);
     }
 
     @PostMapping("/edit")
     @ResponseBody
     public YYBlogResult edit(CateDO cate) {
-    	
+        
         return cateService.updateById(cate);
     }
 }

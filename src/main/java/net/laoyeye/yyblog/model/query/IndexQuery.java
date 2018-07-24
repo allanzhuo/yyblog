@@ -11,11 +11,11 @@ public class IndexQuery extends BaseQuery {
 
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	private String title;
+    private String title;
 
     private String textContent;
 
@@ -25,38 +25,38 @@ public class IndexQuery extends BaseQuery {
 
 
     public void setTitle(String title) {
-    	title = UrlUtils.urlDecode(title, "UTF-8");
+        title = UrlUtils.urlDecode(title, "UTF-8");
         this.title = Injection.stripSqlXSS(title);
     }
 
     public void setTextContent(String textContent) {
-    	textContent = UrlUtils.urlDecode(textContent, "UTF-8");
+        textContent = UrlUtils.urlDecode(textContent, "UTF-8");
         this.textContent = Injection.stripSqlXSS(textContent);
     }
 
-	public Long getCateId() {
-		return cateId;
-	}
+    public Long getCateId() {
+        return cateId;
+    }
 
-	public void setCateId(Long cateId) {
-		this.cateId = cateId;
-	}
+    public void setCateId(Long cateId) {
+        this.cateId = cateId;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getTextContent() {
-		return textContent;
-	}
+    public String getTextContent() {
+        return textContent;
+    }
 
-	public String getTag() {
-		return tag;
-	}
+    public String getTag() {
+        return tag;
+    }
 
-	public void setTag(String tag) {
-		tag = UrlUtils.urlDecode(tag, "UTF-8");
-		this.tag = tag;
-	}
+    public void setTag(String tag) {
+        tag = UrlUtils.urlDecode(tag, "UTF-8");
+        this.tag = tag;
+    }
 
 }

@@ -37,7 +37,7 @@ public class WebUtils {
       String ip;
       try
       {
-    	  	ip = request.getHeader("x-forwarded-for");
+              ip = request.getHeader("x-forwarded-for");
         if ((StringUtils.isEmpty(ip)) || ("unknown".equalsIgnoreCase(ip))) {
           ip = request.getHeader("Proxy-Client-IP");
         }
@@ -67,7 +67,7 @@ public class WebUtils {
     }*/
 
     public static IpInfoBO getIpInfo(String ip) {
-    	ip = "222.71.208.120";
+        ip = "222.71.208.120";
         String url = "http://ip.taobao.com/service/getIpInfo.php?ip=" + ip;
         String resp = HttpClientUtil.doGet(url);
         return JSONUtils.jsonToBean(resp, IpInfoBO.class);

@@ -39,8 +39,8 @@ public class COSClientUtils {
     private COSClient cOSClient;  
   
     public COSClientUtils(String secretId, String secretKey,String region) {
-    	COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
-    	ClientConfig clientConfig = new ClientConfig(new Region(region));  
+        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
+        ClientConfig clientConfig = new ClientConfig(new Region(region));  
         cOSClient = new COSClient(cred, clientConfig);  
     }
 
@@ -185,16 +185,16 @@ public class COSClientUtils {
         return "image/jpeg";  
     }  
   
-/*	public static void main(String[] args) throws FileNotFoundException {
-		COSClientUtils cosClientUtil = new COSClientUtils();  
-		String name = "123.jpg";
-		File localFile = new File("E:/b.png");
-		FileInputStream fileInputStream = new FileInputStream(localFile);
+/*    public static void main(String[] args) throws FileNotFoundException {
+        COSClientUtils cosClientUtil = new COSClientUtils();  
+        String name = "123.jpg";
+        File localFile = new File("E:/b.png");
+        FileInputStream fileInputStream = new FileInputStream(localFile);
         String name = cosClientUtil.uploadFile2Cos(fileInputStream,"456.png");  
         String imgUrl = cosClientUtil.getImgUrl(name);  
 
-		System.out.println(imgUrl);
-		cosClientUtil.destory();
+        System.out.println(imgUrl);
+        cosClientUtil.destory();
 
-	}*/
+    }*/
 }  

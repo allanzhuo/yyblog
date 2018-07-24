@@ -42,34 +42,34 @@ import java.util.Map;
 @Controller
 @RequestMapping("/article")
 public class ArticleController extends BaseController{
-	@Autowired
-	private ArticleService articleService;
-	@Autowired
-	private SettingService settingService;
-	@Autowired
-	private CateService cateService;
-	@Autowired
-	private TagReferService tagReferService;
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private ArticleService articleService;
+    @Autowired
+    private SettingService settingService;
+    @Autowired
+    private CateService cateService;
+    @Autowired
+    private TagReferService tagReferService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private ArticleMapper articleMapper;
     @Autowired
     private CommentService commentService;
-	
-	@ApiOperation(value="文章查询接口")
+    
+    @ApiOperation(value="文章查询接口")
     @ApiImplicitParam(name = "id", value = "文章ID", required = true, dataType = "Long")
     @GetMapping("/{id}")
     public String index(Model model, @PathVariable("id") Long id) {
         try {
-        	articleService.updateViewsById(id);
+            articleService.updateViewsById(id);
         } catch (Exception ignore) {
         }
         List<SettingDO> settings = settingService.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
         for (SettingDO setting : settings) {
-        	map.put(setting.getCode(), setting.getValue());
-		}
+            map.put(setting.getCode(), setting.getValue());
+        }
         ArticleDO article = articleService.getArticleById(id);
         model.addAttribute("settings", map);
         model.addAttribute("cateList", cateService.listAllCate());
@@ -88,16 +88,16 @@ public class ArticleController extends BaseController{
         return "frontend/article";
     }
     
-	@ApiOperation(value="文章评论查询接口")
+    @ApiOperation(value="文章评论查询接口")
     @PostMapping("/comments")
     @ResponseBody
     public DataGridResult comments(CommentQuery query) {
-    	//设置默认10
-    	query.setLimit(10);
+        //设置默认10
+        query.setLimit(10);
         return commentService.listCommentByArticleId(query);
     }
-	
-	@ApiOperation(value="文章点赞接口")
+    
+    @ApiOperation(value="文章点赞接口")
     @ApiImplicitParam(name = "articleId", value = "文章ID", required = true, dataType = "Long")
     @PostMapping("/approve")
     @ResponseBody

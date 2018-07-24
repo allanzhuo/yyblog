@@ -10,19 +10,19 @@ import net.laoyeye.yyblog.service.AboutService;
 
 @Service
 public class AboutServiceImpl implements AboutService{
-	@Autowired
-	private AboutMapper aboutMapper;
+    @Autowired
+    private AboutMapper aboutMapper;
 
-	@Override
-	public YYBlogResult updateByTab(AboutDO about) {
-		aboutMapper.updateByTab(about);
-		return YYBlogResult.ok();
-	}
+    @Override
+    public YYBlogResult updateByTab(AboutDO about) {
+        aboutMapper.updateByTab(about);
+        return YYBlogResult.ok();
+    }
 
-	@Override
-	public AboutDO getAboutByTab(String tab) {
+    @Override
+    public AboutDO getAboutByTab(String tab) {
 
-		return aboutMapper.getAboutByTab(tab);
-	}
+        return aboutMapper.getAboutByTab(tab);
+    }
 
 }

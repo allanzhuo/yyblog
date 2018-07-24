@@ -21,9 +21,9 @@ import net.laoyeye.yyblog.service.KeywordService;
 @Controller
 @RequestMapping("/management/keyword")
 public class KeywordController {
-	@Autowired
-	private KeywordService keywordService;
-	
+    @Autowired
+    private KeywordService keywordService;
+    
     @GetMapping
     public String index() {
         return "management/keyword";
@@ -32,8 +32,8 @@ public class KeywordController {
     @GetMapping("/list")
     @ResponseBody
     public DataGridResult listKeyword(BaseQuery query) {
-    	DataGridResult result = keywordService.listPageKeyword(query);
-    	return result;
+        DataGridResult result = keywordService.listPageKeyword(query);
+        return result;
     }
     
     @PostMapping("/add")
@@ -60,7 +60,7 @@ public class KeywordController {
     @PostMapping("/edit/words")
     @ResponseBody
     public YYBlogResult editWords(KeywordDO keyword) {
-    	
+        
         return keywordService.update(keyword);
     }
 

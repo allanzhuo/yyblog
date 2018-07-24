@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface TagReferService {
 
-	List<String> listNameByArticleId(long id);
+    List<String> listNameByArticleId(long id);
 }

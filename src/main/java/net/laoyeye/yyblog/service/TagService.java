@@ -7,11 +7,11 @@ import net.laoyeye.yyblog.model.TagDO;
 import net.laoyeye.yyblog.model.query.TagQuery;
 
 public interface TagService {
-	List<TagDO> listAllTag();
-	
-	DataGridResult listPageTag(TagQuery query);
-	
-	YYBlogResult updateById(TagDO tag);
-	
-	YYBlogResult delete(Long id);
+    List<TagDO> listAllTag();
+    
+    DataGridResult listPageTag(TagQuery query);
+    
+    YYBlogResult updateById(TagDO tag);
+    
+    YYBlogResult delete(Long id);
 }

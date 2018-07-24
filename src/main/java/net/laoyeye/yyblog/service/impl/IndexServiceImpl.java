@@ -49,14 +49,14 @@ public class IndexServiceImpl implements IndexService {
         List<SettingDO> settings = settingMapper.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
         for (SettingDO setting : settings) {
-        	if (setting.getCode().equals(SettingCosEnum.SECRET_ID.getCode())
-        			||setting.getCode().equals(SettingCosEnum.SECRET_KEY.getCode())
-        				||setting.getCode().equals(SettingCosEnum.BUCKET.getCode())
-        					||setting.getCode().equals(SettingCosEnum.REGION.getCode())) {
-				continue;
-			}
-        	map.put(setting.getCode(), setting.getValue());
-		}
+            if (setting.getCode().equals(SettingCosEnum.SECRET_ID.getCode())
+                    ||setting.getCode().equals(SettingCosEnum.SECRET_KEY.getCode())
+                        ||setting.getCode().equals(SettingCosEnum.BUCKET.getCode())
+                            ||setting.getCode().equals(SettingCosEnum.REGION.getCode())) {
+                continue;
+            }
+            map.put(setting.getCode(), setting.getValue());
+        }
         int articleCount = articleMapper.countArticle();
         List<CateDO> cateList = cateMapper.listAllCate();
         PageHelper.startPage(1, 10); 
@@ -75,24 +75,24 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public IndexArticleVO next(IndexQuery query) {
-    	
-    	PageHelper.startPage(query.getPage(), query.getLimit()); 
-    	List<ArticleVO> list = articleMapper.listIndexArticle(query);
-		//取记录总条数
-		PageInfo<ArticleVO> pageInfo = new PageInfo<ArticleVO>(list);
-		long total = pageInfo.getTotal();
-		Map<Long,Object> map = new HashMap<Long,Object>();
-		for (ArticleVO articleVo : list) {
-			List<TagDO> listTag = tagMapper.listTagByReferId(articleVo.getId());
-			map.put(articleVo.getId(), listTag);
-		}
-		IndexArticleVO vo = new IndexArticleVO();
-		vo.setData(list);
-		vo.setTags(map);
-		long totalPage = total % query.getLimit() == 0 ? total / query.getLimit():total / query.getLimit() + 1;
-		vo.setTotalPage(totalPage);
-		vo.setTotalCount(total);
-		vo.setCode(200);
-		return vo;
+        
+        PageHelper.startPage(query.getPage(), query.getLimit()); 
+        List<ArticleVO> list = articleMapper.listIndexArticle(query);
+        //取记录总条数
+        PageInfo<ArticleVO> pageInfo = new PageInfo<ArticleVO>(list);
+        long total = pageInfo.getTotal();
+        Map<Long,Object> map = new HashMap<Long,Object>();
+        for (ArticleVO articleVo : list) {
+            List<TagDO> listTag = tagMapper.listTagByReferId(articleVo.getId());
+            map.put(articleVo.getId(), listTag);
+        }
+        IndexArticleVO vo = new IndexArticleVO();
+        vo.setData(list);
+        vo.setTags(map);
+        long totalPage = total % query.getLimit() == 0 ? total / query.getLimit():total / query.getLimit() + 1;
+        vo.setTotalPage(totalPage);
+        vo.setTotalCount(total);
+        vo.setCode(200);
+        return vo;
     }
 }

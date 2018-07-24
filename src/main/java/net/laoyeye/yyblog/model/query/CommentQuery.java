@@ -8,17 +8,17 @@ package net.laoyeye.yyblog.model.query;
  */
 public class CommentQuery extends BaseQuery {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Long articleId;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Long articleId;
 
-	public Long getArticleId() {
-		return articleId;
-	}
+    public Long getArticleId() {
+        return articleId;
+    }
 
-	public void setArticleId(Long articleId) {
-		this.articleId = articleId;
-	}
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
+    }
 }

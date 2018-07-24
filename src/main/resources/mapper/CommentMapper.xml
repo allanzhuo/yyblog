@@ -1,58 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.laoyeye.yyblog.mapper.CommentMapper">
-	
-	<!-- 查询评论总数量 -->
-	<select id="countAllComment" resultType="Integer">
-		SELECT
-			COUNT(*)
-		FROM
-			T_COMMENT
-	</select>
-	<!-- 查询最新评论 -->
-	<select id="getLatestComment" resultType="net.laoyeye.yyblog.model.vo.CommentVO">
-		SELECT
-			TC.*, 
-			SU.NICKNAME,
-			TA.TITLE
-		FROM
-			T_COMMENT TC,
-			SYS_USER SU,
-			T_ARTICLE TA
-		WHERE
-			SU.ID = TC.USER_ID
-		AND TA.ID = TC.ARTICLE_ID
-		ORDER BY
-			TC.CREATE_TIME DESC
-		LIMIT 1
-	</select>
-	<!-- 根据文章Id，查询对应的评论 -->
-	<select id="listCommentByArticleId" parameterType="java.lang.Long"  resultType="net.laoyeye.yyblog.model.vo.CommentVO">
-		SELECT
-			TC.*, 
-			SU.NICKNAME,
-			SU.AVATAR,
-			TA.TITLE
-		FROM
-			T_COMMENT TC,
-			SYS_USER SU,
-			T_ARTICLE TA
-		WHERE
-			SU.ID = TC.USER_ID
-		AND TA.ID = TC.ARTICLE_ID
-		AND TC.ARTICLE_ID = #{articleId}
-		ORDER BY
-			TC.CREATE_TIME ASC
-	</select>
-	
-	<insert id="insert" parameterType="net.laoyeye.yyblog.model.CommentDO" >
-	  INSERT INTO T_COMMENT (ID, USER_ID, ARTICLE_ID, 
-      CONTENT, IP_ADDR, IP_CN_ADDR, 
-      PARENT_ID, ENABLE, CREATE_TIME
-      )
-    	VALUES (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{articleId,jdbcType=BIGINT}, 
-      #{content,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipCnAddr,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=VARCHAR}, #{enable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}
-      )
-   </insert>
+
+    <!-- 查询评论总数量 -->
+    <select id="countAllComment" resultType="Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        T_COMMENT
+    </select>
+    <!-- 查询最新评论 -->
+    <select id="getLatestComment" resultType="net.laoyeye.yyblog.model.vo.CommentVO">
+        SELECT
+        TC.*,
+        SU.NICKNAME,
+        TA.TITLE
+        FROM
+        T_COMMENT TC,
+        SYS_USER SU,
+        T_ARTICLE TA
+        WHERE
+        SU.ID = TC.USER_ID
+        AND TA.ID = TC.ARTICLE_ID
+        ORDER BY
+        TC.CREATE_TIME DESC
+        LIMIT 1
+    </select>
+    <!-- 根据文章Id，查询对应的评论 -->
+    <select id="listCommentByArticleId" parameterType="java.lang.Long"
+        resultType="net.laoyeye.yyblog.model.vo.CommentVO">
+        SELECT
+        TC.*,
+        SU.NICKNAME,
+        SU.AVATAR,
+        TA.TITLE
+        FROM
+        T_COMMENT TC,
+        SYS_USER SU,
+        T_ARTICLE TA
+        WHERE
+        SU.ID = TC.USER_ID
+        AND TA.ID = TC.ARTICLE_ID
+        AND TC.ARTICLE_ID = #{articleId}
+        ORDER BY
+        TC.CREATE_TIME ASC
+    </select>
+
+    <insert id="insert" parameterType="net.laoyeye.yyblog.model.CommentDO">
+        INSERT INTO T_COMMENT (ID, USER_ID, ARTICLE_ID,
+        CONTENT, IP_ADDR, IP_CN_ADDR,
+        PARENT_ID, ENABLE, CREATE_TIME
+        )
+        VALUES (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+        #{articleId,jdbcType=BIGINT},
+        #{content,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipCnAddr,jdbcType=VARCHAR},
+        #{parentId,jdbcType=VARCHAR}, #{enable,jdbcType=BIT},
+        #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
 </mapper>

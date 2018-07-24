@@ -6,12 +6,12 @@ import net.laoyeye.yyblog.model.UserDO;
 import net.laoyeye.yyblog.model.query.UserQuery;
 
 public interface UserService {
-	
-	DataGridResult listPageUser(UserQuery query);
-	
-	YYBlogResult updateEnableById(Long id, Boolean enable);
-	
-	YYBlogResult updateByUsername(UserDO user);
-	
-	String getNicknameById(long id);
+    
+    DataGridResult listPageUser(UserQuery query);
+    
+    YYBlogResult updateEnableById(Long id, Boolean enable);
+    
+    YYBlogResult updateByUsername(UserDO user);
+    
+    String getNicknameById(long id);
 }

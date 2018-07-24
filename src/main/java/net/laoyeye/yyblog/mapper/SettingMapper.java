@@ -5,9 +5,9 @@ import net.laoyeye.yyblog.model.SettingDO;
 
 public interface SettingMapper {
 
-	List<SettingDO> listAll();
+    List<SettingDO> listAll();
 
-	String getValueByCode(String code);
-	
-	int updateValueByCode(SettingDO setting);
+    String getValueByCode(String code);
+    
+    int updateValueByCode(SettingDO setting);
 }

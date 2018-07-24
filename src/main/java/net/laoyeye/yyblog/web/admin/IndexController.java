@@ -28,20 +28,20 @@ import org.springframework.web.bind.annotation.*;
 @Controller("adminIndexController")
 @RequestMapping("/management")
 public class IndexController extends BaseController{
-	@Autowired
-	private ArticleService articleService;
-	@Autowired
-	private CateService cateService;
-	@Autowired
-	private CommentService commentService;
-	@Autowired
-	private NoteService noteService;
+    @Autowired
+    private ArticleService articleService;
+    @Autowired
+    private CateService cateService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private NoteService noteService;
 
-	@RequiresPermissions("blog:manage:index")
+    @RequiresPermissions("blog:manage:index")
     @GetMapping("/index")
     public String index(Model model) {
-    	UserDO user = getUser();
-    	model.addAttribute("avatar", user.getAvatar());
+        UserDO user = getUser();
+        model.addAttribute("avatar", user.getAvatar());
         model.addAttribute("nickname", user.getNickname());
         return "management/index";
     }
@@ -58,8 +58,8 @@ public class IndexController extends BaseController{
         return "management/home";
     }
 
-	@Log("保存文章")
-	@RequiresPermissions("blog:blog:add")
+    @Log("保存文章")
+    @RequiresPermissions("blog:blog:add")
     @PostMapping("/simple/add/article")
     @ResponseBody
     public YYBlogResult simplePostArticle(ArticleDO article) {
@@ -67,12 +67,12 @@ public class IndexController extends BaseController{
             return YYBlogResult.build(500, "草稿字数不宜过多！");
         }
         UserDO user = getUser();
-		article.setAuthorId(user.getId());
+        article.setAuthorId(user.getId());
         return articleService.saveSimpleArticle(article);
     }
    
-	@Log("保存笔记")
-	@RequiresPermissions("blog:note:add")
+    @Log("保存笔记")
+    @RequiresPermissions("blog:note:add")
     @PostMapping("/simple/add/note")
     @ResponseBody
     public YYBlogResult simplePostNote(NoteDO note) {
@@ -84,7 +84,7 @@ public class IndexController extends BaseController{
 
     @GetMapping("/logout")
     public String logout(String from) {
-    	logout();
+        logout();
         if (StringUtils.isEmpty(from)) {
             return "redirect:/";
         } else {

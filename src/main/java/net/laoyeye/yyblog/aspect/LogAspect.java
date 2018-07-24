@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAspect {
     @SuppressWarnings("unused")
-	private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     @Autowired
     LogService logService;
@@ -74,13 +74,13 @@ public class LogAspect {
             String params = Arrays.toString(args);
             //太长的没啥意义
             if (params.length() > 4999) {
-            	params = null;
-			}
+                params = null;
+            }
             sysLog.setParams(params);
             String params2 = JSONUtils.beanToJson(args[0]);
             if (params2.length() > 4999) {
-            	params2 = null;
-			}
+                params2 = null;
+            }
             sysLog.setParams2(params2);
         } catch (Exception e) {
 

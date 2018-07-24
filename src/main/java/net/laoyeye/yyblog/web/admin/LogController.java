@@ -25,48 +25,48 @@ import net.laoyeye.yyblog.service.LogService;
 @Controller
 @RequestMapping("/management/log")
 public class LogController{
-	@Autowired
-	private LogService logService;
+    @Autowired
+    private LogService logService;
 
-	@GetMapping
-	public String logIndex() {
-		return "management/log";
-	}
+    @GetMapping
+    public String logIndex() {
+        return "management/log";
+    }
 
-	@ResponseBody
-	@PostMapping("/list")
-	public DataGridResult list(LogQuery query) {
-		// 查询列表数据
-		DataGridResult result = logService.list(query);
-		return result;
-	}
+    @ResponseBody
+    @PostMapping("/list")
+    public DataGridResult list(LogQuery query) {
+        // 查询列表数据
+        DataGridResult result = logService.list(query);
+        return result;
+    }
 
-	/**
-	 * 删除
-	 */
-	@Log("删除日志")
-	@RequiresPermissions("sys:log:delete")
-	@PostMapping("/remove/{id}")
-	@ResponseBody
-	public YYBlogResult remove(@PathVariable("id") Long id) {
-		if (logService.remove(id) > 0) {
-			return YYBlogResult.ok();
-		}
-		return YYBlogResult.build(403, "删除任务失败！");
-	}
+    /**
+     * 删除
+     */
+    @Log("删除日志")
+    @RequiresPermissions("sys:log:delete")
+    @PostMapping("/remove/{id}")
+    @ResponseBody
+    public YYBlogResult remove(@PathVariable("id") Long id) {
+        if (logService.remove(id) > 0) {
+            return YYBlogResult.ok();
+        }
+        return YYBlogResult.build(403, "删除任务失败！");
+    }
 
-	/**
-	 * 删除
-	 */
-	@Log("批量删除日志")
-	@RequiresPermissions("sys:log:delete")
-	@PostMapping("/removeBatch")
-	@ResponseBody
-	public YYBlogResult removeBatch(@RequestParam("ids[]") Long[] ids) {
-		if (logService.removeBatch(ids) > 0) {
-			return YYBlogResult.ok();
-		}
-		return YYBlogResult.build(403, "删除任务失败！");
-	}
-	
+    /**
+     * 删除
+     */
+    @Log("批量删除日志")
+    @RequiresPermissions("sys:log:delete")
+    @PostMapping("/removeBatch")
+    @ResponseBody
+    public YYBlogResult removeBatch(@RequestParam("ids[]") Long[] ids) {
+        if (logService.removeBatch(ids) > 0) {
+            return YYBlogResult.ok();
+        }
+        return YYBlogResult.build(403, "删除任务失败！");
+    }
+    
 }

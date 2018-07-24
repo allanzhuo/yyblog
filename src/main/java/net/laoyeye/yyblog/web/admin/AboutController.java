@@ -23,11 +23,11 @@ import net.laoyeye.yyblog.service.AboutService;
 @Controller("adminAboutontroller")
 @RequestMapping("/management/about")
 public class AboutController {
-	@Autowired
-	private AboutService aboutService;
+    @Autowired
+    private AboutService aboutService;
 
-	@Log("进入关于内容页面")
-	@RequiresPermissions("blog:about:index")
+    @Log("进入关于内容页面")
+    @RequiresPermissions("blog:about:index")
     @GetMapping
     public String about(Model model) {
         model.addAttribute("me", aboutService.getAboutByTab("about_me"));
@@ -36,19 +36,19 @@ public class AboutController {
         return "management/about";
     }
 
-	@Log("进入关于老爷爷页面")
+    @Log("进入关于老爷爷页面")
     @GetMapping("/blog")
     public String index() {
 
         return "management/aboutblog";
     }
 
-	@Log("修改关于信息")
-	@RequiresPermissions("blog:about:update")
+    @Log("修改关于信息")
+    @RequiresPermissions("blog:about:update")
     @PostMapping("/update")
     @ResponseBody
     public YYBlogResult update(AboutDO about) {
-    	
-    	return aboutService.updateByTab(about);
+        
+        return aboutService.updateByTab(about);
     }
 }

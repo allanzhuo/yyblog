@@ -10,17 +10,17 @@ import net.laoyeye.yyblog.service.TaskService;
 @Order(value = 1)
 public class ScheduleJobInitListener implements CommandLineRunner {
 
-	@Autowired
-	TaskService scheduleJobService;
+    @Autowired
+    TaskService scheduleJobService;
 
-	@Override
-	public void run(String... arg0) throws Exception {
-		try {
-			scheduleJobService.initSchedule();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    @Override
+    public void run(String... arg0) throws Exception {
+        try {
+            scheduleJobService.initSchedule();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 }

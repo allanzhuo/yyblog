@@ -10,13 +10,13 @@ import net.laoyeye.yyblog.service.TagReferService;
 
 @Service
 public class TagReferServiceImpl implements TagReferService {
-	@Autowired
-	private TagReferMapper tagReferMapper;
+    @Autowired
+    private TagReferMapper tagReferMapper;
 
-	@Override
-	public List<String> listNameByArticleId(long id) {
-	
-		return tagReferMapper.listNameByArticleId(id);
-	}
+    @Override
+    public List<String> listNameByArticleId(long id) {
+    
+        return tagReferMapper.listNameByArticleId(id);
+    }
 
 }

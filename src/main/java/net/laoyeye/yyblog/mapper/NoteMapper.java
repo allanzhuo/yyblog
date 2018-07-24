@@ -9,17 +9,17 @@ import net.laoyeye.yyblog.model.vo.NoteVO;
 
 public interface NoteMapper {
 
-	int countAllNote();
+    int countAllNote();
 
-	NoteVO getLatestNote();
-	
-	int saveNote(NoteDO note);
-	
-	List<NoteDO> listNoteByTitle(@Param("title")String title);
-	
-	int update(NoteDO note);
-	
-	int delete(long id);
-	
-	NoteDO getNoteById(Long id);
+    NoteVO getLatestNote();
+    
+    int saveNote(NoteDO note);
+    
+    List<NoteDO> listNoteByTitle(@Param("title")String title);
+    
+    int update(NoteDO note);
+    
+    int delete(long id);
+    
+    NoteDO getNoteById(Long id);
 }

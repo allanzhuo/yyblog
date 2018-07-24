@@ -1,100 +1,100 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.laoyeye.yyblog.mapper.LogMapper">
-	<resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.LogDO">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="user_id" property="userId" jdbcType="BIGINT" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
-		<result column="operation" property="operation" jdbcType="VARCHAR" />
-		<result column="time" property="time" jdbcType="INTEGER" />
-		<result column="method" property="method" jdbcType="VARCHAR" />
-		<result column="params" property="params" jdbcType="VARCHAR" />
-		<result column="params2" property="params2" jdbcType="VARCHAR" />
-		<result column="ip" property="ip" jdbcType="VARCHAR" />
-		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, user_id, username, operation, time, method, params, params2, ip,
-		create_time
-	</sql>
-	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from sys_log
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-	<select id="listByUsernameAndOperation" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from sys_log
-		<where>
-			<if test="username != null">
-				and username LIKE CONCAT('%',#{username},'%')
-			</if>
-			<if test="operation != null">
-				and operation LIKE CONCAT('%',#{operation},'%')
-			</if>
-		</where>
-		order by create_time desc
-	</select>
+    <resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.LogDO">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="operation" property="operation" jdbcType="VARCHAR" />
+        <result column="time" property="time" jdbcType="INTEGER" />
+        <result column="method" property="method" jdbcType="VARCHAR" />
+        <result column="params" property="params" jdbcType="VARCHAR" />
+        <result column="params2" property="params2" jdbcType="VARCHAR" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, username, operation, time, method, params, params2, ip,
+        create_time
+    </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from sys_log
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="listByUsernameAndOperation" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_log
+        <where>
+            <if test="username != null">
+                and username LIKE CONCAT('%',#{username},'%')
+            </if>
+            <if test="operation != null">
+                and operation LIKE CONCAT('%',#{operation},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 
-	<insert id="save" parameterType="net.laoyeye.yyblog.model.LogDO">
-		insert into sys_log (id, user_id, username,
-		operation, time, method,
-		params, params2, ip,
-		create_time)
-		values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
-		#{username,jdbcType=VARCHAR},
-		#{operation,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR},
-		#{params,jdbcType=VARCHAR}, #{params2,jdbcType=VARCHAR},
-		#{ip,jdbcType=VARCHAR},
-		#{createTime,jdbcType=TIMESTAMP})
-	</insert>
+    <insert id="save" parameterType="net.laoyeye.yyblog.model.LogDO">
+        insert into sys_log (id, user_id, username,
+        operation, time, method,
+        params, params2, ip,
+        create_time)
+        values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
+        #{username,jdbcType=VARCHAR},
+        #{operation,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR},
+        #{params,jdbcType=VARCHAR}, #{params2,jdbcType=VARCHAR},
+        #{ip,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
 
-	<update id="update" parameterType="net.laoyeye.yyblog.model.LogDO">
-		update sys_log
-		<set>
-			<if test="userId != null">
-				user_id = #{userId,jdbcType=BIGINT},
-			</if>
-			<if test="username != null">
-				username = #{username,jdbcType=VARCHAR},
-			</if>
-			<if test="operation != null">
-				operation = #{operation,jdbcType=VARCHAR},
-			</if>
-			<if test="time != null">
-				time = #{time,jdbcType=INTEGER},
-			</if>
-			<if test="method != null">
-				method = #{method,jdbcType=VARCHAR},
-			</if>
-			<if test="params != null">
-				params = #{params,jdbcType=VARCHAR},
-			</if>
-			<if test="params2 != null">
-				params2 = #{params2,jdbcType=VARCHAR},
-			</if>
-			<if test="ip != null">
-				ip = #{ip,jdbcType=VARCHAR},
-			</if>
-			<if test="createTime != null">
-				create_time = #{createTime,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
+    <update id="update" parameterType="net.laoyeye.yyblog.model.LogDO">
+        update sys_log
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="operation != null">
+                operation = #{operation,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=INTEGER},
+            </if>
+            <if test="method != null">
+                method = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="params != null">
+                params = #{params,jdbcType=VARCHAR},
+            </if>
+            <if test="params2 != null">
+                params2 = #{params2,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 
-	<delete id="remove" parameterType="java.lang.Long">
-		delete from sys_log
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from sys_log
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
 
-	<delete id="removeBatch">
-		delete from sys_log where id in
-		<foreach item="id" collection="array" open="(" separator=","
-			close=")">
-			#{id}
-		</foreach>
-	</delete>
+    <delete id="removeBatch">
+        delete from sys_log where id in
+        <foreach item="id" collection="array" open="(" separator=","
+            close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

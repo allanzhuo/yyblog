@@ -38,8 +38,8 @@ public class AboutController {
         List<SettingDO> settings = settingMapper.listAll();
         Map<String,Object> map = new HashMap<String,Object>();
         for (SettingDO setting : settings) {
-        	map.put(setting.getCode(), setting.getValue());
-		}
+            map.put(setting.getCode(), setting.getValue());
+        }
         model.addAttribute("settings", map);
         model.addAttribute("abouts", aboutMapper.listAll());
         return "frontend/about";

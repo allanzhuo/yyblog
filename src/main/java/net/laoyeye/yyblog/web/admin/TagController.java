@@ -16,8 +16,8 @@ import net.laoyeye.yyblog.service.TagService;
 @Controller
 @RequestMapping("/management/tag")
 public class TagController {
-	@Autowired
-	private TagService tagService;
+    @Autowired
+    private TagService tagService;
 
     @RequestMapping
     public String tag() {
@@ -27,21 +27,21 @@ public class TagController {
     @GetMapping("/list")
     @ResponseBody
     public DataGridResult listTag(TagQuery query) {
-    	DataGridResult result = tagService.listPageTag(query);
-    	return result;
+        DataGridResult result = tagService.listPageTag(query);
+        return result;
     }
 
     @PostMapping("/edit")
     @ResponseBody
     public YYBlogResult edit(TagDO tag) {
-    	
+        
         return tagService.updateById(tag);
     }
 
     @PostMapping("/delete")
     @ResponseBody
     public YYBlogResult delete(long id) {
-    	
+        
         return tagService.delete(id);       
     }
 

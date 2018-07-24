@@ -53,28 +53,28 @@ public class NKBlogResult {
 //        return this.code == 200;
 //    }
 
-	public Integer getCode() {
-		return code;
-	}
+    public Integer getCode() {
+        return code;
+    }
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
     public String getMessage() {
-		return message;
-	}
+        return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Object getItem() {
-		return item;
-	}
+        return item;
+    }
 
-	public void setItem(Object item) {
-		this.item = item;
-	}
+    public void setItem(Object item) {
+        this.item = item;
+    }
 
 }

@@ -27,7 +27,7 @@ public class LogDO {
     private String params2;
 
     private String ip;
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public Long getId() {

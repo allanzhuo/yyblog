@@ -11,28 +11,28 @@ import net.laoyeye.yyblog.service.SettingService;
 
 @Service
 public class SettingServiceImpl implements SettingService{
-	@Autowired
-	private SettingMapper settingMapper;
-	
-	@Override
-	public List<SettingDO> listAll() {
+    @Autowired
+    private SettingMapper settingMapper;
+    
+    @Override
+    public List<SettingDO> listAll() {
 
-		return settingMapper.listAll();
-	}
+        return settingMapper.listAll();
+    }
 
-	@Override
-	public String getValueByCode(String code) {
-	
-		return settingMapper.getValueByCode(code);
-	}
+    @Override
+    public String getValueByCode(String code) {
+    
+        return settingMapper.getValueByCode(code);
+    }
 
-	@Override
-	public YYBlogResult updateValueByCode(SettingDO setting) {
-		int count = settingMapper.updateValueByCode(setting);
-		if (count != 1) {
-			YYBlogResult.build(500, "更新配置信息失败！");
-		}
-		return YYBlogResult.ok();
-	}
+    @Override
+    public YYBlogResult updateValueByCode(SettingDO setting) {
+        int count = settingMapper.updateValueByCode(setting);
+        if (count != 1) {
+            YYBlogResult.build(500, "更新配置信息失败！");
+        }
+        return YYBlogResult.ok();
+    }
 
 }

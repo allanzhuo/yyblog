@@ -10,11 +10,11 @@ import java.util.Date;
  */
 public class TaskDO implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	private Long id;
+    private Long id;
     // 任务名
     private String jobName;
     // 任务描述

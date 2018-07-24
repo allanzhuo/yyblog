@@ -1,131 +1,131 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.laoyeye.yyblog.mapper.UserMapper">
-	<sql id="Base_Column_List" >
-    	ID,
-		USERNAME,
-		NICKNAME,
-		PASSWORD,
-		AVATAR,
-		EMAIL,
-		ENABLE,
-		OPEN_ID,
-		CREATE_TIME,
-		UPDATE_TIME
- 	</sql>
-	<select id="getUserByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
-	    SELECT 
-	    <include refid="Base_Column_List" />
-	    FROM SYS_USER
-	    WHERE USERNAME = #{username}
-	    AND ENABLE = true
-	</select>
-	<select id="getUserById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.UserDO" >
-	    SELECT 
-	    <include refid="Base_Column_List" />
-	    FROM SYS_USER
-	    WHERE ID = #{id}
-	</select>
+    <sql id="Base_Column_List" >
+        ID,
+        USERNAME,
+        NICKNAME,
+        PASSWORD,
+        AVATAR,
+        EMAIL,
+        ENABLE,
+        OPEN_ID,
+        CREATE_TIME,
+        UPDATE_TIME
+     </sql>
+    <select id="getUserByName" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM SYS_USER
+        WHERE USERNAME = #{username}
+        AND ENABLE = true
+    </select>
+    <select id="getUserById" parameterType="java.lang.Long" resultType="net.laoyeye.yyblog.model.UserDO" >
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM SYS_USER
+        WHERE ID = #{id}
+    </select>
 
-	<!-- 查询出所有的用户信息（不包括管理员） -->
-	<select id="listUserByNickname" resultType="net.laoyeye.yyblog.model.UserDO">
-		SELECT
-			<include refid="Base_Column_List" />
-		FROM
-			SYS_USER
-		<where>
-			<if test="nickname != null" >
-				AND NICKNAME LIKE CONCAT('%',#{nickname},'%')
-			</if>
-		</where>
-		ORDER BY CREATE_TIME
-	</select>
+    <!-- 查询出所有的用户信息（不包括管理员） -->
+    <select id="listUserByNickname" resultType="net.laoyeye.yyblog.model.UserDO">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM
+            SYS_USER
+        <where>
+            <if test="nickname != null" >
+                AND NICKNAME LIKE CONCAT('%',#{nickname},'%')
+            </if>
+        </where>
+        ORDER BY CREATE_TIME
+    </select>
 
-	<update id="update" parameterType="net.laoyeye.yyblog.model.UserDO">
-		UPDATE SYS_USER
-		<set>
-			<if test="username != null">
-				USERNAME = #{username,jdbcType=VARCHAR},
-			</if>
-			<if test="nickname != null">
-				NICKNAME = #{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				PASSWORD = #{password,jdbcType=VARCHAR},
-			</if>
-			<if test="avatar != null">
-				AVATAR = #{avatar,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				EMAIL = #{email,jdbcType=VARCHAR},
-			</if>
-			<if test="enable != null">
-				ENABLE = #{enable,jdbcType=BIT},
-			</if>
-			<if test="openId != null">
-				OPEN_ID = #{openId,jdbcType=VARCHAR},
-			</if>
-			<if test="createTime != null">
-				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updateTime != null">
-				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		WHERE ID = #{id,jdbcType=BIGINT}
-	</update>
-	
-	<update id="updateByUsername" parameterType="net.laoyeye.yyblog.model.UserDO">
-		UPDATE SYS_USER
-		<set>
-			<if test="nickname != null">
-				NICKNAME = #{nickname,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				PASSWORD = #{password,jdbcType=VARCHAR},
-			</if>
-			<if test="avatar != null">
-				AVATAR = #{avatar,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				EMAIL = #{email,jdbcType=VARCHAR},
-			</if>
-			<if test="enable != null">
-				ENABLE = #{enable,jdbcType=BIT},
-			</if>
-			<if test="openId != null">
-				OPEN_ID = #{openId,jdbcType=VARCHAR},
-			</if>
-			<if test="createTime != null">
-				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updateTime != null">
-				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		WHERE USERNAME = #{username,jdbcType=VARCHAR}
-	</update>
-	
-	<select id="getUserByOpenId" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
-	    SELECT 
-	    <include refid="Base_Column_List" />
-	    FROM SYS_USER
-	    WHERE OPEN_ID = #{openId,jdbcType=VARCHAR}
-	</select>
-	
-	<insert id="save" parameterType="net.laoyeye.yyblog.model.UserDO" >
-	    INSERT INTO SYS_USER (ID, USERNAME, NICKNAME, PASSWORD, AVATAR, EMAIL,
-	    ENABLE, OPEN_ID, CREATE_TIME, UPDATE_TIME)
-	    VALUES (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
-	    #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-	    #{enable,jdbcType=BIT}, #{openId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-	    #{updateTime,jdbcType=TIMESTAMP})
-	</insert>
+    <update id="update" parameterType="net.laoyeye.yyblog.model.UserDO">
+        UPDATE SYS_USER
+        <set>
+            <if test="username != null">
+                USERNAME = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                NICKNAME = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                AVATAR = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null">
+                ENABLE = #{enable,jdbcType=BIT},
+            </if>
+            <if test="openId != null">
+                OPEN_ID = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        WHERE ID = #{id,jdbcType=BIGINT}
+    </update>
+    
+    <update id="updateByUsername" parameterType="net.laoyeye.yyblog.model.UserDO">
+        UPDATE SYS_USER
+        <set>
+            <if test="nickname != null">
+                NICKNAME = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                AVATAR = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null">
+                ENABLE = #{enable,jdbcType=BIT},
+            </if>
+            <if test="openId != null">
+                OPEN_ID = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        WHERE USERNAME = #{username,jdbcType=VARCHAR}
+    </update>
+    
+    <select id="getUserByOpenId" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM SYS_USER
+        WHERE OPEN_ID = #{openId,jdbcType=VARCHAR}
+    </select>
+    
+    <insert id="save" parameterType="net.laoyeye.yyblog.model.UserDO" >
+        INSERT INTO SYS_USER (ID, USERNAME, NICKNAME, PASSWORD, AVATAR, EMAIL,
+        ENABLE, OPEN_ID, CREATE_TIME, UPDATE_TIME)
+        VALUES (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+        #{enable,jdbcType=BIT}, #{openId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
 
-	<select id="getNicknameById" parameterType="java.lang.Long" resultType="java.lang.String" >
-	    SELECT 
-	    	NICKNAME
-	    FROM SYS_USER
-	    WHERE ID = #{id,jdbcType=BIGINT}
-	</select>
+    <select id="getNicknameById" parameterType="java.lang.Long" resultType="java.lang.String" >
+        SELECT 
+            NICKNAME
+        FROM SYS_USER
+        WHERE ID = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>

@@ -670,15 +670,15 @@ public class DateUtils {
      * (这里用一句话描述这个方法的作用)
      * 方法名：formatDate
      */
-	public static String formatDate(String str) {
-		SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMdd");
-		SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
-		String sfstr = "";
-		try {
-			sfstr = sf2.format(sf1.parse(str));
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
-		}
-		return sfstr;
-	}
+    public static String formatDate(String str) {
+        SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
+        String sfstr = "";
+        try {
+            sfstr = sf2.format(sf1.parse(str));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return sfstr;
+    }
 }

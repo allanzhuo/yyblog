@@ -1,62 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="net.laoyeye.yyblog.mapper.RoleMapper" >
-  <resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.RoleDO" >
-    <id column="role_id" property="roleId" jdbcType="BIGINT" />
-    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
-    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="create_user" property="createUser" jdbcType="BIGINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    role_id, role_name, role_code, remark, create_user, create_time, update_user, update_time
-  </sql>
-  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from sys_role
-    where role_id = #{roleId,jdbcType=BIGINT}
-  </select>
-  <delete id="remove" parameterType="java.lang.Long" >
-    delete from sys_role
-    where role_id = #{roleId,jdbcType=BIGINT}
-  </delete>
-  <insert id="save" parameterType="net.laoyeye.yyblog.model.RoleDO" >
-    insert into sys_role (role_id, role_name, role_code, 
-      remark, create_user, create_time, 
-      update_user, update_time)
-    values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateUser,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <update id="update" parameterType="net.laoyeye.yyblog.model.RoleDO" >
-    update sys_role
-    <set >
-      <if test="roleName != null" >
-        role_name = #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="roleCode != null" >
-        role_code = #{roleCode,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createUser != null" >
-        create_user = #{createUser,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUser != null" >
-        update_user = #{updateUser,jdbcType=BIGINT},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where role_id = #{roleId,jdbcType=BIGINT}
-  </update>
+<mapper namespace="net.laoyeye.yyblog.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="net.laoyeye.yyblog.model.RoleDO">
+        <id column="role_id" property="roleId" jdbcType="BIGINT" />
+        <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+        <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="create_user" property="createUser" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        role_id, role_name, role_code, remark, create_user, create_time, update_user,
+        update_time
+    </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from sys_role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </select>
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from sys_role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </delete>
+    <insert id="save" parameterType="net.laoyeye.yyblog.model.RoleDO">
+        insert into sys_role (role_id, role_name, role_code,
+        remark, create_user, create_time,
+        update_user, update_time)
+        values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR},
+        #{roleCode,jdbcType=VARCHAR},
+        #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateUser,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="update" parameterType="net.laoyeye.yyblog.model.RoleDO">
+        update sys_role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode != null">
+                role_code = #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
 </mapper>

@@ -14,15 +14,15 @@ import net.laoyeye.yyblog.model.LogDO;
  */
 public interface LogMapper {
 
-	LogDO get(Long id);
-	
-	List<LogDO> listByUsernameAndOperation(@Param("username")String username,@Param("operation")String operation);
-	
-	int save(LogDO log);
-	
-	int update(LogDO log);
-	
-	int remove(Long id);
-	
-	int removeBatch(Long[] ids);
+    LogDO get(Long id);
+    
+    List<LogDO> listByUsernameAndOperation(@Param("username")String username,@Param("operation")String operation);
+    
+    int save(LogDO log);
+    
+    int update(LogDO log);
+    
+    int remove(Long id);
+    
+    int removeBatch(Long[] ids);
 }

@@ -25,8 +25,8 @@ import net.laoyeye.yyblog.web.BaseController;
 @Controller
 @RequestMapping("/")
 public class IndexController extends BaseController{
-	@Autowired
-	private IndexService indexService;
+    @Autowired
+    private IndexService indexService;
 
     @GetMapping(value = {"", "/index"})
     public String index(Model model) {
@@ -38,13 +38,13 @@ public class IndexController extends BaseController{
     @PostMapping(value = {"/next", "/index/next"})
     @ResponseBody
     public IndexArticleVO next(IndexQuery query) {
-    	IndexArticleVO result = indexService.next(query);
+        IndexArticleVO result = indexService.next(query);
         return result;
     }
 
     @GetMapping("/token/logout")
     public String logout(String from) {
-    	logout();
+        logout();
         if (StringUtils.isEmpty(from)) {
             return "redirect:/";
         } else {

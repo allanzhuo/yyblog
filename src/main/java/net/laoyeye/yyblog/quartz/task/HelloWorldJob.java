@@ -16,9 +16,9 @@ public class HelloWorldJob implements Job{
 
     @Override
     public void execute(JobExecutionContext arg0) throws JobExecutionException {
-    	
-    	System.out.println("欢迎使用yyblog,这是一个定时任务  --小卖铺的老爷爷!"+ DateUtils.fullTime(new Date()));
-    	
+        
+        System.out.println("欢迎使用yyblog,这是一个定时任务  --小卖铺的老爷爷!"+ DateUtils.fullTime(new Date()));
+        
     }
 
 }

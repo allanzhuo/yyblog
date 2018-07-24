@@ -15,17 +15,4 @@ public class CommentController {
         return "management/comment";
     }
 
-   /* @PostMapping("/list")
-    @ResponseBody
-    public LayuiTable<CommentVo> page(Page<CommentVo> commentPage, CommentQueryBo commentBo) {
-        commentPage = commentRepository.findPagination(commentPage, CommentVo.class, commentBo);
-        return layuiTable(commentPage);
-    }
-
-    @PostMapping("/edit/enable")
-    @ResponseBody
-    public R editEnable(Long id, Boolean enable) {
-        return builder("修改评论状态").exec(() -> commentRepository.updateEnableById(enable, id) == 1);
-    }
-*/
 }

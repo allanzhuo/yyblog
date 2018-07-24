@@ -18,41 +18,39 @@ import net.laoyeye.yyblog.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-	@Autowired
-	private CommentMapper commentMapper;
-	
-	@Override
-	public int countAllComment() {
+    @Autowired
+    private CommentMapper commentMapper;
+    
+    @Override
+    public int countAllComment() {
 
-		return commentMapper.countAllComment();
-	}
+        return commentMapper.countAllComment();
+    }
 
-	@Override
-	public CommentVO getLatestComment() {
+    @Override
+    public CommentVO getLatestComment() {
 
-		return commentMapper.getLatestComment();
-	}
+        return commentMapper.getLatestComment();
+    }
 
-	@Override
-	public DataGridResult listCommentByArticleId(CommentQuery query) {
-		PageHelper.startPage(query.getPage(), query.getLimit()); 
-		List<CommentVO> list = commentMapper.listCommentByArticleId(query.getArticleId());
-		//取记录总条数
-		PageInfo<CommentVO> pageInfo = new PageInfo<CommentVO>(list);
-		long total = pageInfo.getTotal();
-		//创建一个返回值对象
-		DataGridResult result = new DataGridResult(); 
-		result.setData(list);
-		result.setCount(total);
-		return result;
-	}
+    @Override
+    public DataGridResult listCommentByArticleId(CommentQuery query) {
+        PageHelper.startPage(query.getPage(), query.getLimit()); 
+        List<CommentVO> list = commentMapper.listCommentByArticleId(query.getArticleId());
+        //取记录总条数
+        PageInfo<CommentVO> pageInfo = new PageInfo<CommentVO>(list);
+        long total = pageInfo.getTotal();
+        //创建一个返回值对象
+        DataGridResult result = new DataGridResult(); 
+        result.setData(list);
+        result.setCount(total);
+        return result;
+    }
 
-	@Override
-	public YYBlogResult insert(CommentDO comment) {
-		commentMapper.insert(comment);
-		return YYBlogResult.ok();
-	}
-
-
+    @Override
+    public YYBlogResult insert(CommentDO comment) {
+        commentMapper.insert(comment);
+        return YYBlogResult.ok();
+    }
 
 }
