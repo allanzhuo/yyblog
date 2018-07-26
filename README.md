@@ -51,7 +51,8 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 ### 开发部署
 1. Star本项目。(#^.^#)
 2. git下载源码
-3. 根据提供的脚本创建数据库，数据库编码为UTF-8
+3. 根据lib下提供的脚本yyblog.sql创建数据库，数据库编码为UTF-8
+4. 安装qq互联jar包，地址在lib下面，这是腾讯官方提供的，并不是我封装的。安装方法参考[将jar包安装到maven仓库](https://www.cnblogs.com/laoyeye/p/8933185.html)
 4. 修改application.yml文件，更新数据库地址、账号和密码
 5. 修改qqconnectconfig.properties文件，更新app_ID、app_KEY和redirect_URI
 5. 登陆系统，初始账号：admin 密码为123456
@@ -71,6 +72,7 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 4. [JAVA文件导出之jasperreport报表开发](https://www.cnblogs.com/laoyeye/p/7707149.html)
 5. [利用Swagger2自动生成对外接口的文档](https://www.cnblogs.com/laoyeye/p/9047504.html)
 6. [Quartz实现JAVA定时任务的动态配置](https://www.cnblogs.com/laoyeye/p/9352002.html)
+7. [将jar包安装到maven仓库](https://www.cnblogs.com/laoyeye/p/8933185.html)
 
 ### 项目演示
 - 演示地址：1、前台：www.laoyeye.net 2、后台：http://www.laoyeye.net/management/index
