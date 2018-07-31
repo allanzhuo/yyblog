@@ -449,9 +449,9 @@ INSERT INTO `t_setting` VALUES ('10', 'menu_mine', '关于', '导航菜单_关�
 INSERT INTO `t_setting` VALUES ('11', 'menu_link_show', '1', '是否显示额外的导航链接（譬如github）');
 INSERT INTO `t_setting` VALUES ('12', 'wechat_pay', 'http://images.laoyeye.net/1523874512630026.png', '微信付款码');
 INSERT INTO `t_setting` VALUES ('13', 'alipay', 'http://images.laoyeye.net/1523874492832284.png', '支付宝付款码');
-INSERT INTO `t_setting` VALUES ('14', 'secret_id', 'AKIDNaZNyLUiZBYhjXzPSGo75oHbiaEdPnX2', '腾讯云存储的secret_id');
-INSERT INTO `t_setting` VALUES ('15', 'secret_key', 'XpseARTFl7GB0d2D9qHTO2RaT5RXMvDH', '腾讯云存储的secret_key');
-INSERT INTO `t_setting` VALUES ('16', 'bucket', 'yyblog-1256188512', 'COS存储桶名称');
+INSERT INTO `t_setting` VALUES ('14', 'secret_id', 'AKIDNa', '腾讯云存储的secret_id');
+INSERT INTO `t_setting` VALUES ('15', 'secret_key', 'Xps', '腾讯云存储的secret_key');
+INSERT INTO `t_setting` VALUES ('16', 'bucket', 'yyblog', 'COS存储桶名称');
 INSERT INTO `t_setting` VALUES ('17', 'region', 'ap-shanghai', 'bucket的区域');
 INSERT INTO `t_setting` VALUES ('18', 'info_label', '<p>此处可去后台 偏好设置->网站设置->信息板内容 处自定义文案</p>', '信息板内容');
 INSERT INTO `t_setting` VALUES ('19', 'menu_search', '搜索', '导航菜单_搜索');
