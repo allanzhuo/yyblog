@@ -11,7 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 /**
- * 日志文件记录，目前未实现异步，后续修改
+ * 日志文件记录
  * @author 小卖铺的老爷爷
  * @date 2018年7月1日
  * @website www.laoyeye.net
