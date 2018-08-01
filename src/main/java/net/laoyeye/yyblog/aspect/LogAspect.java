@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 数据库日志记录
+ * 数据库日志记录 
  * @author 小卖铺的老爷爷
  * @date 2018年7月1日
  * @website www.laoyeye.net
