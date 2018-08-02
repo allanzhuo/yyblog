@@ -20,7 +20,11 @@ public interface UserMapper {
     
     UserDO getUserByOpenId(String openId);
     
+    UserDO getUserByWxOpenId(String wxOpenId);
+    
     int save(UserDO user);
+    
+    int updateWxUser(UserDO user);
     
     String getNicknameById(long id);
 }
