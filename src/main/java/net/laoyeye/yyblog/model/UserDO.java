@@ -23,6 +23,7 @@ public class UserDO implements Serializable {
     private String email;
     private Boolean enable;
     private String openId;
+    private String wxOpenId;
     private Date createTime;
     private Date updateTime;
 
@@ -73,6 +74,12 @@ public class UserDO implements Serializable {
     }
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+    public String getWxOpenId() {
+        return wxOpenId;
+    }
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
     }
     public Date getCreateTime() {
         return createTime;
