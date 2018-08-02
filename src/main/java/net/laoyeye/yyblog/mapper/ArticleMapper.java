@@ -13,13 +13,13 @@ public interface ArticleMapper {
     int countAllArticle();
     //前台查询
     int countArticle();
-    
+
     ArticleVO getLatestArticle();
-    
+
     int countByCateId(Long cateId);
-    
+
     int saveArticle(ArticleDO article);
-    
+
     List<ArticleVO> listArticleByTitle(@Param("title") String title);
     //前台查询
     List<ArticleVO> listSimilarsArticle();
@@ -29,15 +29,15 @@ public interface ArticleMapper {
     List<WxPostVO> listWxIndex();
     //小程序首页Banner
     List<WxPostVO> listWxTop();
-    
+
     int update(ArticleDO article);
-    
+
     ArticleDO getArticleById(long id);
-    
+
     int delete(long id);
-    
+
     int updateViewsById(long id);
-    
+
     int updateApproveCntById(long articleId);
-    
+
 }
