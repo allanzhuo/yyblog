@@ -14,4 +14,6 @@ public interface UserService {
     YYBlogResult updateByUsername(UserDO user);
     
     String getNicknameById(long id);
+    
+    UserDO getUserById(long id);
 }
