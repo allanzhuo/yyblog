@@ -66,6 +66,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/article/**", "anon");
         filterChainDefinitionMap.put("/about/**", "anon");
         filterChainDefinitionMap.put("/api/**", "anon");
+        //因为这里开启了rememberMe，所以要用user,authc是必须认证（执行实际的登陆操作）
        /* filterChainDefinitionMap.put("/**", "authc");*/
         filterChainDefinitionMap.put("/**", "user");  
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
