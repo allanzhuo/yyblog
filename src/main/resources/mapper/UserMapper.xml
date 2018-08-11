@@ -10,6 +10,7 @@
         EMAIL,
         ENABLE,
         OPEN_ID,
+        WX_OPEN_ID,
         CREATE_TIME,
         UPDATE_TIME
      </sql>
@@ -65,6 +66,9 @@
             <if test="openId != null">
                 OPEN_ID = #{openId,jdbcType=VARCHAR},
             </if>
+            <if test="wxOpenId != null">
+                WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR},
+            </if>
             <if test="createTime != null">
                 CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
             </if>
@@ -96,6 +100,9 @@
             <if test="openId != null">
                 OPEN_ID = #{openId,jdbcType=VARCHAR},
             </if>
+            <if test="wxOpenId != null">
+                WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR},
+            </if>
             <if test="createTime != null">
                 CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
             </if>
@@ -113,13 +120,20 @@
         WHERE OPEN_ID = #{openId,jdbcType=VARCHAR}
     </select>
     
+    <select id="getUserByWxOpenId" parameterType="java.lang.String" resultType="net.laoyeye.yyblog.model.UserDO" >
+        SELECT 
+        <include refid="Base_Column_List" />
+        FROM SYS_USER
+        WHERE WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR}
+    </select>
+    
     <insert id="save" parameterType="net.laoyeye.yyblog.model.UserDO" >
         INSERT INTO SYS_USER (ID, USERNAME, NICKNAME, PASSWORD, AVATAR, EMAIL,
-        ENABLE, OPEN_ID, CREATE_TIME, UPDATE_TIME)
+        ENABLE, OPEN_ID, WX_OPEN_ID, CREATE_TIME, UPDATE_TIME)
         VALUES (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
         #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-        #{enable,jdbcType=BIT}, #{openId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-        #{updateTime,jdbcType=TIMESTAMP})
+        #{enable,jdbcType=BIT}, #{openId,jdbcType=VARCHAR}, #{wxOpenId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
 
     <select id="getNicknameById" parameterType="java.lang.Long" resultType="java.lang.String" >
@@ -128,4 +142,35 @@
         FROM SYS_USER
         WHERE ID = #{id,jdbcType=BIGINT}
     </select>
+    
+    <update id="updateWxUser" parameterType="net.laoyeye.yyblog.model.UserDO">
+        UPDATE SYS_USER
+        <set>
+            <if test="username != null">
+                USERNAME = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                NICKNAME = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                AVATAR = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="enable != null">
+                ENABLE = #{enable,jdbcType=BIT},
+            </if>
+            <if test="openId != null">
+                OPEN_ID = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        WHERE WX_OPEN_ID = #{wxOpenId,jdbcType=VARCHAR}
+    </update>
 </mapper>
