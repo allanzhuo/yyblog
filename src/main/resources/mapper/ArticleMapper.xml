@@ -237,4 +237,36 @@
         WHERE
         ID = #{id,jdbcType=BIGINT}
     </update>
+    <select id="listWxIndex" resultType="net.laoyeye.yyblog.model.vo.WxPostVO">
+        SELECT
+            TA.ID,
+            TA.TITLE,
+            SU.NICKNAME,
+            SU.AVATAR,
+            TA.COVER,
+            TA.SUMMARY,
+            TA.VIEWS,
+            TA.CREATE_TIME
+        FROM
+            T_ARTICLE TA
+        LEFT JOIN SYS_USER SU ON SU.ID = TA.AUTHOR_ID
+        WHERE TA.DRAFT = 0
+        ORDER BY TA.CREATE_TIME DESC
+    </select>
+    <select id="listWxTop" resultType="net.laoyeye.yyblog.model.vo.WxPostVO">
+        SELECT
+            TA.ID,
+            TA.TITLE,
+            SU.NICKNAME,
+            SU.AVATAR,
+            TA.COVER,
+            TA.SUMMARY,
+            TA.VIEWS,
+            TA.CREATE_TIME
+        FROM
+            T_ARTICLE TA
+        LEFT JOIN SYS_USER SU ON SU.ID = TA.AUTHOR_ID
+        WHERE TA.DRAFT = 0 AND TA.TOP = 1
+        ORDER BY TA.CREATE_TIME DESC
+    </select>
 </mapper>
