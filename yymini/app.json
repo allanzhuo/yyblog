@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/launch/launch",
+    "pages/posts/post",
+    "pages/post-detail/post-detail",
+    "pages/tech/tech",
+    "pages/plan/plan",
+    "pages/me/me",
+    "pages/me/feedback/feedback",
+    "pages/me/about/about",
+    "pages/me/collect/collect",
+    "pages/me/comment/comment"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#479de6",
+    "navigationBarTitleText": "小卖铺的老爷爷"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "position": "bottom",
+    "color": "#757982",
+    "selectedColor": "#138cff",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/posts/post",
+        "text": "主页",
+        "iconPath": "images/tab/index.png",
+        "selectedIconPath": "images/tab/index-on.png"
+      },
+      {
+        "pagePath": "pages/tech/tech",
+        "text": "技术",
+        "iconPath": "images/tab/bill.png",
+        "selectedIconPath": "images/tab/bill-on.png"
+      },
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "计划",
+        "iconPath": "images/tab/plan.png",
+        "selectedIconPath": "images/tab/plan-on.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/tab/me.png",
+        "selectedIconPath": "images/tab/me-on.png"
+      }
+    ]
+  }
+}
