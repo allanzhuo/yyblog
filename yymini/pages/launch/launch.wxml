@@ -1,0 +1,13 @@
+<view class='container'>
+  <image mode='widthFix' class='bcg' src='/images/launch/launch_bcg.png'></image>
+  <view class='top'>
+    <view class='wrapper'>
+      <image mode='widthFix' src='/images/launch/launch_diamond.png'></image>
+      <view>生命不息，折腾不止</view>
+    </view>
+  </view>
+  <button class="show-btn" wx:if="{{userInfo.length == 0}}" type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo"> 授权登录 </button>
+  <view class='bottom'>
+    <image mode='widthFix' src='/images/launch/launch_bottom.png'></image>
+  </view>
+</view>
