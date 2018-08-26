@@ -1,0 +1,16 @@
+<import src="post-item/post-item-template.wxml" />
+<view>
+    <swiper catchtap="onSwiperTap" indicator-dots="true" autoplay="true" interval="5000">
+        <block wx:for="{{topList}}" wx:for-item="item" wx:for-index="idx">
+          <swiper-item>
+            <image src="{{item.cover}}" data-id="{{item.id}}" mode='widthFix'></image>
+          </swiper-item>
+        </block>
+    </swiper>
+    <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
+        <!--//template-->
+        <view catchtap="onPostTap" data-id="{{item.id}}" data-title="主页" >
+             <template is="postItem" data="{{...item}}"/>
+        </view>
+    </block>
+</view>
