@@ -1,0 +1,25 @@
+<wxs module='filters' src='../../../filter/filter.wxs' />
+<template name="postItem">
+  <view class="post-container">
+    <view class="post-author">
+      <image class="post-author-avatar" src="{{avatar}}"></image>
+      <view class='post-author-info'>
+        <view class='post-author-name'>{{nickname}}</view>
+        <view class='post-author-others'>
+          <text class='time'>{{filters.timeBefore(createTime)}}</text>
+        </view>
+      </view>
+    </view>
+    <text class="post-title">{{title}}</text>
+    <image class="{{cover == null ? 'hide-post-image':'show-post-image'}}" src="{{cover}}"></image>
+    <text class="post-summary">{{summary}}
+            </text>
+    <view class="post-like">
+      <image class="post-like-image" src="/images/icon/zan_grey.png"></image>
+      <text class="post-like-font">{{collections}}</text>
+
+      <image class="post-like-image" src="/images/icon/view.png"></image>
+      <text class="post-like-font">{{views}}</text>
+    </view>
+  </view>
+</template>
