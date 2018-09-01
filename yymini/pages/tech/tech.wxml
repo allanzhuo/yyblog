@@ -1,0 +1,9 @@
+ <import src="tech-item/tech-item-template.wxml" />
+<view class="container">
+  <block wx:for="{{techList}}" wx:for-item="item">
+        <!--//template-->
+        <view catchtap="onTechTap" data-id="{{item.id}}" data-title="技术" >
+             <template is="techItem" data="{{...item}}"/>
+        </view>
+  </block>
+</view>

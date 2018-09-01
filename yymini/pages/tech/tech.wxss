@@ -1,0 +1,5 @@
+/* pages/tech/tech.wxss */
+@import "tech-item/tech-item-template.wxss";
+.container {
+  background: #f2f2f2 !important;
+}
