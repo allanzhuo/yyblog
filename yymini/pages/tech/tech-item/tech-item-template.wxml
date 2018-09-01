@@ -1,0 +1,18 @@
+<wxs module='filters' src='../../../filter/filter.wxs' />
+<template name="techItem">
+  <view class='item'>
+    <view class='header'>
+      <view class='name'>
+        <image mode='aspectFill' src='{{(avatar) || "/images/avatar/default_avatar.png"}}'></image>
+        <view>{{nickname}}</view>
+      </view>
+    </view>
+    <view class='content'>
+      <view class='text'>
+        <view class='title'>{{title}}</view>
+        <view class='desc'>{{summary}}</view>
+      </view>
+      <image mode='aspectFill' class='img' src='{{cover}}' wx:if='{{cover}}'></image>
+    </view>
+  </view>
+</template>
