@@ -1,0 +1,61 @@
+@import '/wxParse/wxParse.wxss';
+.container {
+  background: #fff;
+  padding-bottom: 30rpx;
+  font-size: 30rpx;
+}
+
+.container .content {
+  padding: 30rpx 30rpx 0;
+}
+
+.title {
+  font-size: 48rpx;
+  margin: 32rpx 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user .name {
+  font-weight: 700;
+}
+
+.avatar image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.user .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100rpx;
+  margin-left: 20rpx;
+}
+
+.others {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.others .time {
+  margin-right: 12rpx;
+}
+
+/* 回到首页,固定定位,悬浮 */
+.back-home {
+  position: fixed;
+  width: 96rpx;
+  height: 96rpx;
+  right: 30rpx;
+  bottom: 166rpx;
+  z-index: 10000;
+}
