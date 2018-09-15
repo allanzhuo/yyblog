@@ -1,0 +1,88 @@
+<view class='container'>
+  <view class='me-info'>
+    <view>
+      <image src="{{avatarUrl}}"></image>
+      <view>{{nickName}}</view>
+    </view>
+  </view>
+
+  <view class='me-list'>
+    <view class='item'>
+      <view class='hd'>
+        <view class='me-tag me-tag-1'>
+          <image class='icon' src="/images/icon/home.png"></image>
+        </view>
+        <text class='title'>个人信息</text>
+      </view>
+      <view class='view-right'>
+        <image class='icon' src="/images/icon/right.png"></image>
+      </view>
+    </view>
+    <navigator url='collect/collect'>
+      <view class='item'>
+        <view class='hd'>
+          <view class='me-tag me-tag-5'>
+            <image class='icon' src="/images/icon/heart.png"></image>
+          </view>
+          <text class='title'>我的收藏</text>
+        </view>
+        <view class='view-right'>
+          <image class='icon' src="/images/icon/right.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url='comment/comment'>
+      <view class='item'>
+        <view class='hd'>
+          <view class='me-tag me-tag-2'>
+            <image class='icon' src="/images/icon/message.png"></image>
+          </view>
+          <text class='title'>我的评论</text>
+        </view>
+        <view class='view-right'>
+          <image class='icon' src="/images/icon/right.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url='feedback/feedback'>
+      <view class='item'>
+        <view class='hd'>
+          <view class='me-tag me-tag-3'>
+            <image class='icon' src="/images/icon/warning-circle.png"></image>
+          </view>
+          <text class='title'>问题反馈</text>
+        </view>
+        <view class='view-right'>
+          <image class='icon' src="/images/icon/right.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url='about/about'>
+      <view class='item'>
+        <view class='hd'>
+          <view class='me-tag me-tag-4'>
+            <image class='icon' src="/images/icon/bell.png"></image>
+          </view>
+          <text class='title'>关于项目</text>
+        </view>
+        <view class='view-right'>
+          <image class='icon' src="/images/icon/right.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url='/pages/post-detail/post-detail?id=153890258636300&title=打赏赞助'>
+      <view class='item'>
+        <view class='hd'>
+          <view class='me-tag me-tag-5'>
+            <image class='icon' src="/images/icon/like.png"></image>
+          </view>
+          <text class='title'>打赏赞助</text>
+        </view>
+        <view class='view-right'>
+          <image class='icon' src="/images/icon/right.png"></image>
+        </view>
+      </view>
+    </navigator>
+
+  </view>
+</view>

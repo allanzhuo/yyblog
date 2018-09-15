@@ -1,0 +1,88 @@
+.container {
+  background: #f2f2f2 !important;
+}
+.me-info {
+    text-align: center;
+    background-color: #fff;
+    height: 300rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.me-info image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+}
+
+.me-list {
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+
+.me-list .item {
+    padding: 30rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.me-list .item .title {
+    margin-left: 16rpx;
+}
+
+.me-list .item .hd {
+    display: flex;
+    align-items: center;
+    flex: 1
+}
+
+.me-tag {
+    box-sizing: border-box;
+    width: 50rpx;
+    height: 50rpx;
+    padding: 20rpx;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.me-tag-1 {
+    background-color: #42d67c;
+}
+
+.icon {
+    vertical-align: middle;
+    position: absolute;
+    width: 38rpx;
+    height: 38rpx;
+}
+
+.view-right {
+    margin-right: 16rpx;
+    display: flex;
+    align-items: center;
+}
+
+.me-tag-2 {
+    background-color: #ffc767;
+}
+
+.me-tag-3 {
+    background-color: #ffbb36;
+}
+
+.me-tag-4 {
+    background-color: #ffb85e;
+}
+
+.me-tag-5 {
+    background-color: #ff9b78;
+}
+
+.me-tag .icon {
+    color: #fff;
+    font-size: 30rpx;
+}
