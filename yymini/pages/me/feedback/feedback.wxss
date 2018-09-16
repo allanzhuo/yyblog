@@ -1,0 +1,39 @@
+.container {
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.container .input {
+    height: 70rpx;
+    line-height: 70rpx;
+    border-bottom: 1px solid #eee;
+}
+
+.container .input input {
+    padding: 0 10px;
+    height: 100%;
+}
+
+.container .textarea {
+    height: 300rpx;
+}
+
+.container .textarea textarea {
+    padding: 10px;
+}
+
+.btn-wrap {
+    margin-top: 60rpx;
+    text-align: center;
+}
+
+.u-btn {
+    width: 600rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    display: inline-block;
+    background-color: #5F98FD;
+    color: #fff;
+    margin: 0 auto;
+}

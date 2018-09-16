@@ -1,0 +1,11 @@
+<view class='container'>
+    <view class='input'>
+        <input placeholder='请输入你的邮箱' bindinput='onInputEmail'></input>
+    </view>
+    <view class='textarea'>
+        <textarea placeholder='请输入反馈内容' bindinput='onInputTextarea'></textarea>
+    </view>
+</view>
+<view class='btn-wrap'>
+    <text class='u-btn' bindtap='submit'>提交反馈</text>
+</view>
