@@ -1,0 +1,24 @@
+<view class='container'>
+  <view class='collect-list'>
+    <view class='item' wx:for="{{collectList}}" wx:key="{{index}}" bindtap='onDetail' data-id="{{item.id}}">
+      <view class='item-cover'>
+        <image src='{{(item.cover) || "/images/avatar/default_cover.png"}}' mode="aspectFill"></image>
+      </view>
+      <view class='item-info'>
+        <view class='content'>
+          <view>{{item.title}}</view>
+          <view>{{item.nickname}}</view>
+        </view>
+        <view class='icon-box'>
+          <icon class='icon icon-like' catchtap='onLike' data-id="{{item.id}}"></icon>
+        </view>
+      </view>
+    </view>
+
+    <view class='tip' wx:if="{{collectList.length == 0 || collectList == null}}">
+      <icon class='icon icon-sad'></icon>
+      <view>评论还是空的，赶快去评论吧!</view>
+    </view>
+  </view>
+
+</view>
