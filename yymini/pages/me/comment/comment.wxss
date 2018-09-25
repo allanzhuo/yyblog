@@ -1,0 +1,51 @@
+page {
+    background-color: #fff;
+}
+
+.collect-list {
+    padding: 20rpx;
+}
+
+.collect-list .item {
+    display: flex;
+    align-items: flex-start;
+    height: 120rpx;
+    border-bottom: 1px solid #f3f3f3;
+    padding-bottom: 10px;
+}
+
+.collect-list .item:nth-child(n+1) {
+    margin-top: 20rpx;
+}
+
+.collect-list .item image {
+    width: 100%;
+    height: 100%;
+}
+
+.collect-list .item-cover {
+    flex-basis: 120rpx;
+    height: 100%;
+    margin-right: 20rpx;
+}
+
+.collect-list .item-info {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    font-size: 14px;
+}
+
+.collect-list .item-info .content {
+    flex: 1;
+}
+
+.collect-list .item-info .icon-box {
+    flex-basis: 80rpx;
+}
+
+.collect-list .tip {
+    color: #cad3d7;
+    text-align: center;
+}
