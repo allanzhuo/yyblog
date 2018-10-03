@@ -1,0 +1,18 @@
+<view class='container'>
+    <view class='title'>小程序简介：</view>
+    <view class='item'>
+         yymini是一款基于yyblog系统的开源小程序客户端，支持后台自动升级。
+    </view>
+    <view class='item'>
+        如您有任何建议，欢迎在反馈中向我提出，或者在GitHub通过Issues反馈。(推荐)
+    </view>
+    <view class='item'>
+        觉得小程序不错的话，可以在GitHub帮忙点个Star哦！也可以通过打赏小小的支持我一下！
+    </view>
+    <view class='item'>
+        <view>联系方式：</view>
+        <view>GitHub：https://github.com/allanzhuo/yyblog</view>
+        <view>邮箱：allan_zhuo@163.com</view>
+        <view>版本：1.0.1</view>
+    </view>
+</view>

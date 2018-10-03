@@ -1,0 +1,14 @@
+.container {
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.container .item {
+    margin-top: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px
+}
