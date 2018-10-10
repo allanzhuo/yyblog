@@ -54,6 +54,6 @@ Page({
       duration: 1000,
       icon: "success"
     })
-  },
+  }
 
 })
