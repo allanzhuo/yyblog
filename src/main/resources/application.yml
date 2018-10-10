@@ -39,4 +39,9 @@ server:
 mybatis:
   configuration:
     mapUnderscoreToCamelCase: true
-  mapper-locations: classpath:mapper/*.xml  
+  mapper-locations: classpath:mapper/*.xml
+weixin: 
+  appid: xxxxxxxx
+  secret: xxxxxx
+  url: https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code
+  
