@@ -46,6 +46,6 @@ Page({
       })
       wx.hideNavigationBarLoading();
       wx.stopPullDownRefresh();
-    },
+    }
 
 })
