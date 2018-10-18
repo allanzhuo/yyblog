@@ -83,14 +83,14 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 - 演示地址：1、前台：www.laoyeye.net 2、后台：http://www.laoyeye.net/management/index
 - 账号/密码：test/123456 暂时只拥有部分菜单的查看权限
 - 微信小程序演示地址：小程序搜索【小卖铺的老爷爷】查看，或者扫描下方二维码
-![image](http://ouninjftw.bkt.clouddn.com/1539863688564182.jpg)
+![image](http://img.laoyeye.net/1539863688564182.jpg)
 ### 项目展示
 计划任务管理
-![image](http://ouninjftw.bkt.clouddn.com/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1.png)
+![image](http://img.laoyeye.net/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1.png)
 系统日志管理
-![image](http://ouninjftw.bkt.clouddn.com/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.png)
+![image](http://img.laoyeye.net/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.png)
 网站设置
-![image](http://ouninjftw.bkt.clouddn.com/%E7%BD%91%E7%AB%99%E8%AE%BE%E7%BD%AE.png)
+![image](http://img.laoyeye.net/%E7%BD%91%E7%AB%99%E8%AE%BE%E7%BD%AE.png)
 打赏二维码设置
-![image](http://ouninjftw.bkt.clouddn.com/%E6%89%93%E8%B5%8F.png)
+![image](http://img.laoyeye.net/%E6%89%93%E8%B5%8F.png)
 更多界面效果请登录演示地址[www.laoyeye.net](http://www.laoyeye.net/)查看...
