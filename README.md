@@ -83,7 +83,8 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 - 演示地址：1、前台：www.laoyeye.net 2、后台：http://www.laoyeye.net/management/index
 - 账号/密码：test/123456 暂时只拥有部分菜单的查看权限
 - 微信小程序演示地址：小程序搜索【小卖铺的老爷爷】查看，或者扫描下方二维码
-![image](http://img.laoyeye.net/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
+
+![image](http://img.laoyeye.net/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81%E6%A0%87%E5%87%86%E7%BB%BF%E7%89%88.png)
 ### 项目展示
 计划任务管理
 ![image](http://img.laoyeye.net/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1.png)
