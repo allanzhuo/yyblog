@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import net.laoyeye.yyblog.model.ArticleDO;
 import net.laoyeye.yyblog.model.query.IndexQuery;
 import net.laoyeye.yyblog.model.vo.ArticleVO;
+import net.laoyeye.yyblog.model.vo.WxPostVO;
 
 public interface ArticleMapper {
     int countAllArticle();
@@ -24,6 +25,10 @@ public interface ArticleMapper {
     List<ArticleVO> listSimilarsArticle();
     //前台查询
     List<ArticleVO> listIndexArticle(IndexQuery query);
+    //小程序首页查询
+    List<WxPostVO> listWxIndex();
+    //小程序首页Banner
+    List<WxPostVO> listWxTop();
     
     int update(ArticleDO article);
     
@@ -34,4 +39,5 @@ public interface ArticleMapper {
     int updateViewsById(long id);
     
     int updateApproveCntById(long articleId);
+    
 }
