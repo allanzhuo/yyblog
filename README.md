@@ -32,10 +32,10 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 3、修改腾讯云存储的配置，目前在COSClientUtils.java文件中配置即可
 
 ## 1.x 版本
-1.x 为常规开发版本，目前1.x版本仅作为单体项目开发，重点在于功能的完善，不做任何不必要的拆分。总的来说1.x的项目架构还是有点混乱的，后面会在升级Springboot2.0的时候做全面的重构，预计开始时间大概在明年过年后吧。
+1.x 为常规开发版本，目前1.x版本仅作为单体项目开发，重点在于功能的完善，不做任何不必要的拆分。总的来说1.x的项目架构还是有点混乱的，后面会在升级Springboot2.0的时候做全面的重构，预计开始时间大概在年后。
 
 ### 项目技术
-- 核心框架：Spring Boot 1.x
+- 核心框架：Spring Boot 1.5
 - 安全框架：Apache Shiro 1.3
 - 视图框架：Spring MVC
 - 持久层框架：MyBatis
@@ -44,7 +44,7 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 - 接口文档：Swagger2
 - 前端框架：layui 2.3
 - 模板引擎：thymeleaf
-- 微信小程序集成
+- 微信小程序
 
 ### 软件需求
 - JDK 1.8 +
@@ -83,7 +83,7 @@ beta版为早期开发版本，但是基本功能大部分是已经完成的。
 - 演示地址：1、前台：www.laoyeye.net 2、后台：http://www.laoyeye.net/management/index
 - 账号/密码：test/123456 暂时只拥有部分菜单的查看权限
 - 微信小程序演示地址：小程序搜索“小卖铺的老爷爷”查看，或者扫描下述二维码
-![image](http://images.laoyeye.net/1539863688564182.jpg)
+![image](http://ouninjftw.bkt.clouddn.com/1539863688564182.jpg)
 ### 项目展示
 计划任务管理
 ![image](http://ouninjftw.bkt.clouddn.com/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1.png)
