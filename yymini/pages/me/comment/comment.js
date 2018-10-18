@@ -55,6 +55,6 @@ Page({
    */
   onReachBottom: function () {
 
-  }
+  },
 
 })
