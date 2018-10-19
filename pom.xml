@@ -77,8 +77,6 @@
             <artifactId>qq-connect</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!-- <dependency> <groupId>net.laoyeye.yyblog</groupId> <artifactId>qq-login</artifactId> 
-            <version>1.0.0</version> </dependency> -->
         <!--springfox依赖 -->
         <dependency>
             <groupId>io.springfox</groupId>
