@@ -236,17 +236,18 @@ CREATE TABLE `sys_user` (
   `email` varchar(100) DEFAULT NULL,
   `enable` tinyint(1) DEFAULT '1',
   `open_id` varchar(32) DEFAULT NULL COMMENT 'qq登录api的openid',
+  `wx_open_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=153249313834918 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=154043494244827 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('2', 'test', '临时账号', '14e1b600b1fd579f47433b88e8d85291', 'http://t2.hddhhn.com/uploads/tu/201803/9999/1015e4a69c.jpg', null, '1', null, null, null);
-INSERT INTO `sys_user` VALUES ('152336334290854', 'admin', '小卖铺的老爷爷', '14e1b600b1fd579f47433b88e8d85291', 'http://t2.hddhhn.com/uploads/tu/201803/9999/1015e4a69c.jpg', '', '1', '', '2018-07-23 23:56:26', '2018-07-16 18:47:51');
+INSERT INTO `sys_user` VALUES ('2', 'test', '临时账号', '14e1b600b1fd579f47433b88e8d85291', 'http://t2.hddhhn.com/uploads/tu/201803/9999/1015e4a69c.jpg', null, '1', null, null, null, null);
+INSERT INTO `sys_user` VALUES ('152336334290854', 'admin', '小卖铺的老爷爷', '14e1b600b1fd579f47433b88e8d85291', 'http://t2.hddhhn.com/uploads/tu/201803/9999/1015e4a69c.jpg', '', '1', '', null,'2018-07-23 23:56:26', '2018-07-16 18:47:51');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -514,3 +515,16 @@ CREATE TABLE `t_upload` (
 -- ----------------------------
 -- Records of t_upload
 -- ----------------------------
+DROP TABLE IF EXISTS `blog_collect`;
+CREATE TABLE `blog_collect` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL COMMENT '角色名称',
+  `article_id` bigint(20) DEFAULT NULL COMMENT '角色标识',
+  `enable` tinyint(1) DEFAULT '1',
+  `create_user` bigint(255) DEFAULT NULL COMMENT '创建用户id',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_user` bigint(255) DEFAULT NULL COMMENT '创建用户id',
+  `update_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=153889662359263 DEFAULT CHARSET=utf8;
+
