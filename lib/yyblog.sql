@@ -13,6 +13,8 @@ File Encoding         : 65001
 Date: 2018-07-25 21:13:27
 项目相关脚本还不完善，目前还有很多冗余的字段或者是表，是我接下来要做的，各位可以先试着看一下，谢谢
 如果项目对您有帮助，记得给项目点个Star哈
+2.0版本将全部重做，遵循的数据库规范如下，推荐参考。
+https://www.cnblogs.com/laoyeye/p/9925449.html
 */
 
 SET FOREIGN_KEY_CHECKS=0;
