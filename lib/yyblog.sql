@@ -200,6 +200,8 @@ INSERT INTO `sys_role_menu` VALUES ('46', '1', '34');
 INSERT INTO `sys_role_menu` VALUES ('47', '1', '35');
 INSERT INTO `sys_role_menu` VALUES ('48', '2', '35');
 INSERT INTO `sys_role_menu` VALUES ('49', '2', '13');
+INSERT INTO `sys_role_menu` VALUES ('50', '1', '36');
+
 
 -- ----------------------------
 -- Table structure for sys_task
