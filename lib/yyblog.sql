@@ -1,11 +1,6 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mytest
-Source Server Version : 50639
-Source Host           : 118.25.38.57:3306
-Source Database       : blog_pro
-
 Target Server Type    : MYSQL
 Target Server Version : 50639
 File Encoding         : 65001
