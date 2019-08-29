@@ -34,21 +34,23 @@ public class LoginServiceImpl implements LoginService {
             OpenID openidObj = new OpenID(accessToken);
             // 数据查找openid是否关联,如果没有关联先跳转到关联账号页面,如果直接登录.
             String userOpenId = openidObj.getUserOpenID();
-            UserDO user = userMapper.getUserByOpenId(userOpenId);
-            if (StringUtils.isEmpty(user)) {
-                //获取用户信息
-                UserInfo qzoneUserInfo = new UserInfo(accessToken, userOpenId);
-                UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
-                user = new UserDO();
-                user.setId(IDUtils.genId());
-                user.setNickname(userInfoBean.getNickname());
-                user.setAvatar(userInfoBean.getAvatar().getAvatarURL50());
-                user.setOpenId(userOpenId);
-                user.setCreateTime(new Date());
-                user.setUpdateTime(new Date());
-                user.setEnable(true);
-                //保存用户信息
-                userMapper.save(user);
+            synchronized(userOpenId.intern()) {
+                UserDO user = userMapper.getUserByOpenId(userOpenId);
+                if (StringUtils.isEmpty(user)) {
+                    //获取用户信息
+                    UserInfo qzoneUserInfo = new UserInfo(accessToken, userOpenId);
+                    UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
+                    user = new UserDO();
+                    user.setId(IDUtils.genId());
+                    user.setNickname(userInfoBean.getNickname());
+                    user.setAvatar(userInfoBean.getAvatar().getAvatarURL50());
+                    user.setOpenId(userOpenId);
+                    user.setCreateTime(new Date());
+                    user.setUpdateTime(new Date());
+                    user.setEnable(true);
+                    //保存用户信息
+                    userMapper.save(user);
+                }
             }
             UsernamePasswordToken token = new UsernamePasswordToken(userOpenId, userOpenId);
             Subject subject = SecurityUtils.getSubject();
@@ -64,17 +66,20 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Long wxLogin(UserDO user) {
         try {
-            //查询wxOpenId是否存在
-            UserDO userDo = userMapper.getUserByWxOpenId(user.getWxOpenId());
-            if (StringUtils.isEmpty(userDo)) {
-                user.setId(IDUtils.genId());
-                user.setCreateTime(new Date());
-                user.setUpdateTime(new Date());
-                user.setEnable(true);
-                //保存用户信息
-                userMapper.save(user);
-                return user.getId();
-            } 
+            UserDO userDo;
+            synchronized(user.getWxOpenId().intern()) {
+                //查询wxOpenId是否存在
+                userDo = userMapper.getUserByWxOpenId(user.getWxOpenId());
+                if (StringUtils.isEmpty(userDo)) {
+                    user.setId(IDUtils.genId());
+                    user.setCreateTime(new Date());
+                    user.setUpdateTime(new Date());
+                    user.setEnable(true);
+                    //保存用户信息
+                    userMapper.save(user);
+                    return user.getId();
+                }
+            }
             user.setUpdateTime(new Date());
             userMapper.updateWxUser(user);
             return userDo.getId();
